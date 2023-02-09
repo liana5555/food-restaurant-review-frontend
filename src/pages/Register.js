@@ -1,5 +1,6 @@
 import React from "react"
-
+import axios from 'axios'
+import { Link } from "react-router-dom";
 
 export default function Register () {
 
@@ -12,6 +13,8 @@ export default function Register () {
         email: "" 
         
     })
+
+    const [error, setError] = React.useState(null)
     console.log(regform)
 
     function handleChange (e) {
@@ -24,9 +27,17 @@ export default function Register () {
 
     }
 
-    function handleSubmit (e) {
+    async function handleSubmit (e) {
         e.preventDefault()
-        console.log("Submitting")
+        try {
+           const result = await axios.post("/auth/register", regform)
+           console.log(result) 
+        }
+        catch (err){
+            setError(err.response.data)
+            console.log(err)
+        }
+        
     }
 
     function checkingPaassword (psw, repsw) {
@@ -54,6 +65,8 @@ export default function Register () {
             <input className="input" type="password" name="repassword" placeholder="password" value={regform.repassword} onChange={handleChange}  />
             {checkingPaassword(regform.password, regform.repassword)&&<div className="not-matching-psw">Not matching Password</div>}
             <button>Register</button>
+            {error && <div className="error">{error}</div>}
+            <div className="login-reg-comment">If you already have an account please - <Link to="/login">Login</Link> </div>
 
         </form>
         </main>
