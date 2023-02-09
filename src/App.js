@@ -1,8 +1,9 @@
-import './App.scss';
+import './scss/App.scss';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Posts from './pages/Posts'
 import Home from './pages/Home';
 import {
   createBrowserRouter,
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/posts/:id",
+        element: <Posts />,
       },
       
     ],

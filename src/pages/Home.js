@@ -1,11 +1,9 @@
-
+import React from "react"
 
 
 export default function Home () {
     return (
-        <nav>
-            Home
-        </nav>
+       <main>WELCOME HOME</main>
     )
 
 

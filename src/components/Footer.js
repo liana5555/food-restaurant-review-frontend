@@ -1,10 +1,10 @@
-
+import React from "react"
 
 export default function Footer () {
     return (
-        <nav>
+        <footer>
             Footer
-        </nav>
+        </footer>
     )
 
 
