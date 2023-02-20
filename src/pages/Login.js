@@ -1,4 +1,6 @@
 import React from "react"
+import axios from 'axios'
+import { Link, useNavigate } from "react-router-dom";
 
 
 export default function Login () {
@@ -9,7 +11,10 @@ export default function Login () {
    
         
     })
-    console.log(regform)
+    //console.log(regform)
+    const [error, setError] = React.useState(null)
+
+    const navigate = useNavigate()
 
     function handleChange (e) {
         setRegisterForm(prev => {
@@ -21,9 +26,16 @@ export default function Login () {
 
     }
 
-    function handleSubmit (e) {
+    async function handleSubmit (e) {
         e.preventDefault()
-        console.log("Submitting")
+        try {
+            await axios.post("/auth/login", regform)
+            navigate("/")
+        }
+        catch (err) {
+            setError(err.response.data)
+
+        }
     }
 
 
@@ -36,6 +48,7 @@ export default function Login () {
             <label className="input-label" name="password" >Password</label>
             <input className="input" type="password" name="password" placeholder="password" value={regform.password} onChange={handleChange}  />
             <button>Login</button>
+            {error && <div className="error">{error}</div>}
 
         </form>
         </main>

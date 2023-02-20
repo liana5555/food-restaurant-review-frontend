@@ -1,6 +1,6 @@
 import React from "react"
 import axios from 'axios'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Register () {
 
@@ -15,6 +15,9 @@ export default function Register () {
     })
 
     const [error, setError] = React.useState(null)
+
+    const navigate = useNavigate()
+
     console.log(regform)
 
     function handleChange (e) {
@@ -32,6 +35,8 @@ export default function Register () {
         try {
            const result = await axios.post("/auth/register", regform)
            console.log(result) 
+            navigate("/login")
+           
         }
         catch (err){
             setError(err.response.data)

@@ -1,6 +1,30 @@
 nav {
     background-color: white;
     color: hsl(60, 56%, 11%);
-    min-height: 100px;
-    padding: 20px;
+    padding: 0px;
+    width: 100%;
+    margin: 0px;
+    position: sticky; //I am not sure about using this ************
+    top:0px;
+
+    ul {
+        margin: 0px;
+        padding: 20px;
+        text-decoration: none;
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content:flex-end;
+        gap: 20px;
+        box-shadow: rgba(27, 31, 35, 0.6) 0px 2px 0px, rgba(255, 255, 255, 0.4) 0px 2px 0px inset;
+
+        li {
+            text-decoration: none;
+
+        }
+
+        
+    }
 }
+
