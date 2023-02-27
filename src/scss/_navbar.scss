@@ -1,11 +1,12 @@
 nav {
-    background-color: white;
-    color: hsl(60, 56%, 11%);
+    background-color: $white;
+    color: $darkerGreen;
     padding: 0px;
     width: 100%;
     margin: 0px;
     position: sticky; //I am not sure about using this ************
     top:0px;
+    z-index: 10;
 
     ul {
         margin: 0px;
@@ -25,6 +26,39 @@ nav {
         }
 
         
+    }
+    a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 19px;
+        border-bottom: 3px solid $white;
+        height: 100%;
+        color: $black;
+        font-weight: 900;
+        font-size: 1rem;
+    }
+
+    a:hover {
+        border-bottom: 3px solid $darkerGreen;
+        color: $darkerGreen;
+    }
+
+    .link {
+        text-decoration: none;
+        display: inline-block;
+        padding: 19px;
+        border-bottom: 3px solid $white;
+        height: 100%;
+        color: $black;
+        font-weight: 900;
+        font-size: 1rem;
+
+    }
+    .link:hover {
+        cursor: pointer;
+        border-bottom: 3px solid $darkerGreen;
+        color: $darkerGreen;
+
     }
 }
 

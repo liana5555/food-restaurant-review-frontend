@@ -1,6 +1,6 @@
-import React from "react"
-import axios from 'axios'
+import React, { useContext } from "react"
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/authContext";
 
 
 export default function Login () {
@@ -16,6 +16,8 @@ export default function Login () {
 
     const navigate = useNavigate()
 
+    const {login} = useContext(AuthContext)
+
     function handleChange (e) {
         setRegisterForm(prev => {
             return {
@@ -29,7 +31,7 @@ export default function Login () {
     async function handleSubmit (e) {
         e.preventDefault()
         try {
-            await axios.post("/auth/login", regform)
+            await login(regform)
             navigate("/")
         }
         catch (err) {
@@ -49,6 +51,7 @@ export default function Login () {
             <input className="input" type="password" name="password" placeholder="password" value={regform.password} onChange={handleChange}  />
             <button>Login</button>
             {error && <div className="error">{error}</div>}
+            <div className="login-reg-comment">If you don't have an account yet! - <Link to="/register">Register</Link> </div>
 
         </form>
         </main>
