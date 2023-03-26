@@ -10,8 +10,9 @@ export default function Navbar () {
         <nav>
             <ul>
                 <li><Link to="/">Home</Link></li>
+                <li><Link to="/write">Write</Link></li>
                 <li>{currentUser? (<span className="link" onClick={logout}>Logout</span>) : <Link to="/login">Login/Sign up</Link>}</li>
-                <span className="link">{currentUser?.username}</span>
+                {currentUser && <span className="link">{currentUser?.username}</span> }
             </ul>
         </nav>
     )

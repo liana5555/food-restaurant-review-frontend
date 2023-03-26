@@ -33,7 +33,7 @@ nav {
         padding: 19px;
         border-bottom: 3px solid $white;
         height: 100%;
-        color: $black;
+        color: $darkerGreen;
         font-weight: 900;
         font-size: 1rem;
     }
@@ -41,6 +41,7 @@ nav {
     a:hover {
         border-bottom: 3px solid $darkerGreen;
         color: $darkerGreen;
+        //text-shadow: 1px 1px 3px $darkerGreen;
     }
 
     .link {

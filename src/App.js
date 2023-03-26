@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Posts from './pages/Posts'
 import Home from './pages/Home';
+import Write from './pages/Write'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -34,6 +35,9 @@ const router = createBrowserRouter([
         path: "/posts/:id",
         element: <Posts />,
       },
+      {path: "/write",
+        element: <Write />
+      }
       
     ],
   },

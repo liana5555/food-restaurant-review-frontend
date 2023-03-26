@@ -1,7 +1,283 @@
-main {
+.single-post,  .write {
+    //color: $darkerGreen;
     background-color: $backgcolor;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    padding: 20px;
+    padding: 100px;
+    gap: 20px;
+
+    .container {
+        flex:5;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        
+        .img-container {
+            //margin-bottom: 20px;
+            img{
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+                border-radius: 10px;
+            }
+        }
+
+        .user {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            //margin-bottom: 20px;
+            img {
+                width: 50px;
+                height: 50px;
+                border: 2px solid $darkerGreen;
+                border-radius: 100%;
+                margin: 10px;
+                object-fit: cover;
+
+            }
+            p {
+                margin: 0;
+            }
+            .username {
+                font-weight: bold;
+            }
+
+            .edit {
+                display: flex;
+                gap: 10px;
+                img {
+                    height: 20px;
+                    width: 20px;
+                    cursor: pointer;
+                    margin:0;
+                }
+            }
+
+        }
+
+        h1 {
+            color: $darkerGreen;
+            font-weight: 900;
+            text-decoration: underline;
+            padding: 0;
+            margin: 0;
+            //margin-bottom: 20px;
+            font-size: 42px;
+        }
+        .food-and-restaurant-name{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            h2 {
+                font-size: 20px;
+                font-style: italic;
+
+            }
+        }
+    
+        .post-content {
+            text-align: justify;
+            line-height: 30px;
+            &-rating{
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                //if I need some space between the elemens give gap
+                
+            }
+        }
+        /*
+            ####################################
+            COMMENTS
+            #####################################
+        */
+
+        .comment {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .comment-reply {
+                display: flex;
+                flex-direction: row;
+                gap: 5px;
+                align-items: center;
+                cursor: pointer;
+                width: max-content;
+                padding: 5px;
+                border-radius: 5px;
+
+                img {
+                    width: 15px;
+                    height: 15px;
+                   
+                    margin: 0;
+                }
+                &:hover{
+                    background-color: white;
+                }
+            }
+
+        }
+
+        /*
+            ####################################
+            WRITE PAGE
+            #####################################
+        */
+        .title-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin:0;
+            padding: 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .editor-container {
+            height: 300px;
+            overflow: scroll;
+           
+
+            .editor {
+                height: 100%;
+                border: none;
+            }
+
+
+        }
+        .rating-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: justify;
+            .rating-description {
+                .rest-rating-desc{
+                    margin:0;
+                    padding:0;
+                    font-size: 16px;
+                }
+            }
+        }
+        h2 {
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        
+    }
+    .menu {
+        flex:2;
+        //background-color: $white;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        h1 {
+            padding:0;
+            margin:0;
+            color: $darkerGreen;
+            font-size: 20px;
+        }
+
+        .post {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                border-radius: 10px;
+            }
+            h2 {
+                margin:0;
+                padding:0;
+                font-size: 16px;
+
+            }
+        }
+
+        /*
+            ####################################
+            WRITE PAGE
+            #####################################
+        */
+
+        .publishing-details {
+            display: flex;
+            flex-direction: column;
+            gap:20px;
+            //padding: 10px;
+            //border: 1px solid $darkerGreen;
+            h1 {
+                display: inline-block;
+                margin: 0;
+                font-size: 20px;
+                
+                        
+                    }
+            .post-writing-status{
+               display: flex;
+               flex-direction: column;
+               gap: 5px
+            }
+            
+            label {
+                margin:0;
+                padding: 0;
+                font-size: 20px;
+                font-weight: bold;
+            }
+            .button-holder {
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+            }
+            button {
+                background-color: $darkerGreen; 
+                color: white; 
+                border-radius: 10px; 
+                cursor: pointer;
+                padding: 10px;
+
+            }
+            button:hover {
+                background-color: $white;
+                color: $darkerGreen;
+            }
+
+        }
+        .item {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            //padding: 10px;
+            //border: 1px solid $darkerGreen;
+            label {
+                font-size: 20px;
+                font-weight: bold;
+            }
+            .food-name, .restaurant-name {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+        
+        
+    }
 }
+
+
+
