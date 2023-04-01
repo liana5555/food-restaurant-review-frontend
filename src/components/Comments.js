@@ -5,6 +5,8 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { AuthContext } from "../context/authContext";
 import axios from "axios"
+import Replies from "./Replies";
+import SingleComment from "./SingleComment";
 
 
 export default function Comments () {
@@ -39,44 +41,32 @@ const dummy_comments = [
     }
 ]
 
+const filtered_dummy_comments = dummy_comments.filter(comment => comment.replied_for == null)
+
+
 
 
     return (
 
         <div className="comment">
         <h2>Hozzászólások</h2>
+        {!currentUser && <div className="info">Hozzászólás írásához be kell jelentkezni!</div>}
+
+        {currentUser && <div className="editor-container">
+        <label name="description">Please leave a comment</label>
+        <ReactQuill theme="snow" value={value} onChange={setValue}/>
+        <button>Send comment</button>
+            </div> }
         <div className="comment-container">
 
-            {dummy_comments.map(comment => {
+            {filtered_dummy_comments.map(comment => {
                 return (
-                    <div key={comment.id} className="single-comment">
-                           <div className="user">
-                                <img src={comment.userImg} alt="" />
-                                <div className="user-info">
-                                    <p className="username">{comment.user_name}</p>
-                                    <p className="post-date">Posted on: {comment.comment_date}</p>
-                                </div>
-                            </div>
-                            <div className="comment-content">
-                                {comment.comment}
-                            </div>
-                            <div className="comment-reply">
-                                <img src={Reply}/>
-                                <span>Reply</span>
-                            </div>
-
-                    </div>
+                    <SingleComment key={comment.id} comment={comment} />
                 )
             })}
 
         </div>
-        {!currentUser && <div className="info">Hozzászólás írásához be kell jelentkezni!</div>}
-
-       {currentUser && <div className="editor-container">
-            <label name="description">Please leave a comment</label>
-            <ReactQuill theme="snow" value={value} onChange={setValue}/>
-            <button>Send comment</button>
-         </div> }
+      
          
      </div>
 

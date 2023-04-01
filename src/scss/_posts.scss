@@ -124,7 +124,48 @@
                 }
             }
 
+
+
+            .single-reply {
+                margin-left: 40px;
+                //background-color: hsl(60, 56%, 100%);
+            }
+
+            .replies-read {
+                margin-left: 40px;
+                color: $darkerGreen;
+                cursor: pointer;
+                transition: all ease-in-out 250ms;
+                width: max-content;
+                padding: 5px;
+                border-radius: 5px;
+
+                &:hover{
+                    background-color: $darkerGreen;
+                    color: $backgcolor
+     
+
+                }
+            }
+            .editor-container {
+                height: auto;
+                overflow-y:auto;
+                margin-top:1em;
+                width: auto;
+                overflow-x:auto;
+               
+            }
+                  
+
         }
+
+        .ql-container.ql-snow {
+            height: auto;
+        }
+        .ql-editor {
+            height: 150px;
+            overflow-y: scroll;
+        }           
 
         /*
             ####################################
@@ -143,13 +184,14 @@
             font-weight: bold;
         }
         .editor-container {
-            height: 300px;
-            overflow: scroll;
+            height: auto;
+           
            
 
             .editor {
                 height: 100%;
                 border: none;
+                overflow-y: auto;
             }
 
 
