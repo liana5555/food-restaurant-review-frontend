@@ -1,13 +1,9 @@
 import React, { useContext } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
-import food1 from "../random-food-img-1.jpg"
 import Menu from "../components/Menu"
 import Edit from "../edit-246.svg"
 import Delete from "../delete-delete.svg"
-import Reply from "../reply-1.svg"
-import Reply2 from "../reply-2.svg"
 import Star from "../components/Star"
-import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { AuthContext } from "../context/authContext";
 import axios from "axios"
@@ -192,7 +188,7 @@ console.log(currentUser)
 
              </div>
 
-        <Comments/>
+        <Comments postid={postId}/>
             
             
         </div>

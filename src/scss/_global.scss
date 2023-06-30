@@ -83,21 +83,49 @@ body{
     justify-content: center;
     gap:100px;
 
+    @include break-down("medium") {
+        padding: 20px;
+        gap: 20px;
+
+    }
+
 }
 
 .post-container {
     display: flex;
     flex-direction: row;
     gap: 100px;
+    width: 100%;
+
+    @include break-down("medium") {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 20px;
+        width: 100%;
+
+    }
 
     &:nth-child(2n+1) {
         flex-direction: row-reverse;
+
+        @include break-down("medium") {
+            flex-direction: column-reverse;
+    
+        }
 
     }
 
     .post-image {
         flex: 1;
         position: relative;
+
+        @include break-down("medium") {
+            flex: 0 1 auto;
+            position: relative;
+            
+    
+        }
+
         
 
         &::after {
@@ -110,6 +138,16 @@ body{
             left: -20px;
             z-index: 1;
 
+            
+        @include break-down("medium") {
+            
+            bottom: 5px;
+            left: 0px;
+            position: absolute;
+            border-bottom-left-radius: 10px ;
+            border-bottom-right-radius: 10px ;
+        }
+
         }
         
         img {
@@ -119,12 +157,26 @@ body{
             z-index: 2;
             position: relative;
             box-shadow: 10px 10px 10px $darkerGreen;
+
+            @include break-down("medium") {
+               border-radius: 10px;
+               box-shadow: 0px 0px 0px $darkerGreen;
+               max-height: 200px;
+
+                
+        
+            }
         }
     }
 
     .post-content {
         flex: 2;
         text-align: justify;
+
+        @include break-down("medium") {
+            flex: 0 1 auto;
+    
+        }
 
         h2 {
             text-decoration: none;

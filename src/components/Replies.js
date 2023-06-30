@@ -1,30 +1,33 @@
 import React from "react"
 import Reply from "../reply-1.svg"
 import SingleComment from "./SingleComment"
+import axios from "axios"
 
 export default function Replies(props) {
+
+    const [comments, setComment] = React.useState([])
+
+
+
+    React.useEffect(() => {
+        const fetchData = async() => {
+            try {
+                const res = await axios.get(`/comments/${props.post_id}/reply/${props.comment_id}`)
+                setComment(res.data)
+                
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+        fetchData()
+    }, [props.comment_id])
+
 
 
     //Need a state for a fetch data
     const [show, setshow] = React.useState(false)
 
-    const dummy = [
-        {
-            id: 2,
-            comment_date: "2023.03.12",
-            comment:"et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est ",
-            user_name: "test",
-            replied_for: 1
-        }, 
-        {
-            id: 4,
-            comment_date: "2023.03.12",
-            comment:"et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est ",
-            user_name: "test",
-            replied_for: 1
-        }
-
-    ]
 
 //Need to fetch the data with the id that comes in props. That is the id of the comment that the replies go for. where replied_for = id (this part will be done in the server)
 
@@ -34,7 +37,7 @@ function handleClick_Reply() {
 }
 
 
-const replies = dummy.map(reply => {
+const replies = comments.map(reply => {
     return (
            /* <div key={reply.id} className="single-reply">
                            <div className="user">
@@ -53,14 +56,14 @@ const replies = dummy.map(reply => {
                             </div>
 
                     </div>*/
-                    <SingleComment key={reply.id} comment={{...reply, replied_for: props.id}} level={2} />
+                    <SingleComment key={reply.idcomments} comment={{...reply, replied_for: props.comment_id}} level={2} />
        
     )
 })
 
     return (
         <div>
-            {dummy && <p className="replies-read"  onClick={handleClick_Reply}>&#9660; {dummy.length} válasz</p>}
+            {replies.length > 0 && <p className="replies-read"  onClick={handleClick_Reply}>&#9660; {replies.length} válasz</p>}
             {show && replies}
         </div>
     )

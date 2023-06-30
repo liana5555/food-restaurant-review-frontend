@@ -1,0 +1,21 @@
+@media (min-width: 1024px) {
+    
+}
+
+$break-ups : ('medium':'640px','large':'1024px', 'xlarge':'1400px');
+$break-downs: ('medium':'639px','large':'1023px', 'xlarge':'1399px');
+
+
+@mixin break-up ($size) {
+    @media (min-width: map-get($break-ups, $size )) {
+        @content;
+    }
+    
+}
+
+@mixin break-down ($size) {
+    @media (max-width: map-get($break-downs, $size)) {
+        @content;        
+    }
+    
+}

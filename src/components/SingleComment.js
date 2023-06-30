@@ -12,6 +12,10 @@ export default function SingleComment(props) {
     const [value, setValue] = React.useState('');
     const {currentUser} = useContext(AuthContext)
 
+    const getText = (html) => {
+        const doc = new DOMParser().parseFromString(html, 'text/html')
+        return doc.body.textContent
+    }
 
     function handleClickSingleCommentReply() {
         setShow(prev => !prev)
@@ -31,7 +35,7 @@ let style;
     
 
     return(
-        <div key={props.comment.id} className={`single-${style}`}>
+        <div key={props.comment.idcomments} className={`single-${style}`}>
                            <div className="user">
                                 <img src={props.comment.userImg} alt="" />
                                 <div className="user-info">
@@ -40,7 +44,7 @@ let style;
                                 </div>
                             </div>
                             <div className="comment-content">
-                                {props.comment.comment}
+                                {getText(props.comment.comment)}
                             </div>
                             <div onClick={handleClickSingleCommentReply} className="comment-reply">
                                 <img src={Reply}/>
@@ -51,7 +55,7 @@ let style;
                                     <button onClick={handleSendComment}>Send comment</button>
                                  </div> }
                             {show && !currentUser && <div className="error">Hozzászólás írásához be kell jelentkezni</div>}
-                            {<Replies id={props.comment.id} level={1} />}
+                            {<Replies post_id={props.comment.post_id} comment_id={props.comment.idcomments} level={1} />}
 
                     </div>
     )
