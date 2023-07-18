@@ -2,10 +2,18 @@
     box-sizing: border-box;
 }
 
+.error {
+    margin: 20px;
+    color: $warning;
+}
+
 body{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+
+
+
 }
 
 //Register and Login page
@@ -16,6 +24,7 @@ body{
     align-items: center;
     justify-content: center;
     background-color: $backgcolor;
+    min-height: 100%;
     padding: 20px;
     
 
@@ -35,8 +44,27 @@ body{
     input {
         margin-bottom: 20px;
         width: 100%;
+        border-radius: 5px;
+        padding: 12px 20px;
+        border: 2px solid $darkerGreen;
+        background-color: $backgcolor ;
     }
-
+    input:focus {
+        border: 3px solid $darkerGreen;
+        outline-style: double;
+        outline-color: $darkerGreen;
+        outline-width:2px;
+        outline-offset: 1px;
+        background-color: $white;
+   
+    }
+/*    input:placeholder-shown {
+        border-color: red;
+      }
+    input:placeholder-shown:focus {
+        border-color: $darkerGreen;
+      }
+*/
     button {
         background-color: $white;
         border-radius: 10px;
@@ -75,7 +103,7 @@ body{
 
 .home {
     background-color: $backgcolor;
-    min-height: 100vh;
+    min-height: 100%;
     padding: 100px;
     display: flex;
     flex-direction: column;

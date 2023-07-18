@@ -30,15 +30,37 @@ export default function Login () {
 
     async function handleSubmit (e) {
         e.preventDefault()
-        try {
-            await login(regform)
-            navigate("/")
-        }
-        catch (err) {
-            setError(err.response.data)
+
+        if (regform.username ==="" || regform.password === "") {
+            setError("Fill out the username and password field")
 
         }
+        else {
+
+            try {
+                await login(regform)
+                setError("success")
+                
+                
+                
+            }
+            catch (err) {
+                
+                setError(err.response.data)
+
+            }
+         
+       
+        }
     }
+
+    function hadnling_navigate (error) {
+        if (error === "success") {
+            navigate("/")
+        }
+    }
+
+ 
 
 
     return (
@@ -51,6 +73,8 @@ export default function Login () {
             <input className="input" type="password" name="password" placeholder="password" value={regform.password} onChange={handleChange}  />
             <button>Login</button>
             {error && <div className="error">{error}</div>}
+            {error && hadnling_navigate(error)}
+            
             <div className="login-reg-comment">If you don't have an account yet! - <Link to="/register">Register</Link> </div>
 
         </form>

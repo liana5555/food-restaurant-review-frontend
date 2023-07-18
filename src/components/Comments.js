@@ -4,6 +4,9 @@ import 'react-quill/dist/quill.snow.css';
 import { AuthContext } from "../context/authContext";
 import axios from "axios"
 import SingleComment from "./SingleComment";
+import moment from "moment";
+import { Link, useNavigate } from "react-router-dom";
+
 
 
 export default function Comments (props) {
@@ -28,6 +31,27 @@ export default function Comments (props) {
 
     const [value, setValue] = React.useState('');
     const {currentUser} = useContext(AuthContext)
+    const navigate = useNavigate()
+
+
+    async function handleSendComment (e) {
+        e.preventDefault() 
+        try {
+            await axios.post(`/comments/${props.postid}`, {
+                comment : value,
+                date : moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+                replied_for : null,
+                postid: props.postid
+
+            })
+        }
+    catch (err) {
+        console.log(err)
+
+
+    } 
+    window.location.reload(false);
+}    
 
 
     return (
@@ -39,7 +63,7 @@ export default function Comments (props) {
         {currentUser && <div className="editor-container">
         <label name="description">Please leave a comment</label>
         <ReactQuill theme="snow" value={value} onChange={setValue}/>
-        <button>Send comment</button>
+        <button onClick={handleSendComment}>Send comment</button>
             </div> }
         <div className="comment-container">
 
