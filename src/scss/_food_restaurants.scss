@@ -1,0 +1,246 @@
+.food-restaurants {
+    background-color: $backgcolor;
+    min-height: 100vh;
+    margin: 0;
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: justify;
+    
+
+    
+    @include break-down("medium") {
+        padding: 20px;
+        gap: 20px;
+
+    }
+
+    h1 {
+        margin: 0;
+        padding: 0;
+        color: $darkerGreen;
+        text-decoration: underline;
+
+    }
+
+    .rw-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        a {
+            text-decoration: none;
+            color: $darkerGreen
+        }
+
+    
+
+        .single-rw-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            align-items: center;
+            justify-items: center;
+            border: 1px solid $darkerGreen;
+            background-color: $lighterGreen;
+            gap: 0px 0px;
+            transition: all ease-in-out 250ms;
+            border-radius: 5px;
+
+            &:hover {
+                cursor: pointer;
+                font-size: 20px;
+                font-weight: 700;
+                border: 2px solid $darkerGreen;
+                transition: all ease-in-out 250ms;
+
+
+
+            }
+            
+
+            .single-rw {
+                padding: 10px;
+                min-height: 16px;
+                align-self: center;
+            }
+
+            .single-rw-name {
+                width: 100%;
+                height: 100%;
+
+            }
+            .single-rw-city {
+                width: 100%;
+                height: 100%;
+                background-color: $lighterabitGreen;
+            }
+            .single-rw-address {
+                width: 100%;
+                height: 100%;
+                background-color: $lightestGreen;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+            }
+        }
+
+        .single-rw-header {
+            background-color: $darkerGreen;
+            color: $white;
+            font-weight: 700;
+            
+            &:hover {
+                font-size: 16px;
+                border: 1px solid $darkerGreen;
+            }
+        }
+    }
+
+
+    /*
+    ###################################
+    ###################################
+    SINGLE RESTAURANT PAGE
+    ##################################
+    #################################   
+    
+    
+    */
+
+    .single-restaurant-container {
+        display: flex;
+        flex-direction: column;
+        gap:20px;
+    }
+
+}
+
+
+.calendar {
+
+    .view-container{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+   
+
+
+    .days-container {
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+        background-color: $lighterGreen;
+        border: 1px solid white;
+      
+      }
+      .days-container:hover {
+        cursor: pointer;
+        background-color: white;
+        border: 1px solid $lighterGreen;
+      }
+      .days-container-clicked {
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+        
+        background-color: white;
+        border: 1px solid $lighterGreen;
+      }
+      
+      .days-container-actual {
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+        background-color: $white;
+        border: 1px solid white;
+        cursor: pointer;
+        
+      
+      }
+      
+      .days-container-actual-clicked {
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+        
+        background-color: white;
+        border: 1px solid $darkerGreen;
+      }
+      
+      .days-number {
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+      }
+      
+      .month-view {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      
+        gap: 10px;
+      }
+      .controller-calendar {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+      }
+      
+      .arrow-back, .arrow-forward {
+        display: flex;
+        flex-direction: column;
+        font-size: 30px;
+        font-weight: 900;
+        padding: 10px;
+        background-color: #61fb94;
+        border-radius: 100%;
+        height: 40px;
+        width: 40px;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        
+      }
+      .arrow-back:hover, .arrow-forward:hover {
+        cursor: pointer;
+      }
+
+      .hours-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .hours-single {
+        width: 100%;
+        height: 100px;
+        background-color: $lighterabitGreen;
+
+      }
+   
+
+
+
+}

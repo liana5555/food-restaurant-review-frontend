@@ -58,7 +58,7 @@ export default function Posts () {
         fetchData()
     }, [postId])
 
-    const [value, setValue] = React.useState('');
+    //const [value, setValue] = React.useState('');
     const {currentUser} = useContext(AuthContext)
  
     
@@ -147,7 +147,7 @@ console.log(currentUser)
             </div>
             
             <div className="user">
-                <img src={post.userImg} alt="" />
+                <img src={`../uploads/profile_pics/${post.userImg}`} alt="" />
                 <div className="user-info">
                     <p className="username">{post.username}</p>
                     <p className="post-date">Posted on: {post.date}</p>

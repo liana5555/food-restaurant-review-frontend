@@ -1,5 +1,5 @@
 import React from "react"
-import Reply from "../reply-1.svg"
+//import Reply from "../reply-1.svg"
 import SingleComment from "./SingleComment"
 import axios from "axios"
 
@@ -21,7 +21,7 @@ export default function Replies(props) {
             }
         }
         fetchData()
-    }, [props.comment_id])
+    }, [props.comment_id, props.post_id])
 
 
 

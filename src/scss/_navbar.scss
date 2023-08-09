@@ -2,11 +2,25 @@ nav {
     background-color: $white;
     color: $darkerGreen;
     padding: 0px;
+    margin: 0;
     width: 100%;
     margin: 0px;
     position: sticky; //I am not sure about using this ************
     top:0px;
     z-index: 10;
+    max-height: 102px;
+
+
+
+
+    @include break-down("medium") {
+        position: static;
+        max-height: 500px;
+      
+        
+       
+
+  }
     
 
     ul {
@@ -20,7 +34,17 @@ nav {
         justify-content:flex-end;
         gap: 20px;
         box-shadow: rgba(27, 31, 35, 0.6) 0px 2px 0px, rgba(255, 255, 255, 0.4) 0px 2px 0px inset;
+       
+        
 
+        @include break-down("medium") {
+            display: flex;
+            flex-direction: column;
+
+      }
+
+  
+       
         li {
             text-decoration: none;
 
@@ -28,6 +52,27 @@ nav {
 
         
     }
+
+    .ul_none {
+        display: flex;
+        flex-direction: row;
+        @include break-down("medium") {
+            display: none;
+            
+
+      }
+      }
+      .ul_visible {
+        display: flex;
+        flex-direction: row;
+
+        @include break-down("medium") {
+            display: flex;
+            flex-direction: column;
+
+      }
+        
+      }
     a {
         text-decoration: none;
         display: inline-block;
@@ -51,7 +96,7 @@ nav {
         padding: 19px;
         border-bottom: 3px solid $white;
         height: 100%;
-        color: $black;
+        color: $darkerGreen;
         font-weight: 900;
         font-size: 1rem;
 
@@ -62,5 +107,149 @@ nav {
         color: $darkerGreen;
 
     }
+
+
+    /*
+    ####################################
+    ###### HAMBURGER MENU ##############
+    ####################################
+    */  
+
+    .hamburger-menu{
+        display: none;
+
+        @include break-down("medium") {
+              display: inline-block;
+              align-self: flex-end;
+            cursor: pointer;
+            justify-self: flex-end;
+
+            padding: 5px;
+    
+        }
+
+      
+
+        span{
+            width: 35px;
+            height: 5px;
+            background-color: $darkerGreen;
+            margin: 6px 0;
+            transition: all 0.3s ease-in-out;
+            display: block;
+            border-radius: 5px;
+        }
+
+    
+    }
+    .hamburger-menu-change {
+        display: none;
+
+        @include break-down("medium") {
+        display: inline-block;
+        cursor: pointer;
+        align-self: flex-end;
+        justify-self: flex-end;
+
+        padding: 5px;
+  
+      }
+      
+        .hamburger-top-line {
+            width: 35px;
+            height: 5px;
+            background-color: $darkerGreen;
+            margin: 6px 0;
+            transition: all 0.3s ease-in-out;
+            display: block;
+            border-radius: 5px;
+        
+            transform: translate(0,11px) rotate(-45deg);
+
+        }
+        .hamburger-middle-line {
+            width: 35px;
+            height: 5px;
+            background-color: $darkerGreen;
+            margin: 6px 0;
+            transition: all 0.3s ease-in-out;
+            display: block;
+       
+            opacity: 0;
+            
+        }
+        .hamburger-bottom-line {
+            width: 35px;
+            height: 5px;
+            background-color: $darkerGreen;
+            margin: 6px 0;
+            transition: all 0.3s ease-in-out;
+            display: block;
+            border-radius: 5px;
+        
+            transform: translate(0,-11px) rotate(45deg);
+        }
+    }
+
+    .nav-profile-container {
+        //display: flex;
+        //flex-direction: column;
+        //align-items: center;
+        //justify-content: center;
+        display: inline-block;
+        overflow: hidden;
+        max-height: 62px;
+
+
+        .user-img-name-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            transition: all ease-in-out 250ms;
+
+            img {
+                width: 40px;
+                height: 40px;
+                border: 2px solid $darkerGreen;
+                border-radius: 100%;
+                margin: 2px;
+                object-fit: cover;
+
+            }
+        }
+
+        .user-menu-container {
+            background-color: $white;
+            border-radius: 5px;
+            border: 1px solid $darkerGreen;
+
+            position: absolute;
+            z-index: 100;
+            top: 102px;
+            right: 5px;
+            visibility: visible;
+            transition: all ease-in-out 250ms;
+            width:120px ;
+
+
+            .profile-sub-menu {
+                display: flex;
+                flex-direction: column;
+                transition: all ease-in-out 250ms;
+               
+            }
+            
+            
+
+
+        }
+
+        .user-menu-container-hidden {
+            display: none;
+            transition: all ease-in-out 250ms;
+        }
+
+    }
+    
 }
 

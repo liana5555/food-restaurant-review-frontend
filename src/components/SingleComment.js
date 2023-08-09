@@ -65,9 +65,9 @@ let style;
     return(
         <div key={props.comment.idcomments} className={`single-${style}`}>
                            <div className="user">
-                                <img src={props.comment.userImg} alt="" />
+                                <img src={`../uploads/profile_pics/${props.comment.img}`} alt="" />
                                 <div className="user-info">
-                                    <p className="username">{props.comment.user_name}</p>
+                                    <p className="username">{props.comment.username}</p>
                                     <p className="post-date">Posted on: {props.comment.comment_date}</p>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@ let style;
                                     <img src={Reply} alt="Reply button"/>
                                     <span >Reply</span>
                                 </div>
-                                {currentUser && <div className="comment-delete" onClick={handleDeleteComment}>
+                                {currentUser && currentUser.username == props.comment.username && <div className="comment-delete" onClick={handleDeleteComment}>
                                     <img src={Delete} alt="the icon of deleting this comment"/>
                                     <span>Delete</span>
                                 </div>}

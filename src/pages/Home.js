@@ -1,9 +1,9 @@
 import React from "react"
 
-import food1 from "../random-food-img-1.jpg"
-import food2 from "../random-food-img-2.jpg"
-import food3 from "../random-food-img-3.jpg"
-import food4 from "../random-food-img-4.jpg"
+//import food1 from "../random-food-img-1.jpg"
+//import food2 from "../random-food-img-2.jpg"
+//import food3 from "../random-food-img-3.jpg"
+//import food4 from "../random-food-img-4.jpg"
 import { Link } from "react-router-dom";
 import axios from 'axios'
 

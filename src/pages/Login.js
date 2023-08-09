@@ -32,7 +32,7 @@ export default function Login () {
         e.preventDefault()
 
         if (regform.username ==="" || regform.password === "") {
-            setError("Fill out the username and password field")
+            setError("Fill out the username and password fields")
 
         }
         else {
@@ -53,7 +53,8 @@ export default function Login () {
        
         }
     }
-
+    //Instead of this use useeffect for the same thing. It gives you an error
+    //though it still loads and work. 
     function hadnling_navigate (error) {
         if (error === "success") {
             navigate("/")
@@ -68,12 +69,13 @@ export default function Login () {
             <h1>Bejelentkezés</h1>
         <form className="login-register-form" onSubmit={handleSubmit}>
             <label className="input-label" name="username" >Username</label>
-            <input className="input" type="text" name="username" placeholder="username" value={regform.username} onChange={handleChange}  />
+            <input className={error && regform.username == "" ? "input-error" : "input"} type="text" name="username" placeholder="username" value={regform.username} onChange={handleChange}  />
             <label className="input-label" name="password" >Password</label>
-            <input className="input" type="password" name="password" placeholder="password" value={regform.password} onChange={handleChange}  />
+            <input className={error && regform.password == "" ? "input-error" : "input"} type="password" name="password" placeholder="password" value={regform.password} onChange={handleChange}  />
             <button>Login</button>
             {error && <div className="error">{error}</div>}
             {error && hadnling_navigate(error)}
+            
             
             <div className="login-reg-comment">If you don't have an account yet! - <Link to="/register">Register</Link> </div>
 

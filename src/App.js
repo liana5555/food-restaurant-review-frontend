@@ -5,7 +5,9 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Posts from './pages/Posts'
 import Home from './pages/Home';
-import Write from './pages/Write'
+import Write from './pages/Write';
+import Restaurants from './pages/Restaurants'
+import SingleRestaurant from './pages/SingleRestaurant';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
       },
       {path: "/write",
         element: <Write />
+      },
+      {
+        path: "/restaurants",
+        element: <Restaurants/>
+      },
+      {
+        path: "/restaurants/:id",
+        element: <SingleRestaurant/>
       }
       
     ],
