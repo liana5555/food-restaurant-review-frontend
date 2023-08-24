@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Write from './pages/Write';
 import Restaurants from './pages/Restaurants'
 import SingleRestaurant from './pages/SingleRestaurant';
+import UserProfile from './pages/UserProfile';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: "/restaurants/:id",
         element: <SingleRestaurant/>
+      },
+      {
+        path: "/user/:id",
+        element: <UserProfile />
       }
       
     ],

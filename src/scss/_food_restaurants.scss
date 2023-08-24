@@ -1,4 +1,4 @@
-.food-restaurants {
+.food-restaurants, .profile {
     background-color: $backgcolor;
     min-height: 100vh;
     margin: 0;
@@ -113,6 +113,19 @@
         gap:20px;
     }
 
+
+    button {
+      background-color: $darkerGreen;
+      color: $white;
+      border-radius: 10px;
+      cursor: pointer;
+      padding: 10px;
+      &:hover {
+        background-color: $white;
+        color: $darkerGreen;
+      }
+    }
+
 }
 
 
@@ -196,6 +209,12 @@
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
       
         gap: 10px;
+
+        @include break-down("medium") {
+          grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      }
+
+
       }
       .controller-calendar {
         display: flex;
@@ -225,22 +244,104 @@
       }
 
       .hours-container {
-        display: flex;
-        flex-direction: column;
+        //display: flex;
+        //flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         gap: 10px;
         width: 100%;
         justify-content: center;
         align-items: center;
+
+           
+        @include break-down("medium") {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+
+  }
       }
 
       .hours-single {
         width: 100%;
-        height: 100px;
+        height: 40px;
+        width: 150px;
         background-color: $lighterabitGreen;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 5px;
+        border: 1px solid $backgcolor;
 
+        &:hover {
+          background-color: $lightestGreen;
+          border: 1px solid $darkerGreen
+        }
       }
+
    
 
+}
+
+.previous-reservations-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.prev-reserv-header {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 1fr 1fr 0.5fr;
+  width: 100%;
+  background-color: $darkerGreen;
+  color: $white;
+  gap: 5px;
 
 
 }
+
+.reserv-pending, .reserv-accepted, .reserv-cancelled {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 1fr 1fr 0.5fr;
+  width: 100%;
+  gap: 5px;
+}
+
+
+.reserv-pending {
+    background-color: $pendingres;
+}
+
+.reserv-accepted {
+  background-color: $acceptedres;
+}
+
+.reserv-cancelled {
+  background-color: $warning;
+}
+
+.delete-img {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  margin:0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  justify-content: center;
+ 
+
+}
+
+label, input {
+ justify-content: center;
+ width: 100%;
+ align-self: center;
+}
+
+

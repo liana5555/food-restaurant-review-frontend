@@ -7,6 +7,7 @@ import 'react-quill/dist/quill.snow.css';
 import axios from "axios";
 import moment from "moment"
 import Delete from "../delete-delete.svg"
+import dateSimplify from "../functions/date_r.mjs";
 
 
 export default function SingleComment(props) {
@@ -68,7 +69,7 @@ let style;
                                 <img src={`../uploads/profile_pics/${props.comment.img}`} alt="" />
                                 <div className="user-info">
                                     <p className="username">{props.comment.username}</p>
-                                    <p className="post-date">Posted on: {props.comment.comment_date}</p>
+                                    <p className="post-date">Posted on: {dateSimplify(props.comment.comment_date)}</p>
                                 </div>
                             </div>
                             <div className="comment-content">

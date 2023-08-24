@@ -42,9 +42,8 @@ export default function Navbar () {
                     </div>
                     {profilemenu && <div className={profilemenu ? "user-menu-container": "user-menu-container-hidden"}>
                         <ul className="profile-sub-menu">
-                            <li className="link">Profile</li>
-                            <li className="link">Settings</li>
-                            <li className="link">Delete account</li>
+                            <li><Link to={`/user/${currentUser.idusers}`}>Profile</Link></li>
+                            <li><a href={`/user/${currentUser.idusers}#delete-account`}>Delete account</a></li>
                         </ul>
 
                     </div>}

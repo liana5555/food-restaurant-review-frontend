@@ -2,12 +2,14 @@ import React, { useContext } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Calendar from "../components/Calendar";
+import dateSimplify from "../functions/date_r.mjs";
 
 import { AuthContext } from "../context/authContext";
 
 
 export default function SingleRestaurant() {
 
+    const [reservationsFetch, setReservationsFetch] = React.useState([])
     const [restaurantData, setRestaurantData] = React.useState([])
     const {currentUser} = useContext(AuthContext)
     const [resturantOpeningClosing, setRestaurantOpeningClosing] = React.useState({
@@ -36,10 +38,23 @@ export default function SingleRestaurant() {
                 console.log(err)
             }
         }
+
+        const fetchReservation = async() => {
+            try {
+                const res = await axios.get(`/restaurants/${RestaurantId}/reservation`)
+                setReservationsFetch(res.data)
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+        if (currentUser) fetchReservation()
+  
         fetchData()
     }, [RestaurantId])
 
 console.log(restaurantData)
+console.log(reservationsFetch)
 
 const restaurant = restaurantData.map((rest) => {
     return (
@@ -52,6 +67,22 @@ const restaurant = restaurantData.map((rest) => {
             <div className="description">{rest.description}</div>
         </div>
 
+    )
+})
+
+const prevreservation = reservationsFetch.map((reservation) => {
+    return (
+        <div key={reservation.idreservation} className={reservation.status === "pending" ? "reserv-pending" :
+                                                                        reservation.status === "accepted" ? "reserv-accepted" :
+                                                                                                        "reserv-cancelled"
+    }>
+        <div>{dateSimplify(reservation.starting_date)}</div>
+        <div>{dateSimplify(reservation.ending_date)}</div>
+        <div>{reservation.number_of_people}</div>
+        <div>{reservation.reserver_name}</div>
+        <div>{reservation.status}</div>
+
+    </div>
     )
 })
     //Make Calendar only show when the user is logged in. And put some text on top of it. --tick
@@ -67,6 +98,19 @@ const restaurant = restaurantData.map((rest) => {
     return (
         <main className="food-restaurants">
             {restaurant}
+            <h2>Previously made reservations at this restaurant</h2>
+            <div className="previous-reservations-cotnainer">
+                <div className="prev-reserv-header">
+                    <div>Starting date</div>
+                    <div>Ending date</div>
+                    <div>No. people</div>
+                    <div>Reserver</div>
+                    <div>Status</div>
+
+                </div>
+
+                {currentUser && prevreservation}
+            </div>
 
             <div className="reservation-container">
                 <h2>Make a reservation</h2>

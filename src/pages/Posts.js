@@ -8,6 +8,7 @@ import 'react-quill/dist/quill.snow.css';
 import { AuthContext } from "../context/authContext";
 import axios from "axios"
 import Comments from "../components/Comments"
+import dateSimplify from "../functions/date_r.mjs";
 
 export default function Posts () {
 
@@ -150,7 +151,7 @@ console.log(currentUser)
                 <img src={`../uploads/profile_pics/${post.userImg}`} alt="" />
                 <div className="user-info">
                     <p className="username">{post.username}</p>
-                    <p className="post-date">Posted on: {post.date}</p>
+                    <p className="post-date">Posted on: {dateSimplify(post.date)}</p>
                 </div>
             {currentUser && currentUser.username === post.username && <div className="edit">
                                 <Link to={`/write?edit=${postId}`} state={post}><img src={Edit} alt="edit"/></Link>

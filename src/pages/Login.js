@@ -5,13 +5,13 @@ import { AuthContext } from "../context/authContext";
 
 export default function Login () {
 
-    const [regform, setRegisterForm] = React.useState({
+    const [regformLogin, setLoginForm] = React.useState({
         username: "",
         password: ""
    
         
     })
-    //console.log(regform)
+    //console.log(regformLogin)
     const [error, setError] = React.useState(null)
 
     const navigate = useNavigate()
@@ -19,7 +19,7 @@ export default function Login () {
     const {login} = useContext(AuthContext)
 
     function handleChange (e) {
-        setRegisterForm(prev => {
+        setLoginForm(prev => {
             return {
                 ...prev, 
                 [e.target.name] : e.target.value
@@ -31,14 +31,14 @@ export default function Login () {
     async function handleSubmit (e) {
         e.preventDefault()
 
-        if (regform.username ==="" || regform.password === "") {
+        if (regformLogin.username ==="" || regformLogin.password === "") {
             setError("Fill out the username and password fields")
 
         }
         else {
 
             try {
-                await login(regform)
+                await login(regformLogin)
                 setError("success")
                 
                 
@@ -69,9 +69,9 @@ export default function Login () {
             <h1>Bejelentkezés</h1>
         <form className="login-register-form" onSubmit={handleSubmit}>
             <label className="input-label" name="username" >Username</label>
-            <input className={error && regform.username == "" ? "input-error" : "input"} type="text" name="username" placeholder="username" value={regform.username} onChange={handleChange}  />
+            <input className={error && regformLogin.username == "" ? "input-error" : "input"} type="text" name="username" placeholder="username" value={regformLogin.username} onChange={handleChange}  />
             <label className="input-label" name="password" >Password</label>
-            <input className={error && regform.password == "" ? "input-error" : "input"} type="password" name="password" placeholder="password" value={regform.password} onChange={handleChange}  />
+            <input className={error && regformLogin.password == "" ? "input-error" : "input"} type="password" name="password" placeholder="password" value={regformLogin.password} onChange={handleChange}  />
             <button>Login</button>
             {error && <div className="error">{error}</div>}
             {error && hadnling_navigate(error)}

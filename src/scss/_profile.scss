@@ -1,0 +1,79 @@
+// .profile is the same as food_restaurant
+
+.profile h2 {
+    color: $darkerGreen;
+
+}
+
+
+.user-data-container {
+    padding: 20px;
+    display: grid;
+    gap: 5px;
+    grid-template-columns: 1fr 1fr ;
+    grid-template-rows: 1fr 1fr 1fr;
+     grid-template-areas: 
+    "profile-pic  profile-first-name "
+    "profile-pic  profile-last-name"
+    "profile-username   profile-email";
+
+    .profile-pic{
+        grid-area: profile-pic;
+    }
+    .profile-username{
+        grid-area: profile-username;
+    }
+    .profile-first-name{
+        grid-area: profile-first-name;
+    }
+    .profile-last-name{
+        grid-area: profile-last-name;
+    }
+    .profile-email{
+        grid-area: profile-email;
+    }
+    .profile-data {
+        display: grid;
+      grid-template-columns: 1fr 1fr;
+
+    }
+   
+
+    img {
+        width: 100px;
+        height: 100px;
+        border: 2px solid $darkerGreen;
+        border-radius: 100%;
+        margin: 2px;
+        object-fit: cover;
+
+    }
+}
+
+.delete-profile-information-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-button {
+   align-self: center;
+   justify-self: center;
+    height: 200px;
+    width: 200px;
+    cursor: pointer;
+    margin:0;
+    text-align: justify;
+
+    img {
+        height: 200px;
+        width: 200px;
+    }
+
+    &:hover {
+        background-color: $warning;
+        border-radius: 10px;
+        border: 1px solid $darkerGreen
+    }
+}
