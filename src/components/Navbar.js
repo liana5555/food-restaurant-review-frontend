@@ -31,7 +31,7 @@ export default function Navbar () {
             </div>
             <ul className={navbarState ? "ul_none" : "ul_visible"}>
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/write">Write</Link></li>
+                <li>{currentUser &&<Link to="/write">Write</Link>}</li>
                 <li><Link to="/restaurants">Restaurants</Link></li>
                 <li>{currentUser? (<span className="link" onClick={logout}>Logout</span>) : <Link to="/login">Login/Sign up</Link>}</li>
                 {currentUser && <div className="nav-profile-container">
@@ -43,6 +43,8 @@ export default function Navbar () {
                     {profilemenu && <div className={profilemenu ? "user-menu-container": "user-menu-container-hidden"}>
                         <ul className="profile-sub-menu">
                             <li><Link to={`/user/${currentUser.idusers}`}>Profile</Link></li>
+                            {currentUser.type === "admin" && <li><Link to="/admin/manage_users">Manage users</Link></li>}
+                            {currentUser.type === "admin" && <li><Link to="/admin/manage_reports">Manage reported posts</Link></li>}
                             <li><a href={`/user/${currentUser.idusers}#delete-account`}>Delete account</a></li>
                         </ul>
 

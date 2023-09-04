@@ -77,3 +77,81 @@
         border: 1px solid $darkerGreen
     }
 }
+
+
+
+/* ###################################
+#######################################
+           ADMIN MANAGE USERS
+#######################################
+#######################################
+
+*/
+
+.fetched-user-container {
+   display: flex;
+   flex-direction: column;
+   border-bottom: 1px solid $darkerGreen;
+   cursor: pointer;
+   padding: 5px;
+   
+
+   &:hover {
+    background-color: $lighterGreen;
+   }
+  
+
+
+   .main-detail-holder {
+    display: grid;
+    grid-template-columns: 20% 65% 15%;
+    align-items: center;
+
+
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+   }
+
+   .admin-manage {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    justify-self: center;
+
+   }
+
+
+
+
+   fieldset {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $darkerGreen;
+   width: 80%;
+    
+  
+  
+
+    input {
+        margin: 0;
+
+    }
+    .input-label-matcher{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+   
+   }
+
+    
+}
+
+
+

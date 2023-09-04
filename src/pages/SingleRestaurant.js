@@ -98,6 +98,7 @@ const prevreservation = reservationsFetch.map((reservation) => {
     return (
         <main className="food-restaurants">
             {restaurant}
+            { currentUser && <div>
             <h2>Previously made reservations at this restaurant</h2>
             <div className="previous-reservations-cotnainer">
                 <div className="prev-reserv-header">
@@ -109,11 +110,14 @@ const prevreservation = reservationsFetch.map((reservation) => {
 
                 </div>
 
-                {currentUser && prevreservation}
+
+                {prevreservation}
             </div>
+            </div> }
 
             <div className="reservation-container">
                 <h2>Make a reservation</h2>
+                {currentUser ? <div>
                 <p className="reservation-description">
                     In order to make a reservation please choose the appropriate date and then the time slot you would
                     like to use. Please keep in mind that your reservation is only valid if the restaurants's workers accept it. Until getting accepted your trial of reservation will stay pending.
@@ -122,11 +126,15 @@ const prevreservation = reservationsFetch.map((reservation) => {
                 <h3>Please choose a date and time</h3>
                 {!currentUser && <div className="info">In order to make a reservation you need to log in.</div>}
             
-                {currentUser && <Calendar 
+                 <Calendar 
                                     openingTime={resturantOpeningClosing.opening_time} 
                                     
                                     closingTime={resturantOpeningClosing.closing_time}
-                                     />}
+                                     />
+                </div> :
+                <div className="info warning">In order to make a reservation you need to log in.</div>
+             
+                }
             
             </div>
 

@@ -1,10 +1,15 @@
 import axios from "axios";
 import React from "react";
+
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useLocation } from "react-router-dom";
 import Star from "../components/Star";
 import moment from "moment"
+
+import NeedLogin from "./NeedLogin";
+
+
 
 export default function Write() {
     const state = useLocation().state
@@ -130,6 +135,7 @@ async function handlePublish(e) {
 
     return( 
         <main className="write">
+            
             <div className="container">
                 <h1>Add a post</h1>
                 <div className="title-container">
@@ -200,7 +206,7 @@ async function handlePublish(e) {
                   
                 </div>
             </div>
-           
+            
         </main>
     )
 }

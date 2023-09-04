@@ -9,12 +9,17 @@ import Write from './pages/Write';
 import Restaurants from './pages/Restaurants'
 import SingleRestaurant from './pages/SingleRestaurant';
 import UserProfile from './pages/UserProfile';
+import ManageReports from './pages/ManageReports';
+import ManageUsers from './pages/ManageUsers';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 
 import { Outlet, Link } from "react-router-dom";
+
+
+
 
 const router = createBrowserRouter([
   {
@@ -52,6 +57,14 @@ const router = createBrowserRouter([
       {
         path: "/user/:id",
         element: <UserProfile />
+      },
+      {
+        path: "/admin/manage_users",
+        element: <ManageUsers />
+      },
+      {
+        path: "/admin/manage_reports",
+        element: <ManageReports />
       }
       
     ],
