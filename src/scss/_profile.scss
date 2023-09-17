@@ -88,11 +88,11 @@
 
 */
 
-.fetched-user-container {
+.fetched-user-container, .fetched-report-container {
    display: flex;
    flex-direction: column;
    border-bottom: 1px solid $darkerGreen;
-   cursor: pointer;
+  
    padding: 5px;
    
 
@@ -102,17 +102,42 @@
   
 
 
-   .main-detail-holder {
+   .main-detail-holder,.report-container{
     display: grid;
     grid-template-columns: 20% 65% 15%;
     align-items: center;
+    
+
+    a {
+        color: $darkerGreen;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all ease-in-out 250ms;
+    
+        &:hover {
+            text-decoration: underline;
+            transition: all ease-in-out 250ms;
+        }
+    
+    }
+
 
 
     .button-container {
         display: flex;
         flex-direction: column;
         gap: 5px;
+
+        
+     .button {
+        cursor: pointer;
     }
+    }
+   }
+
+   .detail-container {
+    background-color: $lightestGreen;
+    padding: 10px;
    }
 
    .admin-manage {
@@ -133,7 +158,7 @@
     display: flex;
     flex-direction: column;
     border: 1px solid $darkerGreen;
-   width: 80%;
+    width: 80%;
     
   
   
@@ -152,6 +177,48 @@
 
     
 }
+
+.fetched-report-container-header {
+    background-color: $darkerGreen;
+    color: $white;
+
+    &:hover {
+        background-color: $darkerGreen;
+    }
+    
+}
+
+
+.more-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    cursor: pointer;
+    margin:0;
+
+    img {
+        height: 20px;
+        width: 20px;
+    }
+      
+}
+
+.fieldset-modified {
+    width: 50%;
+    align-self: center;
+}
+
+.button-modified {
+    width: 50%;
+    align-self: center;
+}
+
+.form-modified {
+    padding: 10px;
+}
+
 
 
 

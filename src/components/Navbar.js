@@ -45,6 +45,7 @@ export default function Navbar () {
                             <li><Link to={`/user/${currentUser.idusers}`}>Profile</Link></li>
                             {currentUser.type === "admin" && <li><Link to="/admin/manage_users">Manage users</Link></li>}
                             {currentUser.type === "admin" && <li><Link to="/admin/manage_reports">Manage reported posts</Link></li>}
+                            {currentUser.type === "restaurant worker" && <li><Link to="/restaurant_worker/manage_reservations">Manage reservations</Link></li>}
                             <li><a href={`/user/${currentUser.idusers}#delete-account`}>Delete account</a></li>
                         </ul>
 

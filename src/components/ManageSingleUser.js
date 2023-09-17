@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 
 
-export default function Manage(props) {
+export default function ManageSingleUser(props) {
     const [showDeatil, setShowDetail] = React.useState(false)
     const [showEdit, setShowEdit] = React.useState(false)
      const [editForm, setRegisterForm] = React.useState({
@@ -53,7 +53,7 @@ export default function Manage(props) {
 async function handleSendDeleteUser (e) {
     e.preventDefault() 
     try {
-        const res = await axios.delete(`/users/admin/managed_user/${props.user.idusers}`, editForm)
+        const res = await axios.delete(`/users/admin/managed_user/${props.user.idusers}`)
     }
 catch (err) {
     console.log(err)

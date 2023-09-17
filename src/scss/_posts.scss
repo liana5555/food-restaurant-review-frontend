@@ -20,6 +20,7 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+        
 
         
         .img-container {
@@ -67,16 +68,108 @@
             }
 
         }
+        .post-title-container {
+            display: grid;
+            grid-template-columns: 80% 20%;
+            align-items: center;
+           
+          
 
-        h1 {
-            color: $darkerGreen;
-            font-weight: 900;
-            text-decoration: underline;
-            padding: 0;
-            margin: 0;
-            //margin-bottom: 20px;
-            font-size: 42px;
+            img {
+                height: 30px;
+                width: 30px;
+                cursor: pointer;
+                margin:0;
+                justify-self: right;
+            }
+            h1 {
+                color: $darkerGreen;
+                font-weight: 900;
+                text-decoration: underline;
+                padding: 0;
+                margin: 0;
+                //margin-bottom: 20px;
+                font-size: 42px;
+            }
         }
+
+        .reporting-container {
+           
+            position: absolute;
+            width: 400px;
+            padding: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+
+            background-color: $lighterGreen;
+            border-radius: 10px;
+            left: 54.5%; //61
+            top: 93%; //65
+            z-index: 100;
+            
+
+            &::before {
+                display: inline-block;
+                content: "";
+                width: 50px;
+                height: 50px;
+                background-color: $lighterGreen;
+                rotate: 45deg;
+                position: relative;
+                top: -20px;
+                left: 30%;
+            }
+
+            .reporting-form-container{
+                position: relative;
+                top: -30px;
+
+                button {
+                    background-color: $darkerGreen; 
+                    color: white; 
+                    border-radius: 10px; 
+                    cursor: pointer;
+                    padding: 10px;
+    
+                }
+                button:hover {
+                    background-color: $white;
+                    color: $darkerGreen;
+                }
+                label {
+                    font-size: 16px;
+                    font-weight: 500;
+                   }
+                   
+            }
+
+            fieldset {
+                display: flex;
+                flex-direction: column;
+                border: 1px solid $darkerGreen;
+               width: 100%;
+               gap: 10px;
+
+              
+                
+              
+              
+            
+                input {
+                    margin: 0;
+            
+                }
+                .input-label-matcher{
+                    display: grid;
+                    grid-template-columns: 20% 80%;
+                    align-items: center;
+                }
+               
+               }
+
+        }
+
+     
         .food-and-restaurant-name{
             display: flex;
             flex-direction: row;

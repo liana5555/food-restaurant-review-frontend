@@ -9,6 +9,8 @@ import { AuthContext } from "../context/authContext";
 import axios from "axios"
 import Comments from "../components/Comments"
 import dateSimplify from "../functions/date_r.mjs";
+import Rep_icon from "../report-2.svg"
+import moment from "moment"
 
 export default function Posts () {
 
@@ -16,6 +18,13 @@ export default function Posts () {
         const doc = new DOMParser().parseFromString(html, 'text/html')
         return doc.body.textContent
     }
+
+    const [showReport, setShowReport] = React.useState(false)
+    const [editReport, setReport] = React.useState({
+        type: null,
+        other: ""
+
+    })
 
     const navigate = useNavigate()
 
@@ -135,6 +144,53 @@ async function handleDelete () {
 
 }
 
+
+
+
+
+//Functions for reportinhg
+//show reporting div
+
+function handleShowReporting() {
+    setShowReport(prev => !prev)
+}
+
+function handleChange (e) {
+    setReport(prev => {
+        return {
+            ...prev, 
+            [e.target.name] : e.target.type ==="checkbox" ? e.target.checked : e.target.value
+        }
+    })
+
+}
+
+async function handleSendReport (e) {
+    e.preventDefault() 
+    if (editReport.type === null) 
+        console.log("You have to choose something to make a report")
+    else {
+
+        try {
+            await axios.post(`/reports/`, {
+                type : editReport.type,
+                date : moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+                post_id : postId,
+                other: editReport.other
+    
+            })
+        }
+        catch (err) {
+        console.log(err)
+    
+
+    }
+    
+
+} 
+window.location.reload(true);
+}  
+
 console.log(currentUser)
 
 
@@ -153,14 +209,90 @@ console.log(currentUser)
                     <p className="username">{post.username}</p>
                     <p className="post-date">Posted on: {dateSimplify(post.date)}</p>
                 </div>
-            {currentUser && currentUser.username === post.username && <div className="edit">
+            {currentUser && (currentUser.username === post.username || currentUser.type ==="admin")  && <div className="edit">
                                 <Link to={`/write?edit=${postId}`} state={post}><img src={Edit} alt="edit"/></Link>
                                 <img onClick={handleDelete} src={Delete} alt="delete"/>
+                                
 
                             </div> }
 
             </div>
-            <h1>{post.title}</h1>
+            <div className="post-title-container">
+                <h1>{post.title}</h1>
+                { currentUser && <img src={Rep_icon} alt="Report this post" onMouseEnter={handleShowReporting} />}
+            
+            </div>
+            {currentUser && showReport && <div className="reporting-container" onMouseLeave={handleShowReporting}>
+                <div className="reporting-form-container">
+                    <h2>Report this post</h2>
+                    <form>
+                    <fieldset>
+                <legend>Choose the problem with the post</legend>
+                <div className="input-label-matcher">
+                <input 
+                    type="radio"
+                    id="troll"
+                    name="type"
+                    value="troll"
+                    checked={editReport.type === "troll"}
+                    onChange={handleChange}
+                />
+                <label htmlFor="troll">This is a troll post. The content is all giberish.</label>
+               </div>
+               <div className="input-label-matcher">
+                <input 
+                    type="radio"
+                    id="offensive language"
+                    name="type"
+                    value="offensive language"
+                    checked={editReport.type === "offensive language"}
+                    onChange={handleChange}
+                />
+                <label htmlFor="offensive language">This post contains offensive language, mainly cuss words. </label>
+                </div>
+                
+                <div className="input-label-matcher">
+                <input 
+                    type="radio"
+                    id="disturbing content"
+                    name="type"
+                    value="disturbing content"
+                    checked={editReport.type === "disturbing content"}
+                    onChange={handleChange}
+                />
+                <label htmlFor="disturbing content">The post contains disturbing things that migh not be suitable for some poeple. </label>
+                </div>
+                <div className="input-label-matcher">
+                <input 
+                    type="radio"
+                    id="other"
+                    name="type"
+                    value="other"
+                    checked={editReport.type === "other"}
+                    onChange={handleChange}
+                />
+                <label htmlFor="other">Other</label>
+                </div>
+                
+            </fieldset>
+<label className="input-label" name="other" >Other reasons (Not required field)</label>
+                        
+
+            <input className="input" type="text" name="other"  placeholder="Please shortly say why you're reporting this post. " value={editReport.other} onChange={handleChange}  />
+                        
+
+            <button onClick={handleSendReport}>Report the post</button>
+                    </form>
+                    
+
+
+
+
+                </div>
+                
+
+                
+                </div>}
             <div className="food-and-restaurant-name">
                 <h2>Name of food: {post.name_of_food}</h2>
                 <h2>Name of restaurant: {post.name_of_restaurant}</h2>

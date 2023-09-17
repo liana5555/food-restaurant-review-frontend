@@ -17,6 +17,7 @@ import {
 } from "react-router-dom";
 
 import { Outlet, Link } from "react-router-dom";
+import ManageReservations from './pages/ManageReservations';
 
 
 
@@ -65,7 +66,12 @@ const router = createBrowserRouter([
       {
         path: "/admin/manage_reports",
         element: <ManageReports />
+      },
+      {
+        path: "/restaurant_worker/manage_reservations",
+        element: <ManageReservations />
       }
+
       
     ],
   },

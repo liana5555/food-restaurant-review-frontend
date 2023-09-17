@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import Manage from "../components/Manage";
+import ManageSingleUser from "../components/ManageSingleUser";
 
 
 
@@ -25,7 +25,7 @@ export default function ManageUsers() {
     //WORK ON THIS CUZ THE STYLE OF THIS DON'T LOOK GOOD ON MOBILE VIEW
     const allUsers = fetchAllUsers.map(user => {
         return (
-            <Manage key={user.idusers} user={user} />
+            <ManageSingleUser key={user.idusers} user={user} />
         )
     })
 
