@@ -13,8 +13,8 @@ export default function SingleRestaurant() {
     const [restaurantData, setRestaurantData] = React.useState([])
     const {currentUser} = useContext(AuthContext)
     const [resturantOpeningClosing, setRestaurantOpeningClosing] = React.useState({
-                                                                                    opening_time: "",
-                                                                                    closing_time: ""
+                                                                                    opening_time: " ",
+                                                                                    closing_time: " "
 
                                                                                         })
 
@@ -95,6 +95,7 @@ const prevreservation = reservationsFetch.map((reservation) => {
     //If it is accepted it will be in green colour.
     //It it is cancelled it will be in red colour. 
     //While it is pending it will be yellow. 
+    console.log(resturantOpeningClosing.opening_time)
     return (
         <main className="food-restaurants">
             {restaurant}
@@ -115,7 +116,7 @@ const prevreservation = reservationsFetch.map((reservation) => {
             </div>
             </div> }
 
-            <div className="reservation-container">
+           {(resturantOpeningClosing.opening_time != null && resturantOpeningClosing.closing_time != null) && <div className="reservation-container">
                 <h2>Make a reservation</h2>
                 {currentUser ? <div>
                 <p className="reservation-description">
@@ -136,7 +137,7 @@ const prevreservation = reservationsFetch.map((reservation) => {
              
                 }
             
-            </div>
+            </div> }
 
 
 

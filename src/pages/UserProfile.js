@@ -3,6 +3,7 @@ import axios from "axios";
 import { AuthContext } from "../context/authContext";
 import dateSimplify from "../functions/date_r.mjs";
 import Delete from "../delete-delete.svg"
+import ManageSingleReservation from "../components/ManageSingleReservation";
 
 
 
@@ -14,6 +15,14 @@ export default function UserProfile () {
       
     const [userReservations, setUserReservations] = React.useState([])
     const {currentUser, logout} = useContext(AuthContext)
+    const [changeUserDetail, setNewUserDetail] = React.useState({
+        username: currentUser?.username ,
+        first_name: currentUser?.first_name ,
+        last_name: currentUser?.last_name ,
+        email: currentUser?.email,
+        img: currentUser?.img
+
+    })
 
     React.useEffect(() => {
         const fetchData = async() => {
@@ -61,12 +70,22 @@ export default function UserProfile () {
     
     }
 
+   
+    function handleChange (e) {
+        setNewUserDetail(prev => {
+            return {
+                ...prev, 
+                [e.target.name] : e.target.value
+            }
+        })
+
+    }
 
   
 console.log(currentUser)
 
 const prevreservation = userReservations.map((reservation) => {
-    return (
+    return (/*
         <div key={reservation.idreservation} className={reservation.status === "pending" ? "reserv-pending" : 
                                                                         reservation.status === "accepted" ? "reserv-accepted" :
                                                                                                         "reserv-cancelled" 
@@ -78,7 +97,8 @@ const prevreservation = userReservations.map((reservation) => {
         <div>{reservation.status}</div>
         <div className="delete-img" onClick={() => handleDelete(reservation.idreservation)}><img src={Delete} alt="Delete reservation"/></div>
 
-    </div>
+    </div>*/
+    <ManageSingleReservation reservation={reservation} updateRoute={`/users/reservations/${reservation.idreservation}`} />
     )
 })
 
@@ -90,10 +110,11 @@ const prevreservation = userReservations.map((reservation) => {
                 {currentUser && 
                 <div className="user-data-container">
                     <span className="profile-pic"><img src={`../uploads/profile_pics/${currentUser.img}`} alt="profile"/></span>
-                    <div className="profile-username">Username: {currentUser.username}</div>
-                    <div className="profile-first-name profile-data"><p>First name: </p><p>{currentUser.first_name}</p></div>
-                    <div className="profile-last-name profile-data"><p>Last name: </p><p>{currentUser.last_name}</p></div>
-                    <div className="profile-email profile-data"><p>Email: </p><p>{currentUser.email}</p></div>
+                    <div className="profile-username">Username: <input type="text" className="profile-change" name="username" onChange={handleChange}  value={changeUserDetail.username} /></div>
+                    <div className="profile-first-name profile-data"><p>First name: </p><input name="first_name" onChange={handleChange} type="text" value={changeUserDetail.first_name} /></div>
+                    <div className="profile-last-name profile-data"><p>Last name: </p><input name="last_name" onChange={handleChange} type="text" value={changeUserDetail.last_name} /></div>
+                    <div className="profile-email profile-data"><p>Email: </p><input name="email" onChange={handleChange} type="email" value={changeUserDetail.email} /></div>
+                    <button>Save changes</button>
 
                  
                 </div>}

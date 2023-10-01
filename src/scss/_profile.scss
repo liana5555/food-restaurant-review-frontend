@@ -48,6 +48,21 @@
         object-fit: cover;
 
     }
+
+    input {
+        display: inline;
+        border: 0px;
+        background-color: $backgcolor;
+        font-size: 16px;
+        color: $darkerGreen;
+        cursor: pointer;
+
+    }
+
+    input:focus {
+        background-color: $white;
+
+    }
 }
 
 .delete-profile-information-container {

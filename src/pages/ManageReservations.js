@@ -49,7 +49,7 @@ export default function ManageReservations () {
                 Change reservation status
             </div>}
         </div>  */
-        <ManageSingleReservation key={reservation.idreservation} reservation = {reservation} />
+        <ManageSingleReservation key={reservation.idreservation} reservation = {reservation}  updateRoute={`/users/restaurant_worker/restaurant/${currentUser.restaurant_id}/managed_reservation/${reservation.idreservation}`}/>
         )
     })
     

@@ -33,11 +33,25 @@ export default function ManageSingleReservation (props) {
 
     }
 
+    
+    async function handleUpdateCancelled () {
+        try {
+            const res= await axios.put(props.updateRoute, {status: "cancelled"});
+            console.log(res.data)
+            
+            
+        }
+        catch (err) {
+            console.log(err)
+        }
+    
+    }
+
 
     async function handleSendUpdateReservationStatus (e) {
         e.preventDefault() 
         try {
-            const res = await axios.put(`/users/restaurant_worker/restaurant/${currentUser.restaurant_id}/managed_reservation/${props.reservation.idreservation}`, editForm)
+            const res = await axios.put(props.updateRoute, editForm)
         }
     catch (err) {
         console.log(err)
@@ -59,14 +73,15 @@ export default function ManageSingleReservation (props) {
             <div>{props.reservation.number_of_people}</div>
             <div>{props.reservation.reserver_name}</div>
             <div>{props.reservation.status}</div>
-            <div className="more-img" onClick={handleClick}><img src={More} alt="More options"/></div>
+            {(currentUser.type === "restaurant worker" && currentUser.restaurant_id ===props.reservation.restaurant_id) ? <div className="more-img" onClick={handleClick}><img src={More} alt="More options"/></div> 
+            : <div className="more-img" onClick={handleUpdateCancelled}>Cancel</div>}
     
         </div>
         {showMore && <div className="change-reserv-status">
                 <form className="form-modified">
                 <fieldset className="fieldset-modified">
                 <legend>Change the status of this reservation</legend>
-                <div className="input-label-matcher">
+                 <div className="input-label-matcher">
                 <input 
                     type="radio"
                     id="accepted"
@@ -76,7 +91,7 @@ export default function ManageSingleReservation (props) {
                     onChange={handleChange}
                 />
                 <label htmlFor="accepted">Accepted</label>
-               </div>
+               </div> 
                <div className="input-label-matcher">
                 <input 
                     type="radio"
