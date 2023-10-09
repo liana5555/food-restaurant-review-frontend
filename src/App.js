@@ -11,6 +11,7 @@ import SingleRestaurant from './pages/SingleRestaurant';
 import UserProfile from './pages/UserProfile';
 import ManageReports from './pages/ManageReports';
 import ManageUsers from './pages/ManageUsers';
+import Chat from './pages/Chat';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -70,7 +71,13 @@ const router = createBrowserRouter([
       {
         path: "/restaurant_worker/manage_reservations",
         element: <ManageReservations />
+      },
+      {
+        path: "/chat",
+        element: <Chat />
+
       }
+
 
       
     ],
