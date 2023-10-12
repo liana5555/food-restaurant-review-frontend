@@ -1,16 +1,75 @@
 import React, { useContext } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
-
+import moment from "moment";
+import axios from "axios";
+import dateSimplify from "../functions/date_r.mjs";
 
 export default function ConversationChat (props) {
 
     const {currentUser, logout} = useContext(AuthContext)
 
+    var date = new Date()
+
+    
+
+    const [dateFetchFrom, setDateFetchFrom] = React.useState(moment(date.setDate(date.getDate()-2)).format("YYYY-MM-DD"))
+    const [messages, setMessages] = React.useState([])
+
+    const [sendingMessage, setSendingMessage] = React.useState("")
+
+    console.log(dateFetchFrom)
     //Based on the chatpartner fetch the messages of the 
     //actual partner in the moment. 
 
+    React.useEffect(() => {
+        const fetchData = async() => {
+            try {
+                const res = await axios.get(`/chat/conversation/${props.chatPartner.conversation_id}?from=${dateFetchFrom}`)
+                setMessages(res.data)
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+        
+        fetchData()
+        
+    }, [dateFetchFrom, props.chatPartner])
 
+
+    function handleChangeOfMessage (e) {
+        setSendingMessage(e.target.value)
+
+    }
+    console.log(messages)
+    console.log(sendingMessage)
+
+    async function handleSendMessage(e) {
+        e.preventDefault()
+
+        try {
+            const result = await axios.post("/chat", {
+                                                        message_text: sendingMessage,
+                                                        send_date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+                                                        from_id : currentUser.idusers,
+                                                        conversation_id:props.chatPartner.conversation_id
+
+                                                                 })
+            console.log(result)
+
+            
+            
+            }
+            catch (err){
+               
+                console.log(err)
+            }
+
+
+    }
+
+/*
     const fake_messages = [
         {
         idmessage: 1,
@@ -68,8 +127,8 @@ export default function ConversationChat (props) {
                 },
             
     ]
-
-    const message = fake_messages.map(message => {
+*/
+    const message = messages.map(message => {
         return(
             <div key={message.idmessage} className={message.from_id === currentUser.idusers ? "my-messages" : "received-messages"}>
                 <div className="message-container">
@@ -79,7 +138,7 @@ export default function ConversationChat (props) {
                     </div>
                    
                     </div>
-                <div className="message-senddate">Sent: {message.sent_datetime}</div>
+                <div className="message-senddate">Sent: {dateSimplify(message.sent_datetime)}</div>
             </div>
         )
     })
@@ -94,8 +153,8 @@ export default function ConversationChat (props) {
                 
             </div>
             <div className="sender-box">
-                <input className="chat-textarea" type="textare"/> 
-                <button className="chat-send">Send</button>
+                <input className="chat-textarea" type="textare" onChange={handleChangeOfMessage} value={sendingMessage}/> 
+                <button onClick={handleSendMessage} className="chat-send">Send</button>
                 
             </div>
             

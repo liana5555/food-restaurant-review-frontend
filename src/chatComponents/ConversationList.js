@@ -8,13 +8,29 @@ import AddingConversation from "./AddingConversation";
 export default function ConversationList (props) {
 
     const [showAddConversationState, setShowAddConversationState] = React.useState(false)
+    const [contacts, setContact] = React.useState([])
 
     // I will need to fetch every single conversation that the 
     //current user in. They will be the contacts
     //Adding a new conversation means starting
     //a new conversation with one person or multiple people
 
+    React.useEffect(() => {
+        const fetchData = async() => {
+            try {
+                const res = await axios.get(`/chat/conversation`)
+                setContact(res.data)
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+        
+        fetchData()
+        
+    }, [showAddConversationState])
 
+/*
     const contacts = [
         {
             idusers: 2,
@@ -34,6 +50,9 @@ export default function ConversationList (props) {
         }
     
     ]
+    */
+
+console.log(contacts)
     
     function handleShowAddConversationState() {
         setShowAddConversationState(prev => true)
@@ -46,8 +65,8 @@ export default function ConversationList (props) {
     const designingContacts = contacts.map(contact => {
         return (
             <div key={contact.conversation_id} className="contact" onClick={() => props.handleConversationClick(contact.conversation_id, contact.conversation_name)}>
-                <img src={`../uploads/profile_pics/${contact.img}`}></img>
-                <div className="chat-contact-name">{contact.username}</div>
+                <img src={`../uploads/conversation_pic/${contact.img}`}></img>
+                <div className="chat-contact-name">{contact.conversation_name}</div>
             </div>
         )
     })

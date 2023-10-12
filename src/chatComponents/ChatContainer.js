@@ -26,7 +26,7 @@ export default function ChatContainer () {
     return (
         <div className="chat-container">
             <ConversationList handleConversationClick = {handleConversationClick}  />
-            {chatPartner.conversation_id == 1 ? 
+            {chatPartner.conversation_id == null ? 
                 <div>Choose a chat partner from your already existing conversations or create a new conversation.</div> :
                 <ConversationChat chatPartner={chatPartner}  />
             }
