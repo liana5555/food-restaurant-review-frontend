@@ -29,14 +29,15 @@
         flex-direction: column;
         gap: 20px;
         overflow-y: scroll;
-        height: 90%;
+        height: 70%;
 
         .my-messages {
             align-self: flex-end;
             background-color: $darkerGreen;
             border-radius: 15px;
             padding: 10px;
-            width: 50%;
+            max-width: 50%;
+            width: fit-content;
             color: $white;  
             display: flex;   
             flex-direction: column;
@@ -48,7 +49,8 @@
             background-color: $white;
             border-radius: 15px;
             padding: 10px;
-            width: 50%;
+            max-width: 50%;
+            width: fit-content;
             color: $darkerGreen;
             display: flex;   
             flex-direction: column;  
@@ -58,7 +60,8 @@
         .message-container {
             display: flex;
             flex-direction: row;
-            justify-content: center;
+            justify-content: flex-start;
+            text-align: justify;
             gap: 5px;
 
             .message-from-img {

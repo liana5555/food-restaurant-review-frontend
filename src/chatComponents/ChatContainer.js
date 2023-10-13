@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useContext, useRef } from "react"
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/authContext";
+import moment from "moment";
+import axios from "axios";
+import dateSimplify from "../functions/date_r.mjs";
+import {io} from "socket.io-client"
 import ConversationList from "./ConversationList";
 import ConversationChat from "./ConversationChat";
 
+
+
 export default function ChatContainer () {
+
+    const {currentUser, logout} = useContext(AuthContext)
+
+    const socket = useRef()
 
     const [chatPartner, setChatPartner] = React.useState({
         conversation_name: "nobody",
@@ -21,6 +33,15 @@ export default function ChatContainer () {
         })
     }
 
+    React.useEffect(() => {
+        if(currentUser !== null){
+            socket.current = io("http://localhost:5000") //i might need to write what's in the proxy
+            socket.current.emit("addUser", currentUser.idusers ) //currentuser.idusers originally
+            
+        }
+    },[currentUser])
+
+
     console.log(chatPartner)
 
     return (
@@ -28,7 +49,7 @@ export default function ChatContainer () {
             <ConversationList handleConversationClick = {handleConversationClick}  />
             {chatPartner.conversation_id == null ? 
                 <div>Choose a chat partner from your already existing conversations or create a new conversation.</div> :
-                <ConversationChat chatPartner={chatPartner}  />
+                <ConversationChat chatPartner={chatPartner} socket={socket}  />
             }
             
 
