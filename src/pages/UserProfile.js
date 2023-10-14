@@ -4,6 +4,10 @@ import { AuthContext } from "../context/authContext";
 import dateSimplify from "../functions/date_r.mjs";
 import Delete from "../delete-delete.svg"
 import ManageSingleReservation from "../components/ManageSingleReservation";
+import ErrorUp from "../components/ErrorUp";
+import {Link, useNavigate} from "react-router-dom"
+//import handleClosingError from "../functions/handleClosingError.mjs";
+
 
 
 
@@ -11,10 +15,10 @@ export default function UserProfile () {
 
 //Fetching is not neccessary since I have the same info in currentUser if I
 //import AuthContext
-
-      
+    const navigate = useNavigate()
+    const [ responseFromServer, setResponseFromServer] = React.useState(null)  
     const [userReservations, setUserReservations] = React.useState([])
-    const {currentUser, logout} = useContext(AuthContext)
+    const {currentUser, logout, setCurrentUser} = useContext(AuthContext)
     const [changeUserDetail, setNewUserDetail] = React.useState({
         username: currentUser?.username ,
         first_name: currentUser?.first_name ,
@@ -30,6 +34,9 @@ export default function UserProfile () {
                 const res = await axios.get("/users/reservations")
                 setUserReservations(res.data)
                 
+
+
+                
             }
             catch (err) {
                 console.log(err)
@@ -43,6 +50,7 @@ export default function UserProfile () {
         try {
             const res= await axios.delete(`/users/reservations/${reservation_id}`);
             console.log(res.data)
+            
             
             
         }
@@ -60,7 +68,10 @@ export default function UserProfile () {
         try {
             const res= await axios.delete(`/users`);
             console.log(res.data)
+            setResponseFromServer(res.data)
             logout(currentUser)
+            navigate("/")
+
 
             
         }
@@ -81,8 +92,46 @@ export default function UserProfile () {
 
     }
 
+
+   async function handleUserDeatilUpdate (e) {
+    e.preventDefault()
+
+        if(currentUser.username === changeUserDetail.username && 
+            currentUser.first_name === changeUserDetail.first_name &&
+            currentUser.last_name === changeUserDetail.last_name &&
+            currentUser.email === changeUserDetail.email &&
+            currentUser.img === changeUserDetail.img ) {
+                
+                setResponseFromServer("You didn't change anything")
+               
+
+        }
+        else {
+                try {
+                const res =  await axios.put("/users/", changeUserDetail)
+                setResponseFromServer(res.data)
+                setCurrentUser(changeUserDetail)
+                
+                console.log(res.data)
+                
+                }
+                catch (err) {
+                    console.log(err)
+                }
+        }
+}
+
+/*
+
+function handleCloseing () {
+    setResponseFromServer(null)
+
+}
+        
+*/
   
-console.log(currentUser)
+console.log(responseFromServer)
+
 
 const prevreservation = userReservations.map((reservation) => {
     return (/*
@@ -104,7 +153,8 @@ const prevreservation = userReservations.map((reservation) => {
 
 
     return(
-        <main className="profile">
+        <main className="profile">  
+         {responseFromServer  && <ErrorUp content={responseFromServer} statehandling={setResponseFromServer} />    }       
             <div className="user-information-contianer">
                 <h1>It is my profile</h1>
                 {currentUser && 
@@ -114,7 +164,7 @@ const prevreservation = userReservations.map((reservation) => {
                     <div className="profile-first-name profile-data"><p>First name: </p><input name="first_name" onChange={handleChange} type="text" value={changeUserDetail.first_name} /></div>
                     <div className="profile-last-name profile-data"><p>Last name: </p><input name="last_name" onChange={handleChange} type="text" value={changeUserDetail.last_name} /></div>
                     <div className="profile-email profile-data"><p>Email: </p><input name="email" onChange={handleChange} type="email" value={changeUserDetail.email} /></div>
-                    <button>Save changes</button>
+                    <button onClick={handleUserDeatilUpdate}>Save changes</button>
 
                  
                 </div>}
@@ -123,9 +173,12 @@ const prevreservation = userReservations.map((reservation) => {
                 <div className="prev-reserv-header">
                     <div>Starting date</div>
                     <div>Ending date</div>
-                    <div>Num</div>
+                    {/*
+                     <div>Num</div>
                     <div>Reserver</div>
                     <div>Status</div>
+                    */}
+                   
                     
 
                 </div>
@@ -143,7 +196,7 @@ const prevreservation = userReservations.map((reservation) => {
             </div>
             
 
-            
+           
         </main>
     )
 }

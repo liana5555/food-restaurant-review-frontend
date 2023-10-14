@@ -252,3 +252,86 @@ body{
 
             
 }
+
+
+/*
+    ERROR
+
+*/
+
+.error-up {
+    position: sticky;
+    display: block;
+    min-width: 100%;
+    padding: 20px;
+    height: auto;
+    top: 150px;
+    background-color: $lighterabitGreen;
+    border-radius: 20px;
+    align-self: center;
+    
+    color: $darkerGreen;
+    font-size: 20px;
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    gap: 10px;
+
+    .error-up-text {
+        align-self: center;
+        
+    }
+    
+    .closing-icon {
+        padding: 5px;
+        align-self: center;
+        justify-self: flex-end;
+        max-width: 50px;
+     
+        cursor: pointer;
+        &:hover {
+            background-color: $white;
+            border-radius: 10px;
+        }
+
+        .hamburger-top-line {
+            width: 35px;
+            height: 5px;
+            background-color: $darkerGreen;
+            margin: 6px 0;
+            transition: all 0.3s ease-in-out;
+            display: block;
+            border-radius: 5px;
+        
+            transform: translate(0,11px) rotate(-45deg);
+
+        }
+        .hamburger-middle-line {
+            width: 35px;
+            height: 5px;
+            background-color: $darkerGreen;
+            margin: 6px 0;
+            transition: all 0.3s ease-in-out;
+            display: block;
+       
+            opacity: 0;
+            
+        }
+        .hamburger-bottom-line {
+            width: 35px;
+            height: 5px;
+            background-color: $darkerGreen;
+            margin: 6px 0;
+            transition: all 0.3s ease-in-out;
+            display: block;
+            border-radius: 5px;
+        
+            transform: translate(0,-11px) rotate(45deg);
+        }
+      
+    }
+
+
+
+}
+
+

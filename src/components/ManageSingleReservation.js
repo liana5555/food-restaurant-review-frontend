@@ -9,6 +9,7 @@ import More from "../more-icon.svg"
 export default function ManageSingleReservation (props) {
 
     const [showMore, setShowMore] =  React.useState(false)
+    const [showDeatil, setShowDetail] = React.useState(false)
     const [editForm, setForm] = React.useState({
         status: props?.reservation?.status
   
@@ -61,6 +62,7 @@ export default function ManageSingleReservation (props) {
     window.location.reload(true);
 }  
 
+console.log(props.reservation)
 
     return (
         <div key={props.reservation.idreservation} className="reservation-handling-container">
@@ -70,13 +72,21 @@ export default function ManageSingleReservation (props) {
         }>
             <div>{dateSimplify(props.reservation.starting_date)}</div>
             <div>{dateSimplify(props.reservation.ending_date)}</div>
-            <div>{props.reservation.number_of_people}</div>
-            <div>{props.reservation.reserver_name}</div>
-            <div>{props.reservation.status}</div>
+            <div>{props.reservation.restaurant_name}</div>
+            
+            <div className="more-img" onClick={()=> setShowDetail(prev => !prev)}>Detail</div>
             {(currentUser.type === "restaurant worker" && currentUser.restaurant_id ===props.reservation.restaurant_id) ? <div className="more-img" onClick={handleClick}><img src={More} alt="More options"/></div> 
             : <div className="more-img" onClick={handleUpdateCancelled}>Cancel</div>}
     
         </div>
+        { showDeatil &&
+            <div className="reserv-deatil-container">
+                <div>Number of people: {props.reservation.number_of_people}</div>
+                <div>Reserver name: {props.reservation.reserver_name}</div>
+                <div>Status od reservation: {props.reservation.status}</div>
+
+            </div>
+        }
         {showMore && <div className="change-reserv-status">
                 <form className="form-modified">
                 <fieldset className="fieldset-modified">

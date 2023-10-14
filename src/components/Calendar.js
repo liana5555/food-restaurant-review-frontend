@@ -13,7 +13,13 @@ export default function Calendar(props) {
 
 
   // !!!!!!!!!!!!!!State for making a reservation !!!!!!!!!!!!!!!!!!!!!!! --move this to days
-    const [reservation, setReservationForm] = React.useState({})
+    const [reservation, setReservationForm] = React.useState({
+      starting_time: "00:00",
+      ending_time: "00:00", 
+      number_of_people: 0,
+      reserver: ""
+
+    })
 
     const location = useLocation()
     const RestaurantId = location.pathname.split("/")[2]
@@ -133,25 +139,29 @@ export default function Calendar(props) {
 async function handleSendReservation(e) {
   e.preventDefault() 
 
-  const monthNumber = (months.indexOf('August')+1)
-  try {
-      await axios.post(`/restaurants/${RestaurantId}/reservation`, {
-          starting_date : showDateFull.year + "-" + (monthNumber < 10 ? ("0" + monthNumber.toString() ) : monthNumber.toString())+ "-"+ showDateFull.day +" " + reservation.starting_time,
-          ending_date : showDateFull.year + "-" +( monthNumber < 10 ? ("0" + monthNumber.toString() ) : monthNumber.toString() )+"-"+ showDateFull.day +" " + reservation.ending_time ,
-          number_of_people : reservation.number_of_people,
-          reserver_name: reservation.reserver
+  const monthNumber = (months.indexOf(showDateFull.month)+1)
 
-      })
+  const regform = {
+    starting_date : showDateFull.year + "-" + (monthNumber < 10 ? ("0" + monthNumber.toString() ) : monthNumber.toString())+ "-"+ showDateFull.day +" " + reservation.starting_time,
+    ending_date : showDateFull.year + "-" +( monthNumber < 10 ? ("0" + monthNumber.toString() ) : monthNumber.toString() )+"-"+ showDateFull.day +" " + reservation.ending_time ,
+    number_of_people : reservation.number_of_people,
+    reserver_name: reservation.reserver
+
+}
+  console.log(regform)
+
+  try {
+      await axios.post(`/restaurants/${RestaurantId}/reservation`,regform )
   }
-catch (err) {
-  console.log(err)
+  catch (err) {
+    console.log(err)
 
 
 } 
 
 }  
 
-  
+
 console.log(reservation)
  
 

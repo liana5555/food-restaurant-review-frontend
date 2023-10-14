@@ -62,9 +62,15 @@ export default function ManageReservations () {
                 <div className="prev-reserv-header">
                     <div>Starting date</div>
                     <div>Ending date</div>
-                    <div>Num</div>
-                    <div>Reserver</div>
-                    <div>Status</div>
+                    {
+                        /*
+                        <div>Num</div>
+                        <div>Reserver</div>
+                        <div>Status</div>
+                        
+                        */
+                    }
+                    
                     
 
                 </div>

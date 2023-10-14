@@ -293,7 +293,8 @@
 
 .prev-reserv-header {
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr 1fr 1fr 0.5fr;
+  //grid-template-columns: 2fr 2fr 1fr 1fr 1fr 0.5fr;
+  grid-template-columns: 2fr 2fr 2fr 1fr 1fr;
   width: 100%;
   background-color: $darkerGreen;
   color: $white;
@@ -304,7 +305,8 @@
 
 .reserv-pending, .reserv-accepted, .reserv-cancelled {
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr 1fr 1fr 0.5fr;
+  //grid-template-columns: 2fr 2fr 1fr 1fr 1fr 0.5fr;
+  grid-template-columns: 2fr 2fr 2fr 1fr 1fr;
   width: 100%;
   gap: 5px;
 }

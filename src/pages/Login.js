@@ -55,12 +55,17 @@ export default function Login () {
     }
     //Instead of this use useeffect for the same thing. It gives you an error
     //though it still loads and work. 
+
+
     function hadnling_navigate (error) {
         if (error === "success") {
             navigate("/")
         }
     }
 
+    React.useEffect(() => {
+        hadnling_navigate(error) 
+    }, [error])
  
 
 
@@ -74,7 +79,7 @@ export default function Login () {
             <input className={error && regformLogin.password == "" ? "input-error" : "input"} type="password" name="password" placeholder="password" value={regformLogin.password} onChange={handleChange}  />
             <button>Login</button>
             {error && <div className="error">{error}</div>}
-            {error && hadnling_navigate(error)}
+            {/*error && hadnling_navigate(error)*/}
             
             
             <div className="login-reg-comment">If you don't have an account yet! - <Link to="/register">Register</Link> </div>
