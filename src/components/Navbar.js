@@ -32,6 +32,7 @@ export default function Navbar () {
             <ul className={navbarState ? "ul_none" : "ul_visible"}>
                 <li><Link to="/">Home</Link></li>
                 <li>{currentUser &&<Link to="/write">Write</Link>}</li>
+                <li>{currentUser &&<Link to="/chat">Chat</Link>}</li>
                 <li><Link to="/restaurants">Restaurants</Link></li>
                 <li>{currentUser? (<span className="link" onClick={logout}>Logout</span>) : <Link to="/login">Login/Sign up</Link>}</li>
                 {currentUser && <div className="nav-profile-container">

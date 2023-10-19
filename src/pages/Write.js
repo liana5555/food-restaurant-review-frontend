@@ -17,7 +17,7 @@ export default function Write() {
 
     const [value, setValue] = React.useState(state?.desc || "");
     const [title, setTitle] = React.useState(state?.title || "");
-    const [file, setFile] = React.useState(null)
+    const [file, setFile] = React.useState(state?.img || null)
     const [nameOfFood, setNameOfFood] = React.useState(state?.name_of_food || "")
     const [nameOfRestaurant, setNameOfRestaurant] = React.useState(state?.name_of_restaurant || "")
     

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Days (props) {
 
-    console.log(props.openingTime)
+    console.log(props?.openingTime)
     const opening_split = props.openingTime.split(":")
     const closing_split = props.closingTime.split(":")
     console.log(parseInt(opening_split[0]))
@@ -30,9 +30,9 @@ export default function Days (props) {
     const rendered_opening_closing = rendering_divs_for_hour_blocks(parseInt(opening_split[0]),parseInt(closing_split[0]))
 
     return (
-        <div>
+        <div className="days-container">
             <h3>Choose the time slot you would like</h3>
-            <p>{props.shownDateFull.year} {props.shownDateFull.month} {props.shownDateFull.day}</p>
+            <p>{props.shownDateFull.year}.{props.shownDateFull.month}.{props.shownDateFull.day}</p>
             <p>Opening hours: {props.openingTime}</p>
             <p>Closing hours: {props.closingTime}</p>
             <div className="hours-container">

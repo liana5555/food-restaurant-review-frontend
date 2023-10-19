@@ -12,6 +12,7 @@ import UserProfile from './pages/UserProfile';
 import ManageReports from './pages/ManageReports';
 import ManageUsers from './pages/ManageUsers';
 import Chat from './pages/Chat';
+import RestaurantEdit from './pages/RestaurantEdit';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
         path: "/chat",
         element: <Chat />
 
+      },
+      {
+        path: "/restaurantdata",
+        element: <RestaurantEdit />
       }
 
 

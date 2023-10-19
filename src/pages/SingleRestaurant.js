@@ -5,6 +5,9 @@ import Calendar from "../components/Calendar";
 import dateSimplify from "../functions/date_r.mjs";
 
 import { AuthContext } from "../context/authContext";
+import MakeReservation from "./MakeReservation";
+import Edit from "../edit-246.svg"
+import getText from "../functions/getText.mjs";
 
 
 export default function SingleRestaurant() {
@@ -51,7 +54,7 @@ export default function SingleRestaurant() {
         if (currentUser) fetchReservation()
   
         fetchData()
-    }, [RestaurantId])
+    }, [RestaurantId, currentUser])
 
 console.log(restaurantData)
 console.log(reservationsFetch)
@@ -59,12 +62,12 @@ console.log(reservationsFetch)
 const restaurant = restaurantData.map((rest) => {
     return (
         <div key={rest.idrestaurants} className="single-restaurant-container">
-            <h1>{rest.restaurant_name}</h1>
+            <div className="restaurant-name-holder"><h1>{rest.restaurant_name}</h1>{currentUser.type ==="restaurant worker" && currentUser.restaurant_id == RestaurantId &&<Link to={`/restaurantdata?edit=${RestaurantId}`} state={restaurantData}><img src={Edit} /></Link>}</div>
             <div className="address-container">
                 <div className="city">{rest.city}</div>
                 <div className="address">{rest.adress}</div>
             </div>
-            <div className="description">{rest.description}</div>
+            <div className="description">{getText(rest.description)}</div>
         </div>
 
     )
@@ -116,28 +119,11 @@ const prevreservation = reservationsFetch.map((reservation) => {
             </div>
             </div> }
 
-           {(resturantOpeningClosing.opening_time != null && resturantOpeningClosing.closing_time != null) && <div className="reservation-container">
-                <h2>Make a reservation</h2>
-                {currentUser ? <div>
-                <p className="reservation-description">
-                    In order to make a reservation please choose the appropriate date and then the time slot you would
-                    like to use. Please keep in mind that your reservation is only valid if the restaurants's workers accept it. Until getting accepted your trial of reservation will stay pending.
-                    Please keep in mind pending reservations are not valid. 
-                </p>
-                <h3>Please choose a date and time</h3>
-                {!currentUser && <div className="info">In order to make a reservation you need to log in.</div>}
-            
-                 <Calendar 
-                                    openingTime={resturantOpeningClosing.opening_time} 
-                                    
-                                    closingTime={resturantOpeningClosing.closing_time}
-                                     />
-                </div> :
-                <div className="info warning">In order to make a reservation you need to log in.</div>
-             
-                }
-            
-            </div> }
+           {(resturantOpeningClosing.opening_time != null && resturantOpeningClosing.closing_time != null)
+           
+           && <MakeReservation openingTime = {resturantOpeningClosing.opening_time} closingTime={resturantOpeningClosing.closing_time} /> }
+
+
 
 
 

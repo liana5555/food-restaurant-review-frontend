@@ -348,3 +348,72 @@ label, input {
 }
 
 
+.hours-container {
+  //display: flex;
+  //flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+     
+  @include break-down("medium") {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+}
+
+.hours-single {
+  width: 100%;
+  height: 40px;
+  width: 150px;
+  background-color: $lighterabitGreen;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid $backgcolor;
+
+  &:hover {
+    background-color: $lightestGreen;
+    border: 1px solid $darkerGreen
+  }
+}
+
+.restaurant-name-holder{
+  display: grid;
+            grid-template-columns: 80% 20%;
+            align-items: center;
+           
+          
+
+            img {
+                height: 30px;
+                width: 30px;
+                cursor: pointer;
+                margin:0;
+                
+               
+            }
+            h1 {
+                color: $darkerGreen;
+                font-weight: 900;
+                text-decoration: underline;
+                padding: 0;
+                margin: 0;
+                //margin-bottom: 20px;
+                font-size: 42px;
+            }
+            a{
+              text-decoration: none;
+              margin:0;
+              padding: 0;
+              justify-self: end;
+            }
+}
+
