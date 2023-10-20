@@ -453,4 +453,23 @@
 }
 
 
+.button-holder {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+button {
+    background-color: $darkerGreen; 
+    color: white; 
+    border-radius: 10px; 
+    cursor: pointer;
+    padding: 10px;
+
+}
+button:hover {
+    background-color: $white;
+    color: $darkerGreen;
+}
+
+
 

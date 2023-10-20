@@ -62,7 +62,7 @@ console.log(reservationsFetch)
 const restaurant = restaurantData.map((rest) => {
     return (
         <div key={rest.idrestaurants} className="single-restaurant-container">
-            <div className="restaurant-name-holder"><h1>{rest.restaurant_name}</h1>{currentUser.type ==="restaurant worker" && currentUser.restaurant_id == RestaurantId &&<Link to={`/restaurantdata?edit=${RestaurantId}`} state={restaurantData}><img src={Edit} /></Link>}</div>
+            <div className="restaurant-name-holder"><h1>{rest.restaurant_name}</h1>{currentUser !== null && currentUser.type ==="restaurant worker" && currentUser.restaurant_id == RestaurantId &&<Link to={`/restaurantdata?edit=${RestaurantId}`} state={restaurantData}><img src={Edit} /></Link>}</div>
             <div className="address-container">
                 <div className="city">{rest.city}</div>
                 <div className="address">{rest.adress}</div>

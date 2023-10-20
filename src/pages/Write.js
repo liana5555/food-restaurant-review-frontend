@@ -20,6 +20,8 @@ export default function Write() {
     const [file, setFile] = React.useState(state?.img || null)
     const [nameOfFood, setNameOfFood] = React.useState(state?.name_of_food || "")
     const [nameOfRestaurant, setNameOfRestaurant] = React.useState(state?.name_of_restaurant || "")
+    const [cityOfRestaurant, setCityOfRestaurant] = React.useState(state?.city_of_restaurant || "")
+    const [addressOfRestaurant, setAddressOfRestaurant] = React.useState(state?.address_of_restaurant || "")
     
     const [writerating, setWriteRating] = React.useState( {
         restaurant: {
@@ -176,21 +178,18 @@ async function handlePublish(e) {
                 <div className="publishing-details">
                     <h1 className="publish">Publish</h1>
                     <div className="post-writing-status">
-                    <span>
+                    {/* <span>
                         <b>Status: </b> Draft
                     </span>
                     <span>
                         <b>Visibility: </b> Public
-                    </span>
+    </span> */ }
                     <input id="img" type="file" name="image" style={{display: "none"}} onChange={e=>setFile(e.target.files[0])}/>
-                    <label htmlFor="img">Kép feltöltése</label>
+                    <label htmlFor="img" className="img-upload">Kép feltöltése</label>
                 
                     </div>
 
-                    <div className="button-holder">
-                        <button>Save as a draft</button>
-                        <button onClick={handlePublish}>Publish</button>
-                    </div>
+                    {/* Itt volt a button -holder eredetileg*/}
                 </div>
 
                 <div className="item">
@@ -203,9 +202,27 @@ async function handlePublish(e) {
                         <label name="restaurant" htmlFor="restaurant">Name of the restaurant</label>
                         <input id="restaurant" type="text" name="nameOfRestaurant"  placeholder="Name of the restaurant" onChange={e=>setNameOfRestaurant(e.target.value)} value={nameOfRestaurant} required />
                     </div>
+
+
+                    <div className="restaurant-city">
+                        <label name="restaurant-city" htmlFor="restaurant-city">City of the restaurant</label>
+                        <input id="restaurant-city" type="text" name="cityOfRestaurant"  placeholder="City of the restaurant" onChange={e=>setCityOfRestaurant(e.target.value)} value={cityOfRestaurant} />
+                    </div>
+
+                    <div className="restaurant-address">
+                        <label name="restaurant-address" htmlFor="restaurant-address">Address of the restaurant</label>
+                        <input id="restaurant-address" type="text" name="addressOfRestaurant"  placeholder="Address of the restaurant" onChange={e=>setAddressOfRestaurant(e.target.value)} value={addressOfRestaurant} />
+                    </div>
+                    
                   
                 </div>
+                <div className="button-holder">
+
+                        {/* <button>Save as a draft</button> */}
+                        <button onClick={handlePublish}>Publish</button>
+                    </div>
             </div>
+            
             
         </main>
     )

@@ -11,6 +11,7 @@ body{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    color: $darkerGreen;
 
 
 
@@ -75,6 +76,7 @@ body{
         font-size: 20px;
         border: 2px solid $black;
         transition: all 250ms ease-in-out;
+        color: $darkerGreen;
        
 
         &:hover {
@@ -332,6 +334,10 @@ body{
 
 
 
+}
+
+.img-upload {
+    cursor: pointer;
 }
 
 

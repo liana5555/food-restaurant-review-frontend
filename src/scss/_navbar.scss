@@ -33,13 +33,14 @@ nav {
         align-items: center;
         justify-content:flex-end;
         gap: 20px;
-        box-shadow: rgba(27, 31, 35, 0.6) 0px 2px 0px, rgba(255, 255, 255, 0.4) 0px 2px 0px inset;
-       
+        //box-shadow: rgba(27, 31, 35, 0.6) 0px 2px 0px, rgba(255, 255, 255, 0.4) 0px 2px 0px inset;
+       border-bottom: 5px solid $darkerGreen;
         
 
         @include break-down("medium") {
             display: flex;
             flex-direction: column;
+            border-bottom: 0px;
 
       }
 
@@ -222,6 +223,9 @@ nav {
             background-color: $white;
             border-radius: 5px;
             border: 1px solid $darkerGreen;
+            border-bottom: 0px;
+     
+          
 
             position: absolute;
             z-index: 100;
@@ -229,13 +233,24 @@ nav {
             right: 5px;
             visibility: visible;
             transition: all ease-in-out 250ms;
-            width:120px ;
+            width:auto ;
+
+            
+                @include break-down("medium") {
+                    top: 200px;
+                    right: 17vw;
+                    width:auto ;
+                    border-bottom-left-radius: 0px ;
+                    border-bottom-right-radius: 0px ;
+                }
 
 
             .profile-sub-menu {
                 display: flex;
                 flex-direction: column;
                 transition: all ease-in-out 250ms;
+                border-top: 5px solid $darkerGreen ;
+                border-radius: 5px;
                
             }
             
