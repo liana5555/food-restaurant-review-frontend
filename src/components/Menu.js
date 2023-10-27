@@ -2,14 +2,14 @@ import React from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Menu() {
+export default function Menu(props) {
 
     const [fetchedPost, setPosts] = React.useState([])
 
     React.useEffect(() => {
         const fetchData = async() => {
             try {
-                const res = await axios.get("/posts")
+                const res = await axios.get(`/posts/menu/${props.postID}`)
                 setPosts(res.data)
             }
             catch (err) {

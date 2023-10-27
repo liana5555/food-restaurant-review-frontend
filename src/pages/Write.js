@@ -20,8 +20,8 @@ export default function Write() {
     const [file, setFile] = React.useState(state?.img || null)
     const [nameOfFood, setNameOfFood] = React.useState(state?.name_of_food || "")
     const [nameOfRestaurant, setNameOfRestaurant] = React.useState(state?.name_of_restaurant || "")
-    const [cityOfRestaurant, setCityOfRestaurant] = React.useState(state?.city_of_restaurant || "")
-    const [addressOfRestaurant, setAddressOfRestaurant] = React.useState(state?.address_of_restaurant || "")
+    const [cityOfRestaurant, setCityOfRestaurant] = React.useState(state?.city || "")
+    const [addressOfRestaurant, setAddressOfRestaurant] = React.useState(state?.address || "")
     
     const [writerating, setWriteRating] = React.useState( {
         restaurant: {
@@ -90,7 +90,7 @@ async function upload() {
     try{
         const formData = new FormData();
         formData.append("file", file)
-        const res = await axios.post("/uploads", formData)
+        const res = await axios.post("/uploads?type=post", formData)
         return res.data
     }   
     catch (err) {
@@ -101,6 +101,7 @@ async function upload() {
 
 async function handlePublish(e) {
         e.preventDefault()
+        
         const imgUrl = await upload()
 
         try {
@@ -111,7 +112,9 @@ async function handlePublish(e) {
                 rating_of_food: writerating.food.rating,
                 rating_of_restaurant: writerating.restaurant.rating,
                 name_of_food: nameOfFood,
-                name_of_restaurant: nameOfRestaurant
+                name_of_restaurant: nameOfRestaurant,
+                city: cityOfRestaurant,
+                address: addressOfRestaurant
 
             }) 
             : await axios.post(`/posts/`, {
@@ -122,7 +125,9 @@ async function handlePublish(e) {
                 rating_of_restaurant: writerating.restaurant.rating,
                 date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
                 name_of_food: nameOfFood,
-                name_of_restaurant: nameOfRestaurant
+                name_of_restaurant: nameOfRestaurant,
+                city: cityOfRestaurant,
+                address: addressOfRestaurant
 
         });}
         catch (err) {

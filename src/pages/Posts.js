@@ -210,7 +210,7 @@ console.log(currentUser)
                     <p className="post-date">Posted on: {dateSimplify(post.date)}</p>
                 </div>
             {currentUser && (currentUser.username === post.username || currentUser.type ==="admin")  && <div className="edit">
-                                <Link to={`/write?edit=${postId}`} state={post}><img src={Edit} alt="edit"/></Link>
+                                <Link to={post.post_type === "post" ? `/write?edit=${postId}`: `/write/advertisement?edit=${postId}`} state={post}><img src={Edit} alt="edit"/></Link>
                                 <img onClick={handleDelete} src={Delete} alt="delete"/>
                                 
 
@@ -302,7 +302,7 @@ console.log(currentUser)
                    {getText(post.desc)}
                 </div>
 
-                <div className="post-content-rating">
+                {post.post_type ==="post" && <div className="post-content-rating">
                     <h3>Rating of the food</h3>
                     <Star   rating={rating}
                             changable={false}
@@ -317,7 +317,7 @@ console.log(currentUser)
                                     handleMouseOver={handleMouseOver}
                                     handleMouseOut={handleMouseOut}
                                     handleClick={handleClick} />
-                </div>
+                </div>}
 
              </div>
 
@@ -326,7 +326,7 @@ console.log(currentUser)
             
         </div>
 
-        <Menu />
+        <Menu postID = {postId} />
   
         </main>
     )

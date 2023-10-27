@@ -36,12 +36,12 @@ export default function Navbar () {
                 <li><Link to="/restaurants">Restaurants</Link></li>
                 <li>{currentUser? (<span className="link" onClick={logout}>Logout</span>) : <Link to="/login">Login/Sign up</Link>}</li>
                 {currentUser && <div className="nav-profile-container">
-                    <div className="user-img-name-container" onClick={handleProfileMenu}>
+                    <div className="user-img-name-container" onMouseEnter={handleProfileMenu} onClick={handleProfileMenu} >
                         <img src={`../uploads/profile_pics/${currentUser?.img}`}/>
                         <span className="link">{currentUser?.username}</span>
                     
                     </div>
-                    {profilemenu && <div className={profilemenu ? "user-menu-container": "user-menu-container-hidden"}>
+                    {profilemenu && <div onMouseLeave={()=> setProfileMenu(false)} onMouseEnter={()=>setProfileMenu(true)} className={profilemenu ? "user-menu-container": "user-menu-container-hidden"}>
                         <ul className="profile-sub-menu">
                             <li><Link to={`/user/${currentUser.idusers}`}>Profile</Link></li>
                             {currentUser.type === "admin" && <li><Link to="/admin/manage_users">Manage users</Link></li>}

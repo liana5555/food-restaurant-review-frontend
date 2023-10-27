@@ -13,6 +13,7 @@ import ManageReports from './pages/ManageReports';
 import ManageUsers from './pages/ManageUsers';
 import Chat from './pages/Chat';
 import RestaurantEdit from './pages/RestaurantEdit';
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -20,6 +21,7 @@ import {
 
 import { Outlet, Link } from "react-router-dom";
 import ManageReservations from './pages/ManageReservations';
+import WriteAdvertisement from './pages/WriteAdvertisement';
 
 
 
@@ -81,6 +83,10 @@ const router = createBrowserRouter([
       {
         path: "/restaurantdata",
         element: <RestaurantEdit />
+      },
+      {
+        path: "/write/advertisement",
+        element: <WriteAdvertisement />
       }
 
 

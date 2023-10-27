@@ -14,7 +14,7 @@ nav {
 
 
     @include break-down("medium") {
-        position: static;
+        position: sticky;
         max-height: 100vh;
       
         
