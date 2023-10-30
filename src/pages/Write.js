@@ -1,11 +1,13 @@
 import axios from "axios";
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useLocation } from "react-router-dom";
 import Star from "../components/Star";
-import moment from "moment"
+import moment from "moment";
+import ErrorUp from "../components/ErrorUp"
 
 import NeedLogin from "./NeedLogin";
 
@@ -13,6 +15,11 @@ import NeedLogin from "./NeedLogin";
 
 export default function Write() {
     const state = useLocation().state
+
+    const navigate = useNavigate()
+    
+
+  
 
 
     const [value, setValue] = React.useState(state?.desc || "");
@@ -23,6 +30,8 @@ export default function Write() {
     const [cityOfRestaurant, setCityOfRestaurant] = React.useState(state?.city || "")
     const [addressOfRestaurant, setAddressOfRestaurant] = React.useState(state?.address || "")
     
+    const [response, setResponse] = React.useState("")
+
     const [writerating, setWriteRating] = React.useState( {
         restaurant: {
           rating: state?.rating_of_restaurant || 3,
@@ -36,6 +45,7 @@ export default function Write() {
            })
 
 console.log(state)
+console.log(file)
 
 function handleMouseOver(id, type) {
     //console.log(id)
@@ -101,14 +111,24 @@ async function upload() {
 
 async function handlePublish(e) {
         e.preventDefault()
+        let imgUrl
+
+        if (state && file != state?.img) {
+             imgUrl = await upload()
+        }
+        else if(!state) {
+            imgUrl = await upload()
+        }
         
-        const imgUrl = await upload()
+       
+
+        const img = file? (imgUrl? imgUrl :file) : "" 
 
         try {
-            state ? await axios.put(`/posts/${state.idposts}`, {
+            const res = state ? await axios.put(`/posts/${state.idposts}`, {
                 title,
                 desc: value,
-                img:file ? imgUrl : "",
+                img:file? (imgUrl? imgUrl :file) : "" ,
                 rating_of_food: writerating.food.rating,
                 rating_of_restaurant: writerating.restaurant.rating,
                 name_of_food: nameOfFood,
@@ -129,9 +149,16 @@ async function handlePublish(e) {
                 city: cityOfRestaurant,
                 address: addressOfRestaurant
 
-        });}
+        });
+        console.log(res)
+        setResponse(res.data)
+      
+
+        setTimeout(() => navigate("/"), 2000)
+    }
         catch (err) {
             console.log(err)
+            setResponse(err)
         }
 
         
@@ -226,6 +253,7 @@ async function handlePublish(e) {
                         {/* <button>Save as a draft</button> */}
                         <button onClick={handlePublish}>Publish</button>
                     </div>
+                    {response && <ErrorUp content={response} statehandling={setResponse} />}
             </div>
             
             

@@ -27,6 +27,17 @@ export default function UserProfile () {
         img: currentUser?.img
 
     })
+    const [file, setFile] = React.useState("")
+
+    const [showPasswordChange , setShowPasswordChange] = React.useState(false)
+
+    const [error, setError] = React.useState("")
+
+    const [pswchange, setPswChange] = React.useState({
+        oldpassword: "",
+        password: "",
+        repassword:""
+    })
 
     React.useEffect(() => {
         const fetchData = async() => {
@@ -129,6 +140,42 @@ function handleCloseing () {
 }
         
 */
+
+function handleShowPasswordChange () {
+    setShowPasswordChange(prev => !prev)
+}
+
+function checkingPaassword (psw, repsw) {
+    if (psw !== repsw){
+        return true
+    }
+    else return false       
+}
+
+function handlePasswordChange(e) {
+    e.preventDefault()
+
+    setPswChange(prev => ({
+        ...prev, 
+        [e.target.name] : e.target.value
+    }))
+
+}
+
+async function handleSubmitPswChange (e) {
+    e.preventDefault()
+
+    try {
+        const res= await axios.put("/users/psw/", pswchange)
+        setResponseFromServer(res.data)
+
+    }
+    catch(err) {
+        setResponseFromServer(err)
+
+    }
+
+}
   
 console.log(responseFromServer)
 
@@ -147,7 +194,7 @@ const prevreservation = userReservations.map((reservation) => {
         <div className="delete-img" onClick={() => handleDelete(reservation.idreservation)}><img src={Delete} alt="Delete reservation"/></div>
 
     </div>*/
-    <ManageSingleReservation reservation={reservation} updateRoute={`/users/reservations/${reservation.idreservation}`} />
+    <ManageSingleReservation key={reservation.idreservation} reservation={reservation} updateRoute={`/users/reservations/${reservation.idreservation}`} />
     )
 })
 
@@ -159,15 +206,51 @@ const prevreservation = userReservations.map((reservation) => {
                 <h1>It is my profile</h1>
                 {currentUser && 
                 <div className="user-data-container">
-                    <span className="profile-pic"><img src={`../uploads/profile_pics/${currentUser.img}`} alt="profile"/></span>
-                    <div className="profile-username">Username: <input type="text" className="profile-change" name="username" onChange={handleChange}  value={changeUserDetail.username} /></div>
-                    <div className="profile-first-name profile-data"><p>First name: </p><input name="first_name" onChange={handleChange} type="text" value={changeUserDetail.first_name} /></div>
-                    <div className="profile-last-name profile-data"><p>Last name: </p><input name="last_name" onChange={handleChange} type="text" value={changeUserDetail.last_name} /></div>
-                    <div className="profile-email profile-data"><p>Email: </p><input name="email" onChange={handleChange} type="email" value={changeUserDetail.email} /></div>
-                    <button onClick={handleUserDeatilUpdate}>Save changes</button>
+                    <span className="profile-pic">
+                        <img src={`../uploads/profile_pics/${currentUser.img}`} alt="profile"/>
+                        <div className="on-picture">                           
+                        </div>
+                        <p className="on-pic-text">
+                            {/*Make a pop up like window put the image uploading inside and a cancel button and a save changes button*/}
+                        <input id="img" type="file" name="img" style={{display: "none"}} onChange={e=>setFile(e.target.files[0])}/>
+                        <label htmlFor="img" className="img-upload">Change</label>
+                        
+                        </p>
+                    </span>
+                    <div className="profile-username"><label htmlFor="username">Username: </label><input id="username" type="text" className="profile-change" name="username" onChange={handleChange}  value={changeUserDetail.username} /></div>
+                    <div className="profile-first-name profile-data"><label htmlFor="first_name">First name: </label><input id="first_name" name="first_name" onChange={handleChange} type="text" value={changeUserDetail.first_name} /></div>
+                    <div className="profile-last-name profile-data"><label htmlFor="last_name">Last name: </label><input id="last_name" name="last_name" onChange={handleChange} type="text" value={changeUserDetail.last_name} /></div>
+                    <div className="profile-email profile-data"><label htmlFor="email">Email: </label><input id="email" name="email" onChange={handleChange} type="email" value={changeUserDetail.email} /></div>
 
-                 
+                    <button className="profile-button" onClick={handleUserDeatilUpdate}>Save changes</button>
+
+                    
                 </div>}
+                <div>
+                    <h2>Password change</h2>
+                    <div>In order to change your password click the switch</div>
+                        <label className="switch">
+                        <input type="checkbox" onChange={handleShowPasswordChange} checked={showPasswordChange}/>
+                        <span className="slider round"></span>
+                        </label>
+
+                        {
+                            showPasswordChange &&
+                            <div>
+                                <label className="input-label" name="oldpassword" >Old Password</label>
+                                <input className={error && pswchange.oldpassword == "" ? "input-error" : "input"} type="password" name="oldpassword" placeholder="password" value={pswchange.oldpassword} onChange={handlePasswordChange}  />
+          
+                                <label className="input-label" name="password" >Password</label>
+                                <input className={error && pswchange.password == "" ? "input-error" : "input"} type="password" name="password" placeholder="password" value={pswchange.password} onChange={handlePasswordChange}  />
+                                
+                                <label className="input-label" name="repassword" >Re-Password</label>
+                                <input className={error && pswchange.repassword == "" ? "input-error" : "input"} type="password" name="repassword" placeholder="password" value={pswchange.repassword} onChange={handlePasswordChange}  />
+                                {checkingPaassword(pswchange.password, pswchange.repassword)&&<div className="not-matching-psw">Not matching Password</div>}
+       
+                            <button onClick={handleSubmitPswChange}>Change Password</button>
+                        </div>
+                        }
+                </div>
                     <h2>All made reservations</h2>
                     <div className="previous-reservations-cotnainer">
                 <div className="prev-reserv-header">

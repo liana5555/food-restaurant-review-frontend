@@ -24,13 +24,20 @@ export default function ManageReservations () {
             }
             catch (err) {
                 console.log(err)
+                
             }
         }
-        fetchData()
+
+        if (currentUser) {
+             fetchData()
+        }
+       
     }, [])
 
+    let prevreservation
 
-    const prevreservation = reservationByRestaurant.map((reservation) => {
+    if (currentUser) {
+        prevreservation = reservationByRestaurant.map((reservation) => {
         return (
 /*            <div>
             <div key={reservation.idreservation} className={reservation.status === "pending" ? "reserv-pending" : 
@@ -52,13 +59,16 @@ export default function ManageReservations () {
         <ManageSingleReservation key={reservation.idreservation} reservation = {reservation}  updateRoute={`/users/restaurant_worker/restaurant/${currentUser.restaurant_id}/managed_reservation/${reservation.idreservation}`}/>
         )
     })
+    }
+    
     
 
 
     return (
         <main className="profile">
             <h1>MANAGE RESERVATIONS</h1>
-            <div className="previous-reservations-cotnainer">
+            {!currentUser && <div>You can only reach this page if you are a restaurant worker</div>}
+            {currentUser && currentUser.type === "restaurant worker" && <div className="previous-reservations-cotnainer">
                 <div className="prev-reserv-header">
                     <div>Starting date</div>
                     <div>Ending date</div>
@@ -76,7 +86,7 @@ export default function ManageReservations () {
                 </div>
 
                 {currentUser && currentUser.type === "restaurant worker" && prevreservation}
-            </div>
+            </div>}
         </main>
     ) 
 }

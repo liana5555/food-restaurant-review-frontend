@@ -116,9 +116,9 @@ export default function MakeReservation (props) {
                     return
                  }
                 else {
-                    if (parseInt(showDateFull.year) === actualDateFull.year && parseInt(showDateFull.month) === (months.indexOf(actualDateFull.month)+1) && parseInt(showDateFull.day) < actualDateFull.day) {
-                        setError("Error you set a date before today.")
-                        console.log("Error you set a date before today.")
+                    if (parseInt(showDateFull.year) === actualDateFull.year && parseInt(showDateFull.month) === (months.indexOf(actualDateFull.month)+1) && parseInt(showDateFull.day) <= actualDateFull.day) { //showDateFull.day <= actualDateFull.day
+                        setError("Error you set a date before today or today.")
+                        console.log("Error you set a date before today or today.")
                         return
                     }
 

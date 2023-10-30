@@ -10,7 +10,10 @@ export default function ManageSingleUser(props) {
         firstName: props?.user?.first_name,
         lastName:props?.user?.last_name,
         email: props?.user?.email,
-        type: props?.user?.type
+        type: props?.user?.type,
+        restaurant_name: props?.user?.restaurant_name || "",
+        city: props?.user?.city || "",
+        adress: props?.user?.adress || ""
         
     })
 
@@ -84,6 +87,7 @@ console.log(editForm)
                         <div className="user-detail">{props.user.type}</div>
                         <div className="user-detail">{props.user.first_name}</div>
                         <div className="user-detail">{props.user.last_name}</div>
+                        
                     </div>
                 }
                 {
@@ -133,7 +137,23 @@ console.log(editForm)
                 <label htmlFor="restaurant worker">Restaurant worker</label>
                 </div>
                 
+                
             </fieldset>
+            {editForm.type === "restaurant worker" && <>
+                        <label className="input-label" name="restaurant_name" >Restaurant Name</label>
+                        <input className="input" type="text" name="restaurant_name" placeholder="restaurant_name" value={editForm.restaurant_name} onChange={handleChange}  />
+                     
+                    </>}
+                    {editForm.type === "restaurant worker" && <>
+                        <label className="input-label" name="city" >City of restaurant</label>
+                        <input className="input" type="text" name="city" placeholder="city" value={editForm.city} onChange={handleChange}  />
+                     
+                        </>}
+                    {editForm.type === "restaurant worker" && <>
+                        <label className="input-label" name="adress" >Address of restaurant</label>
+                        <input className="input" type="text" name="adress" placeholder="adress" value={editForm.adress} onChange={handleChange}  />
+                     
+                        </>}
                     <button onClick={handleSendUpdateUser}>Submit changes to this user</button>
            
                     </form>
