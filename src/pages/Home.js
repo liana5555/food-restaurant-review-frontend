@@ -14,20 +14,32 @@ import axios from 'axios'
 export default function Home () {
 
     const [fetchedPost, setPosts] = React.useState([])
+    const dataFetchedRef = React.useRef(false);
+
+    const [fetchFrom, setfrom] = React.useState(0)
 
     React.useEffect(() => {
         const fetchData = async() => {
             try {
-                const res = await axios.get("/posts")
-                setPosts(res.data)
+                const res = await axios.get(`/posts?low=${fetchFrom}`)
+                setPosts(prev => prev.concat(res.data))
             }
             catch (err) {
                 console.log(err)
             }
         }
+        if (dataFetchedRef.current) return;
+        dataFetchedRef.current = true;
         fetchData()
-    }, [])
+    }, [fetchFrom])
 
+    function handleShowMore() {
+        if(fetchedPost.length % 10 ===0) {
+            dataFetchedRef.current = false;
+            setfrom(prev => prev = prev+10)
+        }
+        
+    }
 
 
 //This is only for designing it will be fetched later
@@ -86,6 +98,7 @@ const getText = (html) => {
             <div className="post-image">
                 <img alt={post.title + "image"} src={`./uploads/${post.img}`} />
             </div>
+
            
             
         </div>)
@@ -97,6 +110,7 @@ const getText = (html) => {
     return (
        <main className="home posts-container">
             {posts}
+            <button onClick={handleShowMore}>Show more ...</button>
        </main>
     )
 
