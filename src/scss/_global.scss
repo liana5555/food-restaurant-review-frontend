@@ -277,6 +277,7 @@ body{
     display: grid;
     grid-template-columns: 5fr 1fr;
     gap: 10px;
+    z-index: 1000;
 
     .error-up-text {
         align-self: center;

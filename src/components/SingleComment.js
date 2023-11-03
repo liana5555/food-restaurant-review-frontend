@@ -8,6 +8,8 @@ import axios from "axios";
 import moment from "moment"
 import Delete from "../delete-delete.svg"
 import dateSimplify from "../functions/date_r.mjs";
+import Rep_icon from "../report-2.svg"
+import CommentReport from "./CommentReport";
 
 
 export default function SingleComment(props) {
@@ -15,6 +17,8 @@ export default function SingleComment(props) {
     const [show, setShow] = React.useState(false);
     const [value, setValue] = React.useState('');
     const {currentUser} = useContext(AuthContext)
+
+    const [showReport, setShowReport] = React.useState(false)
 
     const getText = (html) => {
         const doc = new DOMParser().parseFromString(html, 'text/html')
@@ -55,6 +59,11 @@ export default function SingleComment(props) {
         window.location.reload(true);
     }
 
+    function handleShowReport () {
+        setShowReport(prev => !prev)
+        console.log(showReport)
+    } 
+
 
 let style;
 
@@ -80,11 +89,18 @@ let style;
                                     <img src={Reply} alt="Reply button"/>
                                     <span >Reply</span>
                                 </div>
-                                {currentUser && currentUser.username == props.comment.username && <div className="comment-delete" onClick={handleDeleteComment}>
+                                <div className="icon-container">{currentUser && currentUser.username == props.comment.username && <div className="comment-delete" onClick={handleDeleteComment}>
                                     <img src={Delete} alt="the icon of deleting this comment"/>
                                     <span>Delete</span>
                                 </div>}
+                                {currentUser && <div className="comment-delete" onClick={handleShowReport}>
+                                    <img src={Rep_icon} alt="Report this comment"/>
+                                   
+                                    
+                                    </div>}
+                                </div>
                             </div>
+                            {showReport && currentUser && <CommentReport comment_id = {props.comment.idcomments} showReport = {handleShowReport} />}
 
                             {show && currentUser && <div className="editor-container">
                                     <ReactQuill className="quill" theme="snow" value={value} onChange={setValue}/>

@@ -140,7 +140,7 @@ async function handlePublish(e) {
             : await axios.post(`/posts/`, {
                 title,
                 desc: value,
-                img:file ? imgUrl : "",
+                img:file? (imgUrl? imgUrl :file) : "",
                 rating_of_food: writerating.food.rating,
                 rating_of_restaurant: writerating.restaurant.rating,
                 date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),

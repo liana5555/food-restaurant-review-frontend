@@ -6,12 +6,15 @@ import { useLocation } from "react-router-dom";
 import moment from "moment"
 import { AuthContext } from "../context/authContext";
 import ErrorUp from "../components/ErrorUp";
+import { Link, useNavigate } from "react-router-dom";
 
 
 export default function WriteAdvertisement() {
 
+    const navigate = useNavigate()
+
     const state = useLocation().state
-    const [error, setError] = React.useState("")
+    const [response, setResponse] = React.useState("")
 
     //fetch the deatils of the restaurant connected to the current user
     const [deatilsOfRestaurant, setDetailsOfRestaurant] = React.useState([])  ///USeffetc
@@ -30,7 +33,7 @@ export default function WriteAdvertisement() {
         try{
             const formData = new FormData();
             formData.append("file", file)
-            const res = await axios.post("/uploads", formData)
+            const res = await axios.post("/uploads?type=post", formData)
             return res.data
         }   
         catch (err) {
@@ -49,15 +52,21 @@ export default function WriteAdvertisement() {
     async function handlePublish (e) {
         e.preventDefault()
         let imgUrl
-        if (file !== state?.img) {
-             imgUrl = await upload()
-        }
-      
+        
+        if (state && file != state?.img) {
+            imgUrl = await upload()
+       }
+       else if(!state) {
+           imgUrl = await upload()
+       }
+       
+        
+   
         try {
-           state ? await axios.put(`/posts/advertisements/${state.idposts}`, {
+           const res = state ? await axios.put(`/posts/advertisements/${state.idposts}`, {
             title: advertisement.title,
             desc: value ,
-            img:file ? imgUrl : "",
+            img:file? (imgUrl? imgUrl :file) : "",
             rating_of_food: -1,
             rating_of_restaurant: -1,
             name_of_food: advertisement.name_of_food,
@@ -69,7 +78,7 @@ export default function WriteAdvertisement() {
            await axios.post(`/posts/advertisements/`, {
             title: advertisement.title,
             desc: value ,
-            img:file ? imgUrl : "",
+            img:file? (imgUrl? imgUrl :file) : "",
             rating_of_food: -1,
             rating_of_restaurant: -1,
             name_of_food: advertisement.name_of_food,
@@ -79,11 +88,16 @@ export default function WriteAdvertisement() {
 
 
            })
+
+           setResponse(res.data)
+      
+
+            setTimeout(() => navigate("/"), 2000)
             
         }
         catch(err) {
             console.log(err)
-            setError(err)
+            setResponse(err)
 
         }
 
@@ -143,6 +157,7 @@ export default function WriteAdvertisement() {
                         {/* <button>Save as a draft</button> */}
                         <button onClick={handlePublish}>Publish</button>
                     </div>
+                    {response && <ErrorUp content={response} statehandling={setResponse} />}
                     
             </div>
            

@@ -120,54 +120,64 @@
                 left: 30%;
             }
 
-            .reporting-form-container{
-                position: relative;
-                top: -30px;
-
-                button {
-                    background-color: $darkerGreen; 
-                    color: white; 
-                    border-radius: 10px; 
-                    cursor: pointer;
-                    padding: 10px;
-    
-                }
-                button:hover {
-                    background-color: $white;
-                    color: $darkerGreen;
-                }
-                label {
-                    font-size: 16px;
-                    font-weight: 500;
-                   }
-                   
-            }
-
-            fieldset {
-                display: flex;
-                flex-direction: column;
-                border: 1px solid $darkerGreen;
-               width: 100%;
-               gap: 10px;
-
-              
-                
-              
-              
             
-                input {
-                    margin: 0;
-            
-                }
-                .input-label-matcher{
-                    display: grid;
-                    grid-template-columns: 20% 80%;
-                    align-items: center;
-                }
-               
-               }
 
         }
+        .comment-report-container {
+            position: static;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            margin-top: 20px;
+
+        }
+
+        .reporting-form-container{
+            position: relative;
+            top: -30px;
+
+            button {
+                background-color: $darkerGreen; 
+                color: white; 
+                border-radius: 10px; 
+                cursor: pointer;
+                padding: 10px;
+
+            }
+            button:hover {
+                background-color: $white;
+                color: $darkerGreen;
+            }
+            label {
+                font-size: 16px;
+                font-weight: 500;
+               }
+               
+        }
+
+        fieldset {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid $darkerGreen;
+           width: 100%;
+           gap: 10px;
+
+          
+            
+          
+          
+        
+            input {
+                margin: 0;
+        
+            }
+            .input-label-matcher{
+                display: grid;
+                grid-template-columns: 20% 80%;
+                align-items: center;
+            }
+           
+           }
 
      
         .food-and-restaurant-name{
@@ -230,6 +240,10 @@
                 &:hover{
                     background-color: white;
                 }
+            }
+            .icon-container {
+                display: flex;
+                flex-direction: row;
             }
 
 

@@ -118,8 +118,18 @@ export default function UserProfile () {
 
         }
         else {
+
+                  
+                let imgUrl
+
+                if (currentUser && file != currentUser?.img) {
+                    imgUrl = await upload()
+                }
+                
+       
+
                 try {
-                const res =  await axios.put("/users/", changeUserDetail)
+                const res =  await axios.put("/users/", {...changeUserDetail, img: file? (imgUrl? imgUrl :file) : "" })
                 setResponseFromServer(res.data)
                 setCurrentUser(changeUserDetail)
                 
@@ -197,6 +207,20 @@ const prevreservation = userReservations.map((reservation) => {
     <ManageSingleReservation key={reservation.idreservation} reservation={reservation} updateRoute={`/users/reservations/${reservation.idreservation}`} />
     )
 })
+
+async function upload() {
+    try{
+        const formData = new FormData();
+        formData.append("file", file)
+        const res = await axios.post("/uploads?type=profile", formData)
+        return res.data
+    }   
+    catch (err) {
+        console.log(err)
+    }
+}
+
+
 
 
     return(

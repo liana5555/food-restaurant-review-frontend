@@ -34,10 +34,10 @@ export default function Home () {
     }, [fetchFrom])
 
     function handleShowMore() {
-        if(fetchedPost.length % 10 ===0) {
+        
             dataFetchedRef.current = false;
-            setfrom(prev => prev = prev+10)
-        }
+            setfrom(fetchedPost[fetchedPost.length-1].idposts)
+        
         
     }
 
