@@ -3,9 +3,11 @@ import axios from "axios";
 import Table from "./Table";
 import AddedGroupMembers from "./AddedGroupMembers";
 import moment from "moment";
+import ErrorUp from "../components/ErrorUp";
 
 export default function AddingConversation(props) {
 
+    const [response, setResponse] = React.useState("")
     
     function indexesofMembers(array) {
         const array_new = array.map(pre => {
@@ -115,12 +117,18 @@ export default function AddingConversation(props) {
 
 
    async function createConversation () {
+        if (addingConv.conversation_name === "" || addingConv.group_members_ids.length ===0) {
+            console.log()
+            setResponse("You need to write a conversation name and add someone")
+            return
+        }
         try {
             const res = await axios.post(`/chat/create_conversation`, {...addingConv, joined_date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")})
             props.handleClose()
         }
         catch (err) {
             console.log(err)
+            setResponse(err)
         }
 
     }
@@ -163,6 +171,7 @@ function search (data) {
                 }
                 
                 <button onClick={createConversation}>Create conversation</button>
+                {response && <ErrorUp content={response} statehandling={setResponse} />}
         </div>
     )
 }
