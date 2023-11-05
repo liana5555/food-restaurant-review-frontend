@@ -67,7 +67,7 @@ const restaurant = restaurantData.map((rest) => {
                 <div className="city">{rest.city}</div>
                 <div className="address">{rest.adress}</div>
             </div>
-            <div className="description">{getText(rest.description)}</div>
+            <div className="description" dangerouslySetInnerHTML={{ __html: rest.description }}></div>
         </div>
 
     )

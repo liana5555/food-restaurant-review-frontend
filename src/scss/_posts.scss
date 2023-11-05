@@ -188,6 +188,19 @@
                 font-size: 20px;
                 font-style: italic;
 
+                .link {
+                    text-decoration: none;
+                    justify-self: center;
+                    color: $darkerGreen;
+                    cursor: pointer;
+                    transition: all 1000ms ease-in-out;
+
+                    &:hover {
+                        text-decoration: underline;
+                        transition: all 1000ms ease-in-out;
+                    }
+                }
+
             }
         }
     

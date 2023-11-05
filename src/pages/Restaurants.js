@@ -5,12 +5,14 @@ import { Link } from "react-router-dom";
 
 export default function Restaurants () {
 
+    const [query, setQuery] = React.useState("")
+
     const [fetchedRestaurants, setRestaurants] = React.useState([])
 
     React.useEffect(() => {
         const fetchData = async() => {
             try {
-                const res = await axios.get("/restaurants")
+                const res = await axios.get(`/restaurants?q=${query}`)
                 setRestaurants(res.data)
             }
             catch (err) {
@@ -18,7 +20,13 @@ export default function Restaurants () {
             }
         }
         fetchData()
-    }, [])
+    }, [query])
+
+    function handleChange (e) {
+        e.preventDefault()
+
+        setQuery(prev => prev = e.target.value)
+    }
 
     console.log(fetchedRestaurants)
 
@@ -42,6 +50,8 @@ export default function Restaurants () {
         
         <main className="food-restaurants">
             <h1>Restaurants</h1>
+            <label className="serach" htmlFor="search">Search for a Restaurant by its name, city or address</label>
+            <input className="search" id="search" type="text" name="search" value={query} onChange={handleChange}/>
             <div className="rw-container">
                 <div className="single-rw-container single-rw-header">
                     <div className="single-rw-name-header single-rw">Name of the restaurant</div>

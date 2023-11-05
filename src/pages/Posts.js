@@ -134,8 +134,21 @@ function handleClick (id, type) {
 }
 
 async function handleDelete () {
+
+    let path
+
+
+    if (currentUser.type === "restaurant worker" && currentUser.restaurant_id === post.idrestaurants && post.post_type === "advertisement") {
+        path = `/posts/advertisements/${postId}?rid=${currentUser.restaurant_id}`
+    }
+    else {
+        path = `/posts/${postId}`
+    }
+    console.log(path)
+
     try {
-        const res= await axios.delete(`/posts/${postId}`);
+        const res= await axios.delete(path);
+        console.log(res)
         navigate("/")
     }
     catch (err) {
@@ -209,7 +222,7 @@ console.log(currentUser)
                     <p className="username">{post.username}</p>
                     <p className="post-date">Posted on: {dateSimplify(post.date)}</p>
                 </div>
-            {currentUser && (currentUser.username === post.username || currentUser.type ==="admin")  && <div className="edit">
+            {currentUser && (currentUser.username === post.username || currentUser.type ==="admin" || currentUser?.restaurant_id === post.idrestaurants)  && <div className="edit">
                                 <Link to={post.post_type === "post" ? `/write?edit=${postId}`: `/write/advertisement?edit=${postId}`} state={post}><img src={Edit} alt="edit"/></Link>
                                 <img onClick={handleDelete} src={Delete} alt="delete"/>
                                 
@@ -295,11 +308,11 @@ console.log(currentUser)
                 </div>}
             <div className="food-and-restaurant-name">
                 <h2>Name of food: {post.name_of_food}</h2>
-                <h2>Name of restaurant: {post.name_of_restaurant}</h2>
+                <h2><Link className="link" to={`/restaurants/${post.idrestaurants}`}>Name of restaurant: {post.name_of_restaurant}</Link></h2>
             </div>
             <div className="post-content">
-                <div className="post-content-text">
-                   {getText(post.desc)}
+                <div className="post-content-text" dangerouslySetInnerHTML={{ __html: post.desc }} >
+                   {/*getText(post.desc)*/}
                 </div>
 
                 {post.post_type ==="post" && <div className="post-content-rating">

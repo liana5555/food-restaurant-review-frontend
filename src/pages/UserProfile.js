@@ -111,7 +111,7 @@ export default function UserProfile () {
             currentUser.first_name === changeUserDetail.first_name &&
             currentUser.last_name === changeUserDetail.last_name &&
             currentUser.email === changeUserDetail.email &&
-            currentUser.img === changeUserDetail.img ) {
+            currentUser.img === file.name ) {
                 
                 setResponseFromServer("You didn't change anything")
                
@@ -122,7 +122,7 @@ export default function UserProfile () {
                   
                 let imgUrl
 
-                if (currentUser && file != currentUser?.img) {
+                if (currentUser && (file !== currentUser?.img)) {
                     imgUrl = await upload()
                 }
                 
@@ -188,6 +188,9 @@ async function handleSubmitPswChange (e) {
 }
   
 console.log(responseFromServer)
+
+console.log(file)
+//console.log(currentUser.img)
 
 
 const prevreservation = userReservations.map((reservation) => {
@@ -304,6 +307,6 @@ async function upload() {
             
 
            
-        </main>
+        </main> 
     )
 }
