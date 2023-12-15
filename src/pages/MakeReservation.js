@@ -209,12 +209,13 @@ export default function MakeReservation (props) {
             const res = await axios.post(`/restaurants/${RestaurantId}/reservation`,regform )
 
             //setError
+            //setError(res)
 
             
         }
         catch (err) {
           console.log(err)
-          setError(err)
+         // setError(err)
       
       
       } 

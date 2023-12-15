@@ -129,7 +129,7 @@ export default function UserProfile () {
        
 
                 try {
-                const res =  await axios.put("/users/", {...changeUserDetail, img: file? (imgUrl? imgUrl :file) : "" })
+                const res =  await axios.put("/users/", {...changeUserDetail, img: file? (imgUrl? imgUrl :file) : currentUser?.img })
                 setResponseFromServer(res.data)
                 setCurrentUser(changeUserDetail)
                 
@@ -181,7 +181,7 @@ async function handleSubmitPswChange (e) {
 
     }
     catch(err) {
-        setResponseFromServer(err)
+        setResponseFromServer(err.respose.data)
 
     }
 

@@ -71,7 +71,7 @@ export default function Login () {
 
     return (
         <main className="login-register">
-            <h1>Bejelentkezés</h1>
+            <h1>Log In</h1>
         <form className="login-register-form" onSubmit={handleSubmit}>
             <label className="input-label" name="username" >Username</label>
             <input className={error && regformLogin.username == "" ? "input-error" : "input"} type="text" name="username" placeholder="username" value={regformLogin.username} onChange={handleChange}  />

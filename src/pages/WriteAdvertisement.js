@@ -135,7 +135,7 @@ export default function WriteAdvertisement() {
                         <b>Visibility: </b> Public
     </span> */ }
                     <input id="img" type="file" name="image" style={{display: "none"}} onChange={e=>setFile(e.target.files[0])}/>
-                    <label htmlFor="img" className="img-upload">Kép feltöltése</label>
+                    <label htmlFor="img" className="img-upload">Upload picture</label>
                 
                     </div>
 

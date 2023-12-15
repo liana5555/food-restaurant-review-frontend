@@ -36,17 +36,25 @@ export default function Register () {
             setError("Fill out the username,password and email fields")
 
         }else {
+            console.log(checkingPaassword(regform.password, regform.repassword) === false)
+            if (checkingPaassword(regform.password, regform.repassword)===false) {
+                 try {
+                        const result = await axios.post("/auth/register", regform)
+                        console.log(result) 
+                        navigate("/login")
+                        
+                    }
+                    catch (err){
+                        setError(err.response.data)
+                        console.log(err)
+            }
+            }
+            else {
+                setError("Password and repassword are not the same")
+                    
+            }
    
-            try {
-            const result = await axios.post("/auth/register", regform)
-            console.log(result) 
-            navigate("/login")
-            
-            }
-            catch (err){
-                setError(err.response.data)
-                console.log(err)
-            }
+       
         
         }
         
@@ -61,7 +69,7 @@ export default function Register () {
 
     return (
         <main className="login-register">
-            <h1>Regisztráció</h1>
+            <h1>Register</h1>
         <form className="login-register-form" onSubmit={handleSubmit}>
             <label className="input-label" name="username" >Username</label>
             <input className={error && regform.username == "" ? "input-error" : "input"} type="text" name="username" placeholder="username" value={regform.username} onChange={handleChange}  />

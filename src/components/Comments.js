@@ -12,22 +12,26 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Comments (props) {
 
     const [comments, setComment] = React.useState([])
+    const [fetchFrom, setfrom] = React.useState(0)
+    const dataFetchedRef = React.useRef(false);
 
 
 
     React.useEffect(() => {
         const fetchData = async() => {
             try {
-                const res = await axios.get(`/comments/${props.postid}`)
-                setComment(res.data)
+                const res = await axios.get(`/comments/${props.postid}?low=${fetchFrom}`)
+                setComment(prev => prev.concat(res.data))
                 
             }
             catch (err) {
                 console.log(err)
             }
         }
+        if (dataFetchedRef.current) return;
+        dataFetchedRef.current = true;
         fetchData()
-    }, [props.postid])
+    }, [props.postid, fetchFrom])
 
     const [value, setValue] = React.useState('');
     const {currentUser} = useContext(AuthContext)
@@ -54,11 +58,20 @@ export default function Comments (props) {
 }    
 
 
+function handleShowMore() {
+        
+    dataFetchedRef.current = false;
+    setfrom(comments[comments.length-1].idcomments)
+
+
+}
+
+
     return (
 
         <div className="comment">
-        <h2>Hozzászólások</h2>
-        {!currentUser && <div className="info">Hozzászólás írásához be kell jelentkezni!</div>}
+        <h2>Comments</h2>
+        {!currentUser && <div className="info">In order to write a comment you need to log in!</div>}
 
         {currentUser && <div className="editor-container">
         <label name="description">Please leave a comment</label>
@@ -73,6 +86,7 @@ export default function Comments (props) {
                     <SingleComment key={comment.idcomments} comment={comment} />
                 )
             })}
+            {comments.length % 10 === 0 && comments.length !==0 ? <button className="show-more" onClick={handleShowMore}>Show more ...</button> : <div className="show-more"></div>}
 
         </div>
       
