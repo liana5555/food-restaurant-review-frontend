@@ -42,5 +42,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "food-review-server.onrender.com/api/v1/"
+  "proxy": "http://food-review-server.onrender.com/api/v1/"
 }
