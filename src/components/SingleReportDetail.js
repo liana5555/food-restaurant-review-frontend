@@ -10,7 +10,7 @@ export default function SingleReportDetail(props) {
     React.useEffect(() => {
         const fetchData = async() => {
             try {
-                const res = await axios.get(`/users/admin/managed_reports/${props.postID}`)
+                const res = await axios.get(`${process.env.REACT_APP_API_ROUTE}/users/admin/managed_reports/${props.postID}`)
                 setReports(res.data)
             }
             catch (err) {

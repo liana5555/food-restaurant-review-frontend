@@ -15,7 +15,7 @@ export default function ManageSingleReport (props) {
     async function handleDeleteReportByPost (e) {
         e.preventDefault() 
         try {
-            const res = await axios.delete(`/users/admin/managed_reports/${props.report.post_id}`)
+            const res = await axios.delete(`${process.env.REACT_APP_API_ROUTE}/users/admin/managed_reports/${props.report.post_id}`)
         }
     catch (err) {
         console.log(err)

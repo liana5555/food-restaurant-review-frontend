@@ -42,7 +42,7 @@ export default function ManageSingleUser(props) {
     async function handleSendUpdateUser (e) {
         e.preventDefault() 
         try {
-            const res = await axios.put(`/users/admin/managed_user/${props.user.idusers}`, editForm)
+            const res = await axios.put(`${process.env.REACT_APP_API_ROUTE}/users/admin/managed_user/${props.user.idusers}`, editForm)
         }
     catch (err) {
         console.log(err)
@@ -56,14 +56,14 @@ export default function ManageSingleUser(props) {
 async function handleSendDeleteUser (e) {
     e.preventDefault() 
     try {
-        const res = await axios.delete(`/users/admin/managed_user/${props.user.idusers}`)
+        const res = await axios.delete(`${process.env.REACT_APP_API_ROUTE}/users/admin/managed_user/${props.user.idusers}`)
     }
 catch (err) {
     console.log(err)
 
 
 } 
-window.location.reload(true);
+//window.location.reload(true);
 }  
 
    

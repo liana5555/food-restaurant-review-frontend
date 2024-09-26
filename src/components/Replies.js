@@ -13,7 +13,7 @@ export default function Replies(props) {
     React.useEffect(() => {
         const fetchData = async() => {
             try {
-                const res = await axios.get(`/comments/${props.post_id}/reply/${props.comment_id}?low=${fetchFrom}`)
+                const res = await axios.get(`${process.env.REACT_APP_API_ROUTE}/comments/${props.post_id}/reply/${props.comment_id}?low=${fetchFrom}`)
                 setComment(prev => prev.concat(res.data))
                 
             }

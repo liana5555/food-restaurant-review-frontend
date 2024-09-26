@@ -206,7 +206,7 @@ export default function MakeReservation (props) {
 
       
         try {
-            const res = await axios.post(`/restaurants/${RestaurantId}/reservation`,regform )
+            const res = await axios.post(`${process.env.REACT_APP_API_ROUTE}/restaurants/${RestaurantId}/reservation`,regform )
 
             //setError
             //setError(res)
@@ -215,7 +215,8 @@ export default function MakeReservation (props) {
         }
         catch (err) {
           console.log(err)
-         // setError(err)
+          
+         setError(err.response.data)
       
       
       } 

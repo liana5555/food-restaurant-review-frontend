@@ -18,7 +18,7 @@ export default function ConversationList (props) {
     React.useEffect(() => {
         const fetchData = async() => {
             try {
-                const res = await axios.get(`/chat/conversation`)
+                const res = await axios.get(`${process.env.REACT_APP_API_ROUTE}/chat/conversation`)
                 setContact(res.data)
             }
             catch (err) {

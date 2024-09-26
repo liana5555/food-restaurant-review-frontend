@@ -18,7 +18,7 @@ export default function ManageReservations () {
     React.useEffect(() => {
         const fetchData = async() => {
             try {
-                const res = await axios.get(`/users/restaurant/${currentUser.restaurant_id}/reservations`)
+                const res = await axios.get(`${process.env.REACT_APP_API_ROUTE}/users/restaurant/${currentUser.restaurant_id}/reservations`)
                 setReservationByRestaurant(res.data)
                 
             }
@@ -56,7 +56,7 @@ export default function ManageReservations () {
                 Change reservation status
             </div>}
         </div>  */
-        <ManageSingleReservation key={reservation.idreservation} reservation = {reservation}  updateRoute={`/users/restaurant_worker/restaurant/${currentUser.restaurant_id}/managed_reservation/${reservation.idreservation}`}/>
+        <ManageSingleReservation key={reservation.idreservation} reservation = {reservation}  updateRoute={`${process.env.REACT_APP_API_ROUTE}/users/restaurant_worker/restaurant/${currentUser.restaurant_id}/managed_reservation/${reservation.idreservation}`}/>
         )
     })
     }

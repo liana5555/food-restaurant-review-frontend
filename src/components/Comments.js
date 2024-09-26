@@ -20,7 +20,7 @@ export default function Comments (props) {
     React.useEffect(() => {
         const fetchData = async() => {
             try {
-                const res = await axios.get(`/comments/${props.postid}?low=${fetchFrom}`)
+                const res = await axios.get(`${process.env.REACT_APP_API_ROUTE}/comments/${props.postid}?low=${fetchFrom}`)
                 setComment(prev => prev.concat(res.data))
                 
             }
@@ -41,7 +41,7 @@ export default function Comments (props) {
     async function handleSendComment (e) {
         e.preventDefault() 
         try {
-            await axios.post(`/comments/${props.postid}`, {
+            await axios.post(`${process.env.REACT_APP_API_ROUTE}/comments/${props.postid}`, {
                 comment : value,
                 date : moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
                 replied_for : null,

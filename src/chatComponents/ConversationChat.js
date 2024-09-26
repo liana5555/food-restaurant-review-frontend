@@ -59,7 +59,7 @@ export default function ConversationChat (props) {
     React.useEffect(() => {
         const fetchData = async() => {
             try {
-                const res = await axios.get(`/chat/conversation/${props.chatPartner.conversation_id}?from=${dateFetchFrom}`)
+                const res = await axios.get(`${process.env.REACT_APP_API_ROUTE}/chat/conversation/${props.chatPartner.conversation_id}?from=${dateFetchFrom}`)
                 setMessages(res.data)
             }
             catch (err) {
@@ -114,7 +114,7 @@ export default function ConversationChat (props) {
         } 
 
         try {
-            const result = await axios.post("/chat", messageData)
+            const result = await axios.post(`${process.env.REACT_APP_API_ROUTE}/chat`, messageData)
             console.log(result)
             await socket.current.emit("send_message", messageData);
             setMessages((prev) => {

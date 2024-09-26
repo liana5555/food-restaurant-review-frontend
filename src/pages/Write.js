@@ -100,7 +100,7 @@ async function upload() {
     try{
         const formData = new FormData();
         formData.append("file", file)
-        const res = await axios.post("/uploads?type=post", formData)
+        const res = await axios.post(`${process.env.REACT_APP_API_ROUTE}/uploads?type=post`, formData)
         return res.data
     }   
     catch (err) {
@@ -113,7 +113,7 @@ async function handlePublish(e) {
         e.preventDefault()
         let imgUrl
 
-        if (state && file != state?.img) {
+        if (state && file !== state?.img) {
              imgUrl = await upload()
         }
         else if(!state) {
@@ -125,7 +125,7 @@ async function handlePublish(e) {
         const img = file? (imgUrl? imgUrl :file) : "" 
 
         try {
-            const res = state ? await axios.put(`/posts/${state.idposts}`, {
+            const res = state ? await axios.put(`${process.env.REACT_APP_API_ROUTE}/posts/${state.idposts}`, {
                 title,
                 desc: value,
                 img:file? (imgUrl? imgUrl :file) : "" ,
@@ -137,7 +137,7 @@ async function handlePublish(e) {
                 address: addressOfRestaurant
 
             }) 
-            : await axios.post(`/posts/`, {
+            : await axios.post(`${process.env.REACT_APP_API_ROUTE}/posts/`, {
                 title,
                 desc: value,
                 img:file? (imgUrl? imgUrl :file) : "",
@@ -158,7 +158,7 @@ async function handlePublish(e) {
     }
         catch (err) {
             console.log(err)
-            setResponse(err)
+            setResponse(err.response.data)
         }
 
         

@@ -21,7 +21,7 @@ export default function Home () {
     React.useEffect(() => {
         const fetchData = async() => {
             try {
-                const res = await axios.get(`/posts?low=${fetchFrom}`)
+                const res = await axios.get(`${process.env.REACT_APP_API_ROUTE}/posts?low=${fetchFrom}`)
                 setPosts(prev => prev.concat(res.data))
             }
             catch (err) {

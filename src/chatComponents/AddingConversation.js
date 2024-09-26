@@ -32,7 +32,7 @@ export default function AddingConversation(props) {
     React.useEffect(() => {
         const fetchData = async() => {
             try {
-                const res = await axios.get(`/chat/users?q=${query}`)
+                const res = await axios.get(`${process.env.REACT_APP_API_ROUTE}/chat/users?q=${query}`)
                 setAllUsers(res.data)
             }
             catch (err) {
@@ -123,7 +123,7 @@ export default function AddingConversation(props) {
             return
         }
         try {
-            const res = await axios.post(`/chat/create_conversation`, {...addingConv, joined_date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")})
+            const res = await axios.post(`${process.env.REACT_APP_API_ROUTE}/chat/create_conversation`, {...addingConv, joined_date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")})
             props.handleClose()
         }
         catch (err) {

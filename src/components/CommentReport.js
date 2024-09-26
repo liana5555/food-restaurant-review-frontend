@@ -25,7 +25,7 @@ async function handleSendReport (e) {
     else {
 
         try {
-            await axios.post(`/reports/comments/`, {
+            await axios.post(`${process.env.REACT_APP_API_ROUTE}/reports/comments/`, {
                 type : editReport.type,
                 date : moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
                 comment_id : props.comment_id,

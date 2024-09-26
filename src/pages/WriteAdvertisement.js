@@ -33,7 +33,7 @@ export default function WriteAdvertisement() {
         try{
             const formData = new FormData();
             formData.append("file", file)
-            const res = await axios.post("/uploads?type=post", formData)
+            const res = await axios.post(`${process.env.REACT_APP_API_ROUTE}/uploads?type=post`, formData)
             return res.data
         }   
         catch (err) {
@@ -63,7 +63,7 @@ export default function WriteAdvertisement() {
         
    
         try {
-           const res = state ? await axios.put(`/posts/advertisements/${state.idposts}`, {
+           const res = state ? await axios.put(`${process.env.REACT_APP_API_ROUTE}/posts/advertisements/${state.idposts}`, {
             title: advertisement.title,
             desc: value ,
             img:file? (imgUrl? imgUrl :file) : "",
@@ -75,7 +75,7 @@ export default function WriteAdvertisement() {
 
 
            }):
-           await axios.post(`/posts/advertisements/`, {
+           await axios.post(`${process.env.REACT_APP_API_ROUTE}/posts/advertisements/`, {
             title: advertisement.title,
             desc: value ,
             img:file? (imgUrl? imgUrl :file) : "",
@@ -97,7 +97,7 @@ export default function WriteAdvertisement() {
         }
         catch(err) {
             console.log(err)
-            setResponse(err)
+            setResponse(err.response.data)
 
         }
 

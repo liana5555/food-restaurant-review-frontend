@@ -29,7 +29,7 @@ export default function SingleRestaurant() {
     React.useEffect(() => {
         const fetchData = async() => {
             try {
-                const res = await axios.get(`/restaurants/${RestaurantId}`)
+                const res = await axios.get(`${process.env.REACT_APP_API_ROUTE}/restaurants/${RestaurantId}`)
                 setRestaurantData(res.data)
                 setRestaurantOpeningClosing(prev => ({
                     ...prev, 
@@ -44,7 +44,7 @@ export default function SingleRestaurant() {
 
         const fetchReservation = async() => {
             try {
-                const res = await axios.get(`/restaurants/${RestaurantId}/reservation`)
+                const res = await axios.get(`${process.env.REACT_APP_API_ROUTE}/restaurants/${RestaurantId}/reservation`)
                 setReservationsFetch(res.data)
             }
             catch (err) {

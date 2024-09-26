@@ -9,7 +9,7 @@ export default function Menu(props) {
     React.useEffect(() => {
         const fetchData = async() => {
             try {
-                const res = await axios.get(`/posts/menu/${props.postID}`)
+                const res = await axios.get(`${process.env.REACT_APP_API_ROUTE}/posts/menu/${props.postID}`)
                 setPosts(res.data)
             }
             catch (err) {

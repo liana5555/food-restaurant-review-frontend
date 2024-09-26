@@ -39,7 +39,7 @@ export default function Register () {
             console.log(checkingPaassword(regform.password, regform.repassword) === false)
             if (checkingPaassword(regform.password, regform.repassword)===false) {
                  try {
-                        const result = await axios.post("/auth/register", regform)
+                        const result = await axios.post(`${process.env.REACT_APP_API_ROUTE}/auth/register`, regform)
                         console.log(result) 
                         navigate("/login")
                         

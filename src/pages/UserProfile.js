@@ -42,7 +42,7 @@ export default function UserProfile () {
     React.useEffect(() => {
         const fetchData = async() => {
             try {
-                const res = await axios.get("/users/reservations")
+                const res = await axios.get(`${process.env.REACT_APP_API_ROUTE}/users/reservations`)
                 setUserReservations(res.data)
                 
 
@@ -59,7 +59,7 @@ export default function UserProfile () {
 
     async function handleDelete (reservation_id) {
         try {
-            const res= await axios.delete(`/users/reservations/${reservation_id}`);
+            const res= await axios.delete(`${process.env.REACT_APP_API_ROUTE}/users/reservations/${reservation_id}`);
             console.log(res.data)
             
             
@@ -77,7 +77,7 @@ export default function UserProfile () {
 
     async function handleDeleteUser () {
         try {
-            const res= await axios.delete(`/users`);
+            const res= await axios.delete(`${process.env.REACT_APP_API_ROUTE}/users`);
             console.log(res.data)
             setResponseFromServer(res.data)
             logout(currentUser)
@@ -129,7 +129,7 @@ export default function UserProfile () {
        
 
                 try {
-                const res =  await axios.put("/users/", {...changeUserDetail, img: file? (imgUrl? imgUrl :file) : currentUser?.img })
+                const res =  await axios.put(`${process.env.REACT_APP_API_ROUTE}/users/`, {...changeUserDetail, img: file? (imgUrl? imgUrl :file) : currentUser?.img })
                 setResponseFromServer(res.data)
                 setCurrentUser(changeUserDetail)
                 
@@ -176,7 +176,7 @@ async function handleSubmitPswChange (e) {
     e.preventDefault()
 
     try {
-        const res= await axios.put("/users/psw/", pswchange)
+        const res= await axios.put(`${process.env.REACT_APP_API_ROUTE}/users/psw/`, pswchange)
         setResponseFromServer(res.data)
 
     }
@@ -207,7 +207,7 @@ const prevreservation = userReservations.map((reservation) => {
         <div className="delete-img" onClick={() => handleDelete(reservation.idreservation)}><img src={Delete} alt="Delete reservation"/></div>
 
     </div>*/
-    <ManageSingleReservation key={reservation.idreservation} reservation={reservation} updateRoute={`/users/reservations/${reservation.idreservation}`} />
+    <ManageSingleReservation key={reservation.idreservation} reservation={reservation} updateRoute={`${process.env.REACT_APP_API_ROUTE}/users/reservations/${reservation.idreservation}`} />
     )
 })
 
@@ -215,7 +215,7 @@ async function upload() {
     try{
         const formData = new FormData();
         formData.append("file", file)
-        const res = await axios.post("/uploads?type=profile", formData)
+        const res = await axios.post(`${process.env.REACT_APP_API_ROUTE}/uploads?type=profile`, formData)
         return res.data
     }   
     catch (err) {

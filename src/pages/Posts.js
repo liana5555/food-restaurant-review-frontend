@@ -49,7 +49,7 @@ export default function Posts () {
     React.useEffect(() => {
         const fetchData = async() => {
             try {
-                const res = await axios.get(`/posts/${postId}`)
+                const res = await axios.get(`${process.env.REACT_APP_API_ROUTE}/posts/${postId}`)
                 setPost(res.data)
                 console.log(res.data)
                 setRating({restaurant: {
@@ -139,10 +139,10 @@ async function handleDelete () {
 
 
     if (currentUser.type === "restaurant worker" && currentUser.restaurant_id === post.idrestaurants && post.post_type === "advertisement") {
-        path = `/posts/advertisements/${postId}?rid=${currentUser.restaurant_id}`
+        path = `${process.env.REACT_APP_API_ROUTE}/posts/advertisements/${postId}?rid=${currentUser.restaurant_id}`
     }
     else {
-        path = `/posts/${postId}`
+        path = `${process.env.REACT_APP_API_ROUTE}/posts/${postId}`
     }
     console.log(path)
 
@@ -185,7 +185,7 @@ async function handleSendReport (e) {
     else {
 
         try {
-            await axios.post(`/reports/`, {
+            await axios.post(`${process.env.REACT_APP_API_ROUTE}/reports/`, {
                 type : editReport.type,
                 date : moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
                 post_id : postId,

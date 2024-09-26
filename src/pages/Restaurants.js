@@ -12,7 +12,7 @@ export default function Restaurants () {
     React.useEffect(() => {
         const fetchData = async() => {
             try {
-                const res = await axios.get(`/restaurants?q=${query}`)
+                const res = await axios.get(`${process.env.REACT_APP_API_ROUTE}/restaurants?q=${query}`)
                 setRestaurants(res.data)
             }
             catch (err) {

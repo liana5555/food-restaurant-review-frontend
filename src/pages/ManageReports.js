@@ -11,7 +11,7 @@ export default function ManageReports () {
     React.useEffect(() => {
         const fetchData = async() => {
             try {
-                const res = await axios.get("/users/admin/managed_reports")
+                const res = await axios.get(`${process.env.REACT_APP_API_ROUTE}/users/admin/managed_reports`)
                 setReports(res.data)
             }
             catch (err) {

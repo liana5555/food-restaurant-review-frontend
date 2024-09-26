@@ -151,7 +151,7 @@ async function handleSendReservation(e) {
   console.log(regform)
 
   try {
-      await axios.post(`/restaurants/${RestaurantId}/reservation`,regform )
+      await axios.post(`${process.env.REACT_APP_API_ROUTE}/restaurants/${RestaurantId}/reservation`,regform )
   }
   catch (err) {
     console.log(err)

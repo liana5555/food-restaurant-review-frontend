@@ -44,7 +44,7 @@ export default function RestaurantEdit () {
         console.log("Sending changes")
 
         try {
-            const res= axios.put(`/users/restaurant/${state[0].idrestaurants}`, 
+            const res= axios.put(`${process.env.REACT_APP_API_ROUTE}/users/restaurant/${state[0].idrestaurants}`, 
             
             {...restaurantForm,
                  description: value })

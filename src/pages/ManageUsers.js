@@ -11,7 +11,7 @@ export default function ManageUsers() {
     React.useEffect(() => {
         const fetchData = async() => {
             try {
-                const res = await axios.get("/users/admin/managed_user")
+                const res = await axios.get(`${process.env.REACT_APP_API_ROUTE}/users/admin/managed_user`)
                 setAllUsers(res.data)
             }
             catch (err) {

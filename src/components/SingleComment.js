@@ -32,7 +32,7 @@ export default function SingleComment(props) {
     async function handleSendComment (e) {
         e.preventDefault() 
         try {
-            await axios.post(`/comments/${props.comment.post_id}`, {
+            await axios.post(`${process.env.REACT_APP_API_ROUTE}/comments/${props.comment.post_id}`, {
                 comment : value,
                 date : moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
                 replied_for : props.comment.idcomments,
@@ -51,7 +51,7 @@ export default function SingleComment(props) {
     async function handleDeleteComment (e) {
         e.preventDefault()
         try {
-            await axios.delete(`/comments/${props.comment.idcomments}`)
+            await axios.delete(`${process.env.REACT_APP_API_ROUTE}/comments/${props.comment.idcomments}`)
         }
         catch (err) {
             console.log(err)
