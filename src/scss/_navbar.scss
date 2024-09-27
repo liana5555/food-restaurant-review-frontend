@@ -1,270 +1,254 @@
+.mobile-open {
+  @include break-down("medium") {
+    min-height: 100vh;
+  }
+}
 nav {
-    background-color: $white;
-    color: $darkerGreen;
-    padding: 0px;
-    margin: 0;
-    width: 100%;
+  background-color: $white;
+  color: $darkerGreen;
+  padding: 0px;
+  margin: 0;
+  width: 100%;
+  margin: 0px;
+  position: sticky; //I am not sure about using this ************
+  top: 0px;
+  z-index: 10;
+  max-height: 102px;
+
+  @include break-down("medium") {
+    position: sticky;
+    max-height: 100%;
+  }
+
+  ul {
     margin: 0px;
-    position: sticky; //I am not sure about using this ************
-    top:0px;
-    z-index: 10;
-    max-height: 102px;
-
-
-
+    padding: 20px;
+    text-decoration: none;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+    //box-shadow: rgba(27, 31, 35, 0.6) 0px 2px 0px, rgba(255, 255, 255, 0.4) 0px 2px 0px inset;
+    border-bottom: 5px solid $darkerGreen;
 
     @include break-down("medium") {
-        position: sticky;
-        max-height: 100vh;
-      
-        
-       
-
-  }
-    
-
-    ul {
-        margin: 0px;
-        padding: 20px;
-        text-decoration: none;
-        list-style: none;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content:flex-end;
-        gap: 20px;
-        //box-shadow: rgba(27, 31, 35, 0.6) 0px 2px 0px, rgba(255, 255, 255, 0.4) 0px 2px 0px inset;
-       border-bottom: 5px solid $darkerGreen;
-        
-
-        @include break-down("medium") {
-            display: flex;
-            flex-direction: column;
-            border-bottom: 0px;
-
-      }
-
-  
-       
-        li {
-            text-decoration: none;
-
-        }
-
-        
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      border-bottom: 0px;
     }
 
-    .ul_none {
-        display: flex;
-        flex-direction: row;
-        @include break-down("medium") {
-            display: none;
-            
+    li {
+      text-decoration: none;
+      padding: 0;
+      margin: 0;
+      min-height: 100%;
+      //border: 1px solid $darkerGreen;
+      transition: all ease-in-out 150ms;
 
-      }
-      }
-      .ul_visible {
-        display: flex;
-        flex-direction: row;
-
-        @include break-down("medium") {
-            display: flex;
-            flex-direction: column;
-
-      }
-        
-      }
-    a {
-        text-decoration: none;
-        display: inline-block;
-        padding: 19px;
-        border-bottom: 3px solid $white;
-        height: 100%;
-        color: $darkerGreen;
-        font-weight: 900;
-        font-size: 1rem;
-    }
-
-    a:hover {
+      &:hover {
         border-bottom: 3px solid $darkerGreen;
         color: $darkerGreen;
         //text-shadow: 1px 1px 3px $darkerGreen;
+      }
+
+      @include break-down("medium") {
+        width: 50%;
+        display: flex;
+        align-items: start;
+      }
     }
+  }
 
-    .link {
-        text-decoration: none;
-        display: inline-block;
-        padding: 19px;
-        border-bottom: 3px solid $white;
-        height: 100%;
-        color: $darkerGreen;
-        font-weight: 900;
-        font-size: 1rem;
+  .ul_none {
+    display: flex;
+    flex-direction: row;
 
+    min-height: 100px;
+    padding: 0px 20px 0px 20px;
+    @include break-down("medium") {
+      display: none;
     }
-    .link:hover {
-        cursor: pointer;
-        border-bottom: 3px solid $darkerGreen;
-        color: $darkerGreen;
+  }
+  .ul_visible {
+    display: flex;
+    flex-direction: row;
+    min-height: 100px;
+    padding: 0;
 
+    @include break-down("medium") {
+      display: flex;
+      flex-direction: column;
     }
+  }
+  a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 19px;
+    border-bottom: 3px solid $white;
+    height: 100%;
+    color: $darkerGreen;
+    font-weight: 900;
+    font-size: 1rem;
+  }
 
+  /* a:hover {
+    border-bottom: 3px solid $darkerGreen;
+    color: $darkerGreen;
+    //text-shadow: 1px 1px 3px $darkerGreen;
+  }*/
 
-    /*
+  .link {
+    text-decoration: none;
+    display: inline-block;
+    padding: 19px;
+    border-bottom: 3px solid $white;
+    height: 100%;
+    color: $darkerGreen;
+    font-weight: 900;
+    font-size: 1rem;
+  }
+  .link:hover {
+    cursor: pointer;
+    border-bottom: 3px solid $darkerGreen;
+    color: $darkerGreen;
+  }
+
+  /*
     ####################################
     ###### HAMBURGER MENU ##############
     ####################################
-    */  
+    */
 
-    .hamburger-menu{
-        display: none;
+  .hamburger-menu {
+    display: none;
 
-        @include break-down("medium") {
-              display: inline-block;
-              align-self: flex-end;
-            cursor: pointer;
-            justify-self: flex-end;
+    @include break-down("medium") {
+      display: inline-block;
+      align-self: flex-end;
+      cursor: pointer;
+      justify-self: flex-end;
 
-            padding: 5px;
-    
-        }
-
-      
-
-        span{
-            width: 35px;
-            height: 5px;
-            background-color: $darkerGreen;
-            margin: 6px 0;
-            transition: all 0.3s ease-in-out;
-            display: block;
-            border-radius: 5px;
-        }
-
-    
+      padding: 5px;
     }
-    .hamburger-menu-change {
-        display: none;
 
-        @include break-down("medium") {
-        display: inline-block;
-        cursor: pointer;
-        align-self: flex-end;
-        justify-self: flex-end;
+    span {
+      width: 35px;
+      height: 5px;
+      background-color: $darkerGreen;
+      margin: 6px 0;
+      transition: all 0.3s ease-in-out;
+      display: block;
+      border-radius: 5px;
+    }
+  }
+  .hamburger-menu-change {
+    display: none;
 
-        padding: 5px;
-  
+    @include break-down("medium") {
+      display: inline-block;
+      cursor: pointer;
+      align-self: flex-end;
+      justify-self: flex-end;
+
+      padding: 5px;
+    }
+
+    .hamburger-top-line {
+      width: 35px;
+      height: 5px;
+      background-color: $darkerGreen;
+      margin: 6px 0;
+      transition: all 0.3s ease-in-out;
+      display: block;
+      border-radius: 5px;
+
+      transform: translate(0, 11px) rotate(-45deg);
+    }
+    .hamburger-middle-line {
+      width: 35px;
+      height: 5px;
+      background-color: $darkerGreen;
+      margin: 6px 0;
+      transition: all 0.3s ease-in-out;
+      display: block;
+
+      opacity: 0;
+    }
+    .hamburger-bottom-line {
+      width: 35px;
+      height: 5px;
+      background-color: $darkerGreen;
+      margin: 6px 0;
+      transition: all 0.3s ease-in-out;
+      display: block;
+      border-radius: 5px;
+
+      transform: translate(0, -11px) rotate(45deg);
+    }
+  }
+
+  .nav-profile-container {
+    //display: flex;
+    //flex-direction: column;
+    //align-items: center;
+    //justify-content: center;
+    display: inline-block;
+    overflow: hidden;
+    max-height: 62px;
+
+    .user-img-name-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      transition: all ease-in-out 250ms;
+
+      img {
+        width: 40px;
+        height: 40px;
+        border: 2px solid $darkerGreen;
+        border-radius: 100%;
+        margin: 2px;
+        object-fit: cover;
       }
-      
-        .hamburger-top-line {
-            width: 35px;
-            height: 5px;
-            background-color: $darkerGreen;
-            margin: 6px 0;
-            transition: all 0.3s ease-in-out;
-            display: block;
-            border-radius: 5px;
-        
-            transform: translate(0,11px) rotate(-45deg);
-
-        }
-        .hamburger-middle-line {
-            width: 35px;
-            height: 5px;
-            background-color: $darkerGreen;
-            margin: 6px 0;
-            transition: all 0.3s ease-in-out;
-            display: block;
-       
-            opacity: 0;
-            
-        }
-        .hamburger-bottom-line {
-            width: 35px;
-            height: 5px;
-            background-color: $darkerGreen;
-            margin: 6px 0;
-            transition: all 0.3s ease-in-out;
-            display: block;
-            border-radius: 5px;
-        
-            transform: translate(0,-11px) rotate(45deg);
-        }
     }
 
-    .nav-profile-container {
-        //display: flex;
-        //flex-direction: column;
-        //align-items: center;
-        //justify-content: center;
-        display: inline-block;
-        overflow: hidden;
-        max-height: 62px;
+    .user-menu-container {
+      background-color: $white;
+      border-radius: 5px;
+      border: 1px solid $darkerGreen;
+      border-bottom: 0px;
 
+      position: absolute;
+      z-index: 100;
+      top: 95px;
+      right: 5px;
+      visibility: visible;
+      transition: all ease-in-out 250ms;
+      width: auto;
 
-        .user-img-name-container {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            transition: all ease-in-out 250ms;
+      @include break-down("medium") {
+        top: 200px;
+        right: 17vw;
+        width: auto;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+      }
 
-            img {
-                width: 40px;
-                height: 40px;
-                border: 2px solid $darkerGreen;
-                border-radius: 100%;
-                margin: 2px;
-                object-fit: cover;
-
-            }
-        }
-
-        .user-menu-container {
-            background-color: $white;
-            border-radius: 5px;
-            border: 1px solid $darkerGreen;
-            border-bottom: 0px;
-     
-          
-
-            position: absolute;
-            z-index: 100;
-            top: 102px;
-            right: 5px;
-            visibility: visible;
-            transition: all ease-in-out 250ms;
-            width:auto ;
-
-            
-                @include break-down("medium") {
-                    top: 200px;
-                    right: 17vw;
-                    width:auto ;
-                    border-bottom-left-radius: 0px ;
-                    border-bottom-right-radius: 0px ;
-                }
-
-
-            .profile-sub-menu {
-                display: flex;
-                flex-direction: column;
-                transition: all ease-in-out 250ms;
-                border-top: 5px solid $darkerGreen ;
-                border-radius: 5px;
-               
-            }
-            
-            
-
-
-        }
-
-        .user-menu-container-hidden {
-            display: none;
-            transition: all ease-in-out 250ms;
-        }
-
+      .profile-sub-menu {
+        display: flex;
+        flex-direction: column;
+        transition: all ease-in-out 250ms;
+        border-top: 5px solid $darkerGreen;
+        border-radius: 5px;
+      }
     }
-    
+
+    .user-menu-container-hidden {
+      display: none;
+      transition: all ease-in-out 250ms;
+    }
+  }
 }
-
