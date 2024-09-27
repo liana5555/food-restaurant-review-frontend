@@ -44,7 +44,7 @@ nav {
     }
   }
 
-  li {
+  .link {
     text-decoration: none;
     width: 150px;
     display: flex;
@@ -74,6 +74,13 @@ nav {
         border-left: 10px solid $darkerGreen;
       }
     }
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      object-fit: cover;
+    }
   }
 
   .profile-img-name-container {
@@ -82,6 +89,13 @@ nav {
     gap: 10px;
     align-items: center;
     justify-content: center;
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      object-fit: cover;
+    }
   }
 
   /*
@@ -178,6 +192,12 @@ nav {
   align-items: flex-start;
   justify-content: center;
   padding: 20px;
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
 
   @include break-down("medium") {
     position: absolute;

@@ -38,25 +38,31 @@ export default function Navbar() {
         </div>
 
         <ul className={navBarStateClosed ? "mobile-hidden" : ""}>
-          <li className={path.pathname === "/" ? "onPath" : ""}>
-            <Link to="/">Home</Link>
-          </li>
+          <Link className="link" to="/">
+            <li className={`path.pathname === "/" ? "onPath" : ""`}>Home</li>
+          </Link>
           {currentUser && (
-            <li className={path.pathname === "/write" ? "onPath" : ""}>
-              <Link to="/write">Write</Link>
-            </li>
+            <Link className="link" to="/write">
+              <li className={path.pathname === "/write" ? "onPath" : ""}>
+                Write
+              </li>
+            </Link>
           )}
           {currentUser && (
-            <li className={path.pathname === "/chat" ? "onPath" : ""}>
-              <Link to="/chat">Chat</Link>
-            </li>
+            <Link className="link" to="/chat">
+              <li className={path.pathname === "/chat" ? "onPath" : ""}>
+                Chat
+              </li>
+            </Link>
           )}
-          <li className={path.pathname === "/restaurants/" ? "onPath" : ""}>
-            <Link to="/restaurants/">Restaurants</Link>
-          </li>
-          <li>
+          <Link className="link" to="/restaurants/">
+            <li className={path.pathname === "/restaurants/" ? "onPath" : ""}>
+              Restaurants
+            </li>
+          </Link>
+          <li className="link">
             {currentUser ? (
-              <span className="link" onClick={logout}>
+              <span className="" onClick={logout}>
                 Logout
               </span>
             ) : (
@@ -65,13 +71,13 @@ export default function Navbar() {
           </li>
 
           {currentUser && (
-            <li>
+            <li className="link">
               <div
                 className="profile-img-name-container"
                 onClick={handleProfileMenu}
               >
                 <img src={`../uploads/profile_pics/${currentUser?.img}`} />
-                <span className="link">{currentUser?.username}</span>
+                <span className="">{currentUser?.username}</span>
               </div>
             </li>
           )}
