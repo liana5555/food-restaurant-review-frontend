@@ -4,6 +4,30 @@
   }
 }
 
+.fade-in {
+  @include break-down("medium") {
+    visibility: hidden;
+    opacity: 0;
+    height: 0%;
+    animation-name: fade-in;
+    animation-duration: 500ms;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
+}
+
+.fade-out {
+  @include break-down("medium") {
+    visibility: visible;
+    opacity: 100%;
+    height: 100vh;
+    animation-name: fade-out;
+    animation-duration: 500ms;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
+}
+
 .mobile-hidden {
   @include break-down("medium") {
     display: none;
@@ -212,7 +236,7 @@ nav {
     color: $white;
   }
 
-  li {
+  .link {
     height: 50px;
     display: flex;
     font-weight: 800;

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 
 export default function Navbar() {
@@ -11,21 +11,18 @@ export default function Navbar() {
 
   const path = useLocation();
 
-  console.log(path);
-
   function handlenavBarStateClosed() {
     setNavBarStateClosed((prev) => !prev);
+    setProfileMenu(false);
   }
 
   function handleProfileMenu() {
     setProfileMenu((prev) => !prev);
   }
 
-  console.log(currentUser);
-
   return (
     <div>
-      <nav className={navBarStateClosed ? "" : "mobile-open"}>
+      <nav className={navBarStateClosed ? "" : "mobile-open fade-in"}>
         <div
           onClick={handlenavBarStateClosed}
           className={
@@ -38,35 +35,53 @@ export default function Navbar() {
         </div>
 
         <ul className={navBarStateClosed ? "mobile-hidden" : ""}>
-          <Link className="link" to="/">
-            <li className={`path.pathname === "/" ? "onPath" : ""`}>Home</li>
+          <Link
+            onClick={() => setNavBarStateClosed(true)}
+            className={`link ${path.pathname === "/" ? "onPath" : ""}`}
+            to="/"
+          >
+            <li>Home</li>
           </Link>
           {currentUser && (
-            <Link className="link" to="/write">
-              <li className={path.pathname === "/write" ? "onPath" : ""}>
-                Write
-              </li>
+            <Link
+              onClick={() => setNavBarStateClosed(true)}
+              className={`link ${path.pathname === "/write" ? "onPath" : ""}`}
+              to="/write"
+            >
+              <li>Write</li>
             </Link>
           )}
           {currentUser && (
-            <Link className="link" to="/chat">
-              <li className={path.pathname === "/chat" ? "onPath" : ""}>
-                Chat
-              </li>
+            <Link
+              onClick={() => setNavBarStateClosed(true)}
+              className={`link ${path.pathname === "/chat" ? "onPath" : ""}`}
+              to="/chat"
+            >
+              <li>Chat</li>
             </Link>
           )}
-          <Link className="link" to="/restaurants/">
-            <li className={path.pathname === "/restaurants/" ? "onPath" : ""}>
-              Restaurants
-            </li>
+          <Link
+            onClick={() => setNavBarStateClosed(true)}
+            className={`link ${
+              path.pathname === "/restaurants/" ? "onPath" : ""
+            }`}
+            to="/restaurants/"
+          >
+            <li>Restaurants</li>
           </Link>
-          <li className="link">
+          <li className={`link ${path.pathname === "/login" ? "onPath" : ""}`}>
             {currentUser ? (
               <span className="" onClick={logout}>
                 Logout
               </span>
             ) : (
-              <Link to="/login">Login/Sign up</Link>
+              <Link
+                onClick={() => setNavBarStateClosed(true)}
+                to="/login"
+                className={``}
+              >
+                Login/Sign up
+              </Link>
             )}
           </li>
 
@@ -84,31 +99,71 @@ export default function Navbar() {
         </ul>
       </nav>
       {profileMenuIsOpen && (
-        <ul className="profile-menu" onMouseLeave={() => setProfileMenu(false)}>
-          <li>
-            <Link to={`/user/${currentUser.idusers}`}>Profile</Link>
-          </li>
+        <ul
+          className={`profile-menu ${
+            profileMenuIsOpen ? "fade-in" : "fade-out"
+          }`}
+          onMouseLeave={() => setProfileMenu(false)}
+        >
+          <Link
+            className="link"
+            onClick={() => {
+              setNavBarStateClosed(true);
+              setProfileMenu(false);
+            }}
+            to={`/user/${currentUser.idusers}`}
+          >
+            <li>Profile</li>{" "}
+          </Link>
           {currentUser.type === "admin" && (
-            <li>
-              <Link to="/admin/manage_users">Manage users</Link>
-            </li>
+            <Link
+              className="link"
+              onClick={() => {
+                setNavBarStateClosed(true);
+                setProfileMenu(false);
+              }}
+              to="/admin/manage_users"
+            >
+              <li>Manage users</li>
+            </Link>
           )}
           {currentUser.type === "admin" && (
-            <li>
-              <Link to="/admin/manage_reports">Manage reported posts</Link>
-            </li>
+            <Link
+              className="link"
+              onClick={() => {
+                setNavBarStateClosed(true);
+                setProfileMenu(false);
+              }}
+              to="/admin/manage_reports"
+            >
+              {" "}
+              <li>Manage reported posts</li>
+            </Link>
           )}
           {currentUser.type === "restaurant worker" && (
-            <li>
-              <Link to="/restaurant_worker/manage_reservations">
-                Manage reservations
-              </Link>
-            </li>
+            <Link
+              className="link"
+              onClick={() => {
+                setNavBarStateClosed(true);
+                setProfileMenu(false);
+              }}
+              to="/restaurant_worker/manage_reservations"
+            >
+              <li>Manage reservations</li>
+            </Link>
           )}
           {currentUser.type === "restaurant worker" && (
-            <li>
-              <Link to="/write/advertisement">Write Advertisement</Link>
-            </li>
+            <Link
+              className="link"
+              onClick={() => {
+                setNavBarStateClosed(true);
+                setProfileMenu(false);
+              }}
+              to="/write/advertisement"
+            >
+              {" "}
+              <li>Write Advertisement</li>
+            </Link>
           )}
         </ul>
       )}

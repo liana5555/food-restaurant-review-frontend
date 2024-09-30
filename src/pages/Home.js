@@ -1,49 +1,41 @@
-import React from "react"
+import React from "react";
 
 //import food1 from "../random-food-img-1.jpg"
 //import food2 from "../random-food-img-2.jpg"
 //import food3 from "../random-food-img-3.jpg"
 //import food4 from "../random-food-img-4.jpg"
 import { Link } from "react-router-dom";
-import axios from 'axios'
+import axios from "axios";
 
+export default function Home() {
+  const [fetchedPost, setPosts] = React.useState([]);
+  const dataFetchedRef = React.useRef(false);
 
+  const [fetchFrom, setfrom] = React.useState(0);
 
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.REACT_APP_API_ROUTE}/posts?low=${fetchFrom}`
+        );
+        setPosts((prev) => prev.concat(res.data));
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    if (dataFetchedRef.current) return;
+    dataFetchedRef.current = true;
+    fetchData();
+  }, [fetchFrom]);
 
+  function handleShowMore() {
+    dataFetchedRef.current = false;
+    setfrom(fetchedPost[fetchedPost.length - 1].idposts);
+  }
 
-export default function Home () {
-
-    const [fetchedPost, setPosts] = React.useState([])
-    const dataFetchedRef = React.useRef(false);
-
-    const [fetchFrom, setfrom] = React.useState(0)
-
-    React.useEffect(() => {
-        const fetchData = async() => {
-            try {
-                const res = await axios.get(`${process.env.REACT_APP_API_ROUTE}/posts?low=${fetchFrom}`)
-                setPosts(prev => prev.concat(res.data))
-            }
-            catch (err) {
-                console.log(err)
-            }
-        }
-        if (dataFetchedRef.current) return;
-        dataFetchedRef.current = true;
-        fetchData()
-    }, [fetchFrom])
-
-    function handleShowMore() {
-        
-            dataFetchedRef.current = false;
-            setfrom(fetchedPost[fetchedPost.length-1].idposts)
-        
-        
-    }
-
-
-//This is only for designing it will be fetched later
-/*    const dummy_data = [
+  //This is only for designing it will be fetched later
+  /*    const dummy_data = [
     {
         id: 1,
         title: "Reprehenderit esse occaecat incididunt enim proident.",
@@ -78,41 +70,36 @@ export default function Home () {
     ]
 */
 
+  const getText = (html) => {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent;
+  };
 
-const getText = (html) => {
-    const doc = new DOMParser().parseFromString(html, 'text/html')
-    return doc.body.textContent
-}
-    
-    const posts = fetchedPost.map((post) => {
-        return (
-        <div className="post-container" key={post.idposts}>
-            
-            <div className="post-content">
-                <Link className="link-on-home" to={`/posts/${post.idposts}`}>
-                <h2 className="post-title">{post.title}</h2>
-                </Link>
-                <p className="post-desc">{getText(post.desc)}</p>
-                <Link to={`/posts/${post.idposts}`}><button className="read-more">Read More</button></Link>
-            </div>
-            <div className="post-image">
-                <img alt={post.title + "image"} src={`./uploads/${post.img}`} />
-            </div>
-
-           
-            
-        </div>)
-    })
-
-
-
-
+  const posts = fetchedPost.map((post) => {
     return (
-       <main className="home posts-container">
-            {posts}
-            <button onClick={handleShowMore}>Show more ...</button>
-       </main>
-    )
+      <div className="post-container" key={post.idposts}>
+        <div className="post-content">
+          <Link className="link-on-home" to={`/posts/${post.idposts}`}>
+            <h2 className="post-title">{post.title}</h2>
+          </Link>
+          <p className="post-desc">
+            {getText(post.desc).substring(0, 500) + "..."}
+          </p>
+          <Link to={`/posts/${post.idposts}`}>
+            <button className="read-more">Read More</button>
+          </Link>
+        </div>
+        <div className="post-image">
+          <img alt={post.title + "image"} src={`./uploads/${post.img}`} />
+        </div>
+      </div>
+    );
+  });
 
-
+  return (
+    <main className="home posts-container">
+      {posts}
+      <button onClick={handleShowMore}>Show more ...</button>
+    </main>
+  );
 }
