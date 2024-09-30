@@ -1,351 +1,312 @@
 .chat-container {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    height: 100%;
-  
-    
-    height: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  height: 100%;
+
+  height: 100%;
 }
 
 .chat-conversation {
-    flex: 5;
-    
-    height: 100vh;
-    padding: 20px;
+  flex: 5;
 
-    .convesartion-name{
-        font-size: 20px;
-        font-weight: bold;
-        border-bottom: 1px solid $darkerGreen;
-        color: $darkerGreen;
-        margin-bottom: 20px;
+  height: 100vh;
+  padding: 20px;
 
-    }
+  .convesartion-name {
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid $darkerGreen;
+    color: $darkerGreen;
+    margin-bottom: 20px;
+  }
 
-    .conversation-container {
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        overflow-y: scroll;
-        height: 70%;
-
-        .my-messages {
-            align-self: flex-end;
-            background-color: $darkerGreen;
-            border-radius: 15px;
-            padding: 10px;
-            max-width: 80%;
-            width: fit-content;
-            color: $white;  
-            display: flex;   
-            flex-direction: column;
-            gap: 5px;          
-          
-        }
-        .received-messages {
-            
-            background-color: $white;
-            border-radius: 15px;
-            padding: 10px;
-            max-width: 80%;
-            width: fit-content;
-            color: $darkerGreen;
-            display: flex;   
-            flex-direction: column;  
-            gap: 5px;      
-          
-        }
-        .message-container {
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            text-align: justify;
-            gap: 5px;
-
-            .message-from-img {
-                img {
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 100%;
-                }
-            }
-        }
-
-        .message-senddate {
-            align-self: flex-end;
-            opacity: 50%;
-
-            
-
-        }
-    }
-    .sender-box{
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-
-        .chat-textarea {
-            padding: 10px;
-            border-radius: 5px;
-            color: $darkerGreen;
-            margin-bottom: 10px;
-        }
-        .chat-send{
-           align-self: flex-end;
-           width: fit-content;
-        }
-        
-  
-    }
-}
-
-.conversation-list-container{
-    flex:2;
+  .conversation-container {
+    padding: 10px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    border-right: 1px solid $lighterGreen;
-    max-width: 20%;
-    height: 100vh;
-    
-   
+    overflow-y: scroll;
+    height: 70%;
 
-    .chat-adding-conversation {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 10px;
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        border-bottom-left-radius: 20px;
-        border-top-left-radius: 20px;
-
-        @include break-down("medium") {
-            display: grid;
-            grid-template-rows: 1fr 1fr ;
-            grid-template-columns: 1fr;
-            padding: 5px;
-            gap: 5px;
-            
-    
-        }
-
-        &:hover {
-            background-color: $lighterGreen;
-        }
-
-        .add-contact {
-            border-radius: 100%;
-            width: 40px;
-            height: 40px;
-            font-size: 30px;
-            display: flex;
-            align-items: center;
-            font-weight: 800;
-            cursor: pointer;
-
-            &:hover {
-                background-color: $white;
-                color: $darkerGreen;
-            }
-        }
-        .add-contact-text {
-            @include break-down("medium") {
-               display: none;
-                
-        
-            }
-        }
-
-        
-
+    .my-messages {
+      align-self: flex-end;
+      background-color: $darkerGreen;
+      border-radius: 15px;
+      padding: 10px;
+      max-width: 80%;
+      width: fit-content;
+      color: $white;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
     }
-    .add-new-conversation {
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 90vw;
-        height: 90vh;
-        padding: 50px;
-        
-     
+    .received-messages {
+      background-color: $white;
+      border-radius: 15px;
+      padding: 10px;
+      max-width: 80%;
+      width: fit-content;
+      color: $darkerGreen;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .message-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      text-align: justify;
+      gap: 5px;
 
-        background-color: $lighterGreen;
-        border-radius: 10px;
-        left: 5vw; //61
-        top: calc(100px + 5vh); //65
-        z-index: 100;
-
-        .closing-icon {
-            padding: 5px;
-            align-self: flex-end;
-            justify-self: flex-start;
-            position: absolute;
-            top: calc(5vh - 20px) ;
-            right: 20px;
-            cursor: pointer;
-            &:hover {
-                background-color: $white;
-                border-radius: 10px;
-            }
-
-            .hamburger-top-line {
-                width: 35px;
-                height: 5px;
-                background-color: $darkerGreen;
-                margin: 6px 0;
-                transition: all 0.3s ease-in-out;
-                display: block;
-                border-radius: 5px;
-            
-                transform: translate(0,11px) rotate(-45deg);
-    
-            }
-            .hamburger-middle-line {
-                width: 35px;
-                height: 5px;
-                background-color: $darkerGreen;
-                margin: 6px 0;
-                transition: all 0.3s ease-in-out;
-                display: block;
-           
-                opacity: 0;
-                
-            }
-            .hamburger-bottom-line {
-                width: 35px;
-                height: 5px;
-                background-color: $darkerGreen;
-                margin: 6px 0;
-                transition: all 0.3s ease-in-out;
-                display: block;
-                border-radius: 5px;
-            
-                transform: translate(0,-11px) rotate(45deg);
-            }
-          
+      .message-from-img {
+        img {
+          width: 40px;
+          height: 40px;
+          border-radius: 100%;
         }
-
-        label {
-            padding-top: 20px;
-            padding-bottom: 20px;
-
-        }
-        input {
-            padding: 10px;
-
-        }
-    
-        table {
-            width: 80%;
-            max-height: 200px;
-            overflow-y: scroll;
-        }
-
-        button {
-            margin-top: 20px;
-
-        }
-        
-        .add-contact {
-            border-radius: 100%;
-            width: 40px;
-            height: 40px;
-            font-size: 30px;
-            display: flex;
-            align-items: center;
-            font-weight: 800;
-            cursor: pointer;
-            background-color: $white;
-                color: $darkerGreen;
-
-            &:hover {
-                background-color: $darkerGreen;
-                color: $white;
-            }
-        }
-
-        .added-members-holder {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            overflow-y: auto;
-            max-height: 200px;
-            
-        }
-
-        .member-container {
-            padding: 20px;
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-
-            .img-holder {
-                img {
-                    width: 40px;
-                    height: 40px;
-                }
-            }
-
-        }
-
+      }
     }
 
-    .listing-contacts {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-       
+    .message-senddate {
+      align-self: flex-end;
+      opacity: 50%;
+    }
+  }
+  .sender-box {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
 
-        .contact {
-            display: grid;
-            grid-template-columns: 1fr 4fr;
-            align-items: center;
-            padding-left: 20px;
-            padding-right: 20px;
-            gap: 10px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            border-bottom-left-radius: 20px;
-            border-top-left-radius: 20px;
-            cursor: pointer;
+    .chat-textarea {
+      padding: 10px;
+      border-radius: 5px;
+      color: $darkerGreen;
+      margin-bottom: 10px;
+    }
+    .chat-send {
+      align-self: flex-end;
+      width: fit-content;
+    }
+  }
+}
 
-               
+.conversation-list-container {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-right: 1px solid $lighterGreen;
+  min-width: 20%;
+  max-width: 20%;
+  height: 100vh;
+  overflow-y: auto;
+
+  .chat-adding-conversation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+
     @include break-down("medium") {
-        grid-template-rows: 1fr 1fr ;
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 1fr;
+      padding: 5px;
+      gap: 5px;
+    }
+
+    &:hover {
+      background-color: $lighterGreen;
+    }
+
+    .add-contact {
+      border-radius: 100%;
+      width: 40px;
+      height: 40px;
+      font-size: 30px;
+      display: flex;
+      align-items: center;
+      font-weight: 800;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $white;
+        color: $darkerGreen;
+      }
+    }
+    .add-contact-text {
+      @include break-down("medium") {
+        display: none;
+      }
+    }
+  }
+  .add-new-conversation {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90vw;
+    height: 90vh;
+    padding: 50px;
+
+    background-color: $lighterGreen;
+    border-radius: 10px;
+    left: 5vw; //61
+    top: calc(100px + 5vh); //65
+    z-index: 100;
+
+    .closing-icon {
+      padding: 5px;
+      align-self: flex-end;
+      justify-self: flex-start;
+      position: absolute;
+      top: calc(5vh - 20px);
+      right: 20px;
+      cursor: pointer;
+      &:hover {
+        background-color: $white;
+        border-radius: 10px;
+      }
+
+      .hamburger-top-line {
+        width: 35px;
+        height: 5px;
+        background-color: $darkerGreen;
+        margin: 6px 0;
+        transition: all 0.3s ease-in-out;
+        display: block;
+        border-radius: 5px;
+
+        transform: translate(0, 11px) rotate(-45deg);
+      }
+      .hamburger-middle-line {
+        width: 35px;
+        height: 5px;
+        background-color: $darkerGreen;
+        margin: 6px 0;
+        transition: all 0.3s ease-in-out;
+        display: block;
+
+        opacity: 0;
+      }
+      .hamburger-bottom-line {
+        width: 35px;
+        height: 5px;
+        background-color: $darkerGreen;
+        margin: 6px 0;
+        transition: all 0.3s ease-in-out;
+        display: block;
+        border-radius: 5px;
+
+        transform: translate(0, -11px) rotate(45deg);
+      }
+    }
+
+    label {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    input {
+      padding: 10px;
+    }
+
+    table {
+      width: 80%;
+      max-height: 200px;
+      overflow-y: scroll;
+    }
+
+    button {
+      margin-top: 20px;
+    }
+
+    .add-contact {
+      border-radius: 100%;
+      width: 40px;
+      height: 40px;
+      font-size: 30px;
+      display: flex;
+      align-items: center;
+      font-weight: 800;
+      cursor: pointer;
+      background-color: $white;
+      color: $darkerGreen;
+
+      &:hover {
+        background-color: $darkerGreen;
+        color: $white;
+      }
+    }
+
+    .added-members-holder {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      overflow-y: auto;
+      max-height: 200px;
+    }
+
+    .member-container {
+      padding: 20px;
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+
+      .img-holder {
+        img {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+  }
+
+  .listing-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr 4fr;
+      align-items: center;
+      padding-left: 20px;
+      padding-right: 20px;
+      gap: 10px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border-bottom-left-radius: 20px;
+      border-top-left-radius: 20px;
+      cursor: pointer;
+
+      @include break-down("medium") {
+        grid-template-rows: 1fr 1fr;
         grid-template-columns: 1fr;
         padding: 5px;
         gap: 5px;
-        
+      }
 
-    }
-            
-            
-            &:hover {
-                background-color: $lighterGreen;
-            }
+      &:hover {
+        background-color: $lighterGreen;
+      }
 
+      img {
+        height: 40px;
+        width: 40px;
+        border: 1px solid $darkerGreen;
+        border-radius: 100%;
+      }
 
-            img {
-                height: 40px;
-                width: 40px;
-                border: 1px solid $darkerGreen;
-                border-radius: 100%;
-            }
-
-            /*.chat-contact-name{
+      /*.chat-contact-name{
                 
             }*/
-
-
-
-        }
     }
+  }
 }
-
-

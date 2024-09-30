@@ -1,270 +1,259 @@
+.mobile-open {
+  @include break-down("medium") {
+    min-height: 100vh;
+  }
+}
+
+.fade-in {
+  @include break-down("medium") {
+    visibility: hidden;
+    opacity: 0;
+    height: 0%;
+    animation-name: fade-in;
+    animation-duration: 500ms;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
+}
+
+.fade-out {
+  @include break-down("medium") {
+    visibility: visible;
+    opacity: 100%;
+    height: 100vh;
+    animation-name: fade-out;
+    animation-duration: 500ms;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
+}
+
+.mobile-hidden {
+  @include break-down("medium") {
+    display: none;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $darkerGreen;
+}
+
 nav {
-    background-color: $white;
-    color: $darkerGreen;
-    padding: 0px;
-    margin: 0;
-    width: 100%;
-    margin: 0px;
-    position: sticky; //I am not sure about using this ************
-    top:0px;
-    z-index: 10;
-    max-height: 102px;
+  height: 6rem;
+  width: 100%;
+  background-color: $white;
+  border-bottom: 5px solid $darkerGreen;
 
+  @include break-down("medium") {
+    border: 0;
+    height: 100%;
+  }
 
-
+  ul {
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 100%;
+    text-decoration: none;
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
 
     @include break-down("medium") {
-        position: sticky;
-        max-height: 100vh;
-      
-        
-       
-
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
-    
 
-    ul {
-        margin: 0px;
-        padding: 20px;
-        text-decoration: none;
-        list-style: none;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content:flex-end;
-        gap: 20px;
-        //box-shadow: rgba(27, 31, 35, 0.6) 0px 2px 0px, rgba(255, 255, 255, 0.4) 0px 2px 0px inset;
-       border-bottom: 5px solid $darkerGreen;
-        
+  .link {
+    text-decoration: none;
+    width: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    transition: all ease-in-out 250ms;
+    font-weight: 800;
+    cursor: pointer;
 
-        @include break-down("medium") {
-            display: flex;
-            flex-direction: column;
-            border-bottom: 0px;
-
-      }
-
-  
-       
-        li {
-            text-decoration: none;
-
-        }
-
-        
+    @include break-down("medium") {
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      border-bottom: 0px;
+      width: 50%;
+      padding-left: 10px;
+      height: 50px;
     }
 
-    .ul_none {
-        display: flex;
-        flex-direction: row;
-        @include break-down("medium") {
-            display: none;
-            
+    &:hover {
+      border-bottom: 10px solid $darkerGreen;
 
+      @include break-down("medium") {
+        border-bottom: 0px;
+        border-left: 10px solid $darkerGreen;
       }
-      }
-      .ul_visible {
-        display: flex;
-        flex-direction: row;
-
-        @include break-down("medium") {
-            display: flex;
-            flex-direction: column;
-
-      }
-        
-      }
-    a {
-        text-decoration: none;
-        display: inline-block;
-        padding: 19px;
-        border-bottom: 3px solid $white;
-        height: 100%;
-        color: $darkerGreen;
-        font-weight: 900;
-        font-size: 1rem;
     }
 
-    a:hover {
-        border-bottom: 3px solid $darkerGreen;
-        color: $darkerGreen;
-        //text-shadow: 1px 1px 3px $darkerGreen;
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      object-fit: cover;
     }
+  }
 
-    .link {
-        text-decoration: none;
-        display: inline-block;
-        padding: 19px;
-        border-bottom: 3px solid $white;
-        height: 100%;
-        color: $darkerGreen;
-        font-weight: 900;
-        font-size: 1rem;
+  .profile-img-name-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
 
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      object-fit: cover;
     }
-    .link:hover {
-        cursor: pointer;
-        border-bottom: 3px solid $darkerGreen;
-        color: $darkerGreen;
+  }
 
-    }
-
-
-    /*
+  /*
     ####################################
     ###### HAMBURGER MENU ##############
     ####################################
-    */  
+    */
 
-    .hamburger-menu{
-        display: none;
+  .hamburger-menu {
+    display: none;
 
-        @include break-down("medium") {
-              display: inline-block;
-              align-self: flex-end;
-            cursor: pointer;
-            justify-self: flex-end;
+    @include break-down("medium") {
+      display: inline-block;
+      align-self: flex-end;
+      cursor: pointer;
+      justify-self: flex-end;
 
-            padding: 5px;
-    
-        }
-
-      
-
-        span{
-            width: 35px;
-            height: 5px;
-            background-color: $darkerGreen;
-            margin: 6px 0;
-            transition: all 0.3s ease-in-out;
-            display: block;
-            border-radius: 5px;
-        }
-
-    
-    }
-    .hamburger-menu-change {
-        display: none;
-
-        @include break-down("medium") {
-        display: inline-block;
-        cursor: pointer;
-        align-self: flex-end;
-        justify-self: flex-end;
-
-        padding: 5px;
-  
-      }
-      
-        .hamburger-top-line {
-            width: 35px;
-            height: 5px;
-            background-color: $darkerGreen;
-            margin: 6px 0;
-            transition: all 0.3s ease-in-out;
-            display: block;
-            border-radius: 5px;
-        
-            transform: translate(0,11px) rotate(-45deg);
-
-        }
-        .hamburger-middle-line {
-            width: 35px;
-            height: 5px;
-            background-color: $darkerGreen;
-            margin: 6px 0;
-            transition: all 0.3s ease-in-out;
-            display: block;
-       
-            opacity: 0;
-            
-        }
-        .hamburger-bottom-line {
-            width: 35px;
-            height: 5px;
-            background-color: $darkerGreen;
-            margin: 6px 0;
-            transition: all 0.3s ease-in-out;
-            display: block;
-            border-radius: 5px;
-        
-            transform: translate(0,-11px) rotate(45deg);
-        }
+      padding: 5px;
     }
 
-    .nav-profile-container {
-        //display: flex;
-        //flex-direction: column;
-        //align-items: center;
-        //justify-content: center;
-        display: inline-block;
-        overflow: hidden;
-        max-height: 62px;
-
-
-        .user-img-name-container {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            transition: all ease-in-out 250ms;
-
-            img {
-                width: 40px;
-                height: 40px;
-                border: 2px solid $darkerGreen;
-                border-radius: 100%;
-                margin: 2px;
-                object-fit: cover;
-
-            }
-        }
-
-        .user-menu-container {
-            background-color: $white;
-            border-radius: 5px;
-            border: 1px solid $darkerGreen;
-            border-bottom: 0px;
-     
-          
-
-            position: absolute;
-            z-index: 100;
-            top: 102px;
-            right: 5px;
-            visibility: visible;
-            transition: all ease-in-out 250ms;
-            width:auto ;
-
-            
-                @include break-down("medium") {
-                    top: 200px;
-                    right: 17vw;
-                    width:auto ;
-                    border-bottom-left-radius: 0px ;
-                    border-bottom-right-radius: 0px ;
-                }
-
-
-            .profile-sub-menu {
-                display: flex;
-                flex-direction: column;
-                transition: all ease-in-out 250ms;
-                border-top: 5px solid $darkerGreen ;
-                border-radius: 5px;
-               
-            }
-            
-            
-
-
-        }
-
-        .user-menu-container-hidden {
-            display: none;
-            transition: all ease-in-out 250ms;
-        }
-
+    span {
+      width: 35px;
+      height: 5px;
+      background-color: $darkerGreen;
+      margin: 6px 0;
+      transition: all 0.3s ease-in-out;
+      display: block;
+      border-radius: 5px;
     }
-    
+  }
+  .hamburger-menu-change {
+    display: none;
+
+    @include break-down("medium") {
+      display: inline-block;
+      cursor: pointer;
+      align-self: flex-end;
+      justify-self: flex-end;
+
+      padding: 5px;
+    }
+
+    .hamburger-top-line {
+      width: 35px;
+      height: 5px;
+      background-color: $darkerGreen;
+      margin: 6px 0;
+      transition: all 0.3s ease-in-out;
+      display: block;
+      border-radius: 5px;
+
+      transform: translate(0, 11px) rotate(-45deg);
+    }
+    .hamburger-middle-line {
+      width: 35px;
+      height: 5px;
+      background-color: $darkerGreen;
+      margin: 6px 0;
+      transition: all 0.3s ease-in-out;
+      display: block;
+
+      opacity: 0;
+    }
+    .hamburger-bottom-line {
+      width: 35px;
+      height: 5px;
+      background-color: $darkerGreen;
+      margin: 6px 0;
+      transition: all 0.3s ease-in-out;
+      display: block;
+      border-radius: 5px;
+
+      transform: translate(0, -11px) rotate(45deg);
+    }
+  }
 }
 
+.profile-menu {
+  list-style-type: none;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  top: 95px;
+  right: 0px;
+  background-color: $white;
+  z-index: 1000;
+  text-decoration: none;
+  width: 300px;
+  background-color: $darkerGreen;
+  color: $white;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px;
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+
+  @include break-down("medium") {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    width: 50%;
+    border: 0;
+    border-radius: 0;
+  }
+
+  a {
+    color: $white;
+  }
+
+  .link {
+    height: 50px;
+    display: flex;
+    font-weight: 800;
+    align-items: center;
+    width: 100%;
+
+    &:hover {
+      border-bottom: 5px solid $white;
+    }
+  }
+}
+
+.onPath {
+  border-bottom: 10px solid $darkerGreen;
+
+  @include break-down("medium") {
+    border-bottom: 0px;
+    border-left: 10px solid $darkerGreen;
+  }
+}

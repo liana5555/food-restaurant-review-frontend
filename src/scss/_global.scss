@@ -1,260 +1,215 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .error {
-    margin: 20px;
-    color: $warning;
+  margin: 20px;
+  color: $warning;
 }
 
-body{
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    color: $darkerGreen;
-
-
-
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: $darkerGreen;
 }
-
-
-
 
 //Register and Login page
 
 .login-register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $backgcolor;
+  min-height: 100vh;
+  padding: 20px;
+
+  .login-register-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+  label {
+    align-self: flex-start;
+    width: 100%;
+  }
+  input {
+    margin-bottom: 20px;
+    width: 100%;
+    border-radius: 5px;
+    padding: 12px 20px;
+    border: 2px solid $darkerGreen;
     background-color: $backgcolor;
-    min-height: 100vh;
-    padding: 20px;
-    
-
-    .login-register-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    
-
-    }
-    label {
-        align-self: flex-start;
-        width: 100%;
-        
-    }
-    input {
-        margin-bottom: 20px;
-        width: 100%;
-        border-radius: 5px;
-        padding: 12px 20px;
-        border: 2px solid $darkerGreen;
-        background-color: $backgcolor ;
-    }
-    input:focus {
-        border: 3px solid $darkerGreen;
-        outline-style: double;
-        outline-color: $darkerGreen;
-        outline-width:2px;
-        outline-offset: 1px;
-        background-color: $white;
-   
-    }
-    .input-error {
-        border-color: red;
-      }
- /*   input:placeholder-shown:focus {
+  }
+  input:focus {
+    border: 3px solid $darkerGreen;
+    outline-style: double;
+    outline-color: $darkerGreen;
+    outline-width: 2px;
+    outline-offset: 1px;
+    background-color: $white;
+  }
+  .input-error {
+    border-color: red;
+  }
+  /*   input:placeholder-shown:focus {
         border-color: $darkerGreen;
       }
 */
-    button {
-        background-color: $white;
-        border-radius: 10px;
-        padding: 10px;
-        font-size: 20px;
-        border: 2px solid $black;
-        transition: all 250ms ease-in-out;
-        color: $darkerGreen;
-       
+  button {
+    background-color: $white;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 20px;
+    border: 2px solid $black;
+    transition: all 250ms ease-in-out;
+    color: $darkerGreen;
 
-        &:hover {
-            background-color: $darkerGreen;
-            color: $white;
-            border: 2 px solid $darkerGreen;
-            cursor: pointer;
-          
-        }
-
-        
+    &:hover {
+      background-color: $darkerGreen;
+      color: $white;
+      border: 2 px solid $darkerGreen;
+      cursor: pointer;
     }
-    .not-matching-psw {
-       
-        margin-bottom: 20px;
-        color: $warning;
-    }
-    a {
-        color: $darkerGreen;
-    }
-    a:hover {
-        color: $black;
-    }
-
+  }
+  .not-matching-psw {
+    margin-bottom: 20px;
+    color: $warning;
+  }
+  a {
+    color: $darkerGreen;
+  }
+  a:hover {
+    color: $black;
+  }
 }
-
 
 //Home
 
 .home {
-    background-color: $backgcolor;
-    min-height: 100%;
-    padding: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap:100px;
+  background-color: $backgcolor;
+  min-height: 100vh;
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
 
-    @include break-down("medium") {
-        padding: 20px;
-        gap: 20px;
-
-    }
-
+  @include break-down("medium") {
+    padding: 20px;
+    gap: 20px;
+  }
 }
 
 .post-container {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  width: 100%;
+
+  @include break-down("medium") {
     display: flex;
-    flex-direction: row;
-    gap: 100px;
+    flex-direction: column-reverse;
+    gap: 20px;
     width: 100%;
+  }
+
+  &:nth-child(2n + 1) {
+    flex-direction: row-reverse;
 
     @include break-down("medium") {
-        display: flex;
-        flex-direction: column-reverse;
-        gap: 20px;
-        width: 100%;
+      flex-direction: column-reverse;
+    }
+  }
 
+  .post-image {
+    flex: 1;
+    position: relative;
+
+    @include break-down("medium") {
+      flex: 0 1 auto;
+      position: relative;
     }
 
-    &:nth-child(2n+1) {
-        flex-direction: row-reverse;
+    &::after {
+      content: "";
+      background-color: $darkerGreen;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 20px;
+      left: -20px;
+      z-index: 1;
 
-        @include break-down("medium") {
-            flex-direction: column-reverse;
-    
-        }
-
+      @include break-down("medium") {
+        bottom: 5px;
+        left: 0px;
+        position: absolute;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
     }
 
-    .post-image {
-        flex: 1;
-        position: relative;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 2;
+      position: relative;
+      box-shadow: 10px 10px 10px $darkerGreen;
 
-        @include break-down("medium") {
-            flex: 0 1 auto;
-            position: relative;
-            
-    
-        }
+      @include break-down("medium") {
+        border-radius: 10px;
+        box-shadow: 0px 0px 0px $darkerGreen;
+        max-height: 200px;
+      }
+    }
+  }
 
-        
+  .post-content {
+    flex: 2;
+    text-align: justify;
 
-        &::after {
-            content: "";
-            background-color: $darkerGreen;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 20px;
-            left: -20px;
-            z-index: 1;
-
-            
-        @include break-down("medium") {
-            
-            bottom: 5px;
-            left: 0px;
-            position: absolute;
-            border-bottom-left-radius: 10px ;
-            border-bottom-right-radius: 10px ;
-        }
-
-        }
-        
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 2;
-            position: relative;
-            box-shadow: 10px 10px 10px $darkerGreen;
-
-            @include break-down("medium") {
-               border-radius: 10px;
-               box-shadow: 0px 0px 0px $darkerGreen;
-               max-height: 200px;
-
-                
-        
-            }
-        }
+    @include break-down("medium") {
+      flex: 0 1 auto;
     }
 
-    .post-content {
-        flex: 2;
-        text-align: justify;
-
-        @include break-down("medium") {
-            flex: 0 1 auto;
-    
-        }
-
-        h2 {
-            text-decoration: none;
-        }
-
-        .link-on-home {
-            text-decoration: none;
-            color: $darkerGreen;
-            font-weight: 900;
-
-            
-        }
-
-        
+    h2 {
+      text-decoration: none;
     }
 
-
+    .link-on-home {
+      text-decoration: none;
+      color: $darkerGreen;
+      font-weight: 900;
+    }
+  }
 }
 
 //Read more button is shared with Menu.js and Home
 
 .read-more {
-    background-color: $white;
-        border-radius: 10px;
-        padding: 5px;
-        padding-right: 10px;
-        padding-left: 10px;
-        font-size: 16px;
-        border: 2px solid $darkerGreen;
-        transition: all 250ms ease-in-out;
-        color: $darkerGreen;
-        font-weight: bold;
-       
+  background-color: $white;
+  border-radius: 10px;
+  padding: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-size: 16px;
+  border: 2px solid $darkerGreen;
+  transition: all 250ms ease-in-out;
+  color: $darkerGreen;
+  font-weight: bold;
 
-        &:hover {
-            background-color: $darkerGreen;
-            color: $white;
-            border: 2 px solid $darkerGreen;
-            cursor: pointer;
-          
-        }
-
-            
+  &:hover {
+    background-color: $darkerGreen;
+    color: $white;
+    border: 2 px solid $darkerGreen;
+    cursor: pointer;
+  }
 }
-
 
 /*
     ERROR
@@ -262,85 +217,74 @@ body{
 */
 
 .error-up {
-    position: sticky;
-    display: block;
-    min-width: 100%;
-    padding: 20px;
-    height: auto;
-    top: 150px;
-    background-color: $lighterabitGreen;
-    border-radius: 20px;
+  position: sticky;
+  display: block;
+  min-width: 100%;
+  padding: 20px;
+  height: auto;
+  top: 150px;
+  background-color: $lighterabitGreen;
+  border-radius: 20px;
+  align-self: center;
+
+  color: $darkerGreen;
+  font-size: 20px;
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  gap: 10px;
+  z-index: 1000;
+
+  .error-up-text {
     align-self: center;
-    
-    color: $darkerGreen;
-    font-size: 20px;
-    display: grid;
-    grid-template-columns: 5fr 1fr;
-    gap: 10px;
-    z-index: 1000;
+  }
 
-    .error-up-text {
-        align-self: center;
-        
-    }
-    
-    .closing-icon {
-        padding: 5px;
-        align-self: center;
-        justify-self: flex-end;
-        max-width: 50px;
-     
-        cursor: pointer;
-        &:hover {
-            background-color: $white;
-            border-radius: 10px;
-        }
+  .closing-icon {
+    padding: 5px;
+    align-self: center;
+    justify-self: flex-end;
+    max-width: 50px;
 
-        .hamburger-top-line {
-            width: 35px;
-            height: 5px;
-            background-color: $darkerGreen;
-            margin: 6px 0;
-            transition: all 0.3s ease-in-out;
-            display: block;
-            border-radius: 5px;
-        
-            transform: translate(0,11px) rotate(-45deg);
-
-        }
-        .hamburger-middle-line {
-            width: 35px;
-            height: 5px;
-            background-color: $darkerGreen;
-            margin: 6px 0;
-            transition: all 0.3s ease-in-out;
-            display: block;
-       
-            opacity: 0;
-            
-        }
-        .hamburger-bottom-line {
-            width: 35px;
-            height: 5px;
-            background-color: $darkerGreen;
-            margin: 6px 0;
-            transition: all 0.3s ease-in-out;
-            display: block;
-            border-radius: 5px;
-        
-            transform: translate(0,-11px) rotate(45deg);
-        }
-      
+    cursor: pointer;
+    &:hover {
+      background-color: $white;
+      border-radius: 10px;
     }
 
+    .hamburger-top-line {
+      width: 35px;
+      height: 5px;
+      background-color: $darkerGreen;
+      margin: 6px 0;
+      transition: all 0.3s ease-in-out;
+      display: block;
+      border-radius: 5px;
 
+      transform: translate(0, 11px) rotate(-45deg);
+    }
+    .hamburger-middle-line {
+      width: 35px;
+      height: 5px;
+      background-color: $darkerGreen;
+      margin: 6px 0;
+      transition: all 0.3s ease-in-out;
+      display: block;
 
+      opacity: 0;
+    }
+    .hamburger-bottom-line {
+      width: 35px;
+      height: 5px;
+      background-color: $darkerGreen;
+      margin: 6px 0;
+      transition: all 0.3s ease-in-out;
+      display: block;
+      border-radius: 5px;
+
+      transform: translate(0, -11px) rotate(45deg);
+    }
+  }
 }
 
 .img-upload {
-    cursor: pointer;
+  cursor: pointer;
 }
-
-
-
-

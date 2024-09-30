@@ -27,15 +27,13 @@ export default function ChatContainer() {
       };
     });
   }
-  console.log(process.env.REACT_APP_SERVER);
+
   React.useEffect(() => {
     if (currentUser !== null) {
       socket.current = io(process.env.REACT_APP_SERVER); //i might need to write what's in the proxy
       socket.current.emit("addUser", currentUser.idusers); //currentuser.idusers originally
     }
   }, [currentUser]);
-
-  console.log(chatPartner);
 
   return (
     <div className="chat-container">
