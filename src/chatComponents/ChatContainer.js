@@ -1,15 +1,13 @@
 import React, { useContext, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+
 import { AuthContext } from "../context/authContext";
-import moment from "moment";
-import axios from "axios";
-import dateSimplify from "../functions/date_r.mjs";
+
 import { io } from "socket.io-client";
 import ConversationList from "./ConversationList";
 import ConversationChat from "./ConversationChat";
 
 export default function ChatContainer() {
-  const { currentUser, logout } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
 
   const socket = useRef();
 

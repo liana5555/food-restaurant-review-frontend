@@ -23,8 +23,6 @@ export default function AddingConversation(props) {
     group_members_ids: [],
   });
 
-  const keys = ["first_name", "last_name", "username"];
-
   const [fetchAllUsers, setAllUsers] = React.useState([]);
 
   React.useEffect(() => {
@@ -111,14 +109,6 @@ export default function AddingConversation(props) {
       setResponse(err);
     }
   }
-
-  /*
-function search (data) {
-    return data.filter((item) => (
-        keys.some((key) => item[key].toLowerCase().includes(query.toLowerCase()))
-    ))
-}
-*/
 
   return (
     <div className="add-new-conversation">

@@ -1,25 +1,18 @@
 import React, { useContext, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+
 import { AuthContext } from "../context/authContext";
 import moment from "moment";
 import axios from "axios";
 import dateSimplify from "../functions/date_r.mjs";
-import { io } from "socket.io-client";
 
 export default function ConversationChat(props) {
-  const { currentUser, logout } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
 
   const scrollRef = useRef(null);
 
   const socket = props.socket;
 
   var date = new Date();
-
-  function joinRoom() {
-    if (currentUser && props.chatPartner.conversation_id) {
-      socket.current.emit("join_room", props.chatPartner.conversation_id);
-    }
-  }
 
   const [dateFetchFrom, setDateFetchFrom] = React.useState(
     moment(date.setDate(date.getDate() - 2)).format("YYYY-MM-DD")
